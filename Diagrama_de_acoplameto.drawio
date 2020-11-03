@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-11-03T02:38:42.395Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36" etag="WMT-aNx3yqLSKrBeqyzS" version="13.8.8" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-03T03:09:12.763Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36" etag="hY_E61g-ZzViL4k8n1Cl" version="13.8.8" type="github">
   <diagram id="ZXrqioaMke-Y9P5PgKKp" name="Page-1">
     <mxGraphModel dx="868" dy="1546" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
@@ -182,7 +182,7 @@
         <mxCell id="2FagUGivekg9gJh4EhXs-31" style="edgeStyle=entityRelationEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;fontSize=3;fillColor=#B266FF;" parent="1" source="rHKmbyzbA7fJzTo6jydG-37" target="rHKmbyzbA7fJzTo6jydG-39" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="_H8z8CWggNFPW8xt4o94-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="rHKmbyzbA7fJzTo6jydG-37" target="rHKmbyzbA7fJzTo6jydG-41">
+        <mxCell id="_H8z8CWggNFPW8xt4o94-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="rHKmbyzbA7fJzTo6jydG-37" target="rHKmbyzbA7fJzTo6jydG-41" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="241" y="-567" as="targetPoint" />
             <Array as="points">
@@ -348,10 +348,10 @@
             <mxPoint x="596" y="-150" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="_H8z8CWggNFPW8xt4o94-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="2FagUGivekg9gJh4EhXs-48" target="_H8z8CWggNFPW8xt4o94-7">
+        <mxCell id="_H8z8CWggNFPW8xt4o94-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="2FagUGivekg9gJh4EhXs-48" target="_H8z8CWggNFPW8xt4o94-7" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="_H8z8CWggNFPW8xt4o94-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="2FagUGivekg9gJh4EhXs-48" target="2FagUGivekg9gJh4EhXs-84">
+        <mxCell id="_H8z8CWggNFPW8xt4o94-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="2FagUGivekg9gJh4EhXs-48" target="2FagUGivekg9gJh4EhXs-84" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <UserObject label="MAIS ALGUM PRODUTO?" lucidchartObjectId="d~wKO_Ew.pH2" id="2FagUGivekg9gJh4EhXs-48">
@@ -444,26 +444,30 @@
             <mxGeometry x="1071" y="-180" width="110" height="60" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="_H8z8CWggNFPW8xt4o94-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="2FagUGivekg9gJh4EhXs-84" target="_H8z8CWggNFPW8xt4o94-2">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="_H8z8CWggNFPW8xt4o94-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="2FagUGivekg9gJh4EhXs-84" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="896" y="-150" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="2FagUGivekg9gJh4EhXs-84" value="&lt;b&gt;NÃO&lt;/b&gt;" style="triangle;whiteSpace=wrap;html=1;rounded=0;align=left;fillColor=#B266FF;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="796" y="-172" width="54" height="44" as="geometry" />
         </mxCell>
-        <mxCell id="_H8z8CWggNFPW8xt4o94-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="_H8z8CWggNFPW8xt4o94-2" target="2FagUGivekg9gJh4EhXs-80">
+        <mxCell id="_H8z8CWggNFPW8xt4o94-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="2FagUGivekg9gJh4EhXs-80" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1006" y="-150" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_H8z8CWggNFPW8xt4o94-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="_H8z8CWggNFPW8xt4o94-7" target="2FagUGivekg9gJh4EhXs-44" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <UserObject label="CONFIRMA" lucidchartObjectId="5~wK7thumvDX" id="_H8z8CWggNFPW8xt4o94-2">
-          <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=10fontColor=#333333;fontStyle=1;spacing=7;strokeOpacity=100;fillOpacity=72;absoluteArcSize=1;arcSize=7.199999999999999;fillColor=#B266FF;strokeWidth=2;align=center;rounded=1;" vertex="1" zOrder="64" parent="1">
+        <mxCell id="_H8z8CWggNFPW8xt4o94-7" value="&lt;b&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;SIM&lt;/b&gt;" style="triangle;whiteSpace=wrap;html=1;rounded=0;align=left;fillColor=#B266FF;strokeWidth=2;direction=west;" parent="1" vertex="1">
+          <mxGeometry x="594" y="-90" width="57" height="44" as="geometry" />
+        </mxCell>
+        <UserObject label="CONFIRMAR" lucidchartObjectId="5~wK7thumvDX" id="pY-PWXauikeZS4gAk3QM-1">
+          <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=10;fontColor=#333333;fontStyle=1;spacing=7;strokeOpacity=100;fillOpacity=72;absoluteArcSize=1;arcSize=7.199999999999999;fillColor=#B266FF;strokeWidth=2;align=center;rounded=1;" vertex="1" zOrder="64" parent="1">
             <mxGeometry x="896" y="-180" width="110" height="60" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="_H8z8CWggNFPW8xt4o94-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="_H8z8CWggNFPW8xt4o94-7" target="2FagUGivekg9gJh4EhXs-44">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="_H8z8CWggNFPW8xt4o94-7" value="&lt;b&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;SIM&lt;/b&gt;" style="triangle;whiteSpace=wrap;html=1;rounded=0;align=left;fillColor=#B266FF;strokeWidth=2;direction=west;" vertex="1" parent="1">
-          <mxGeometry x="594" y="-90" width="57" height="44" as="geometry" />
-        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
