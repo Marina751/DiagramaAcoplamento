@@ -1,18 +1,9 @@
-<mxfile host="app.diagrams.net" modified="2020-11-04T02:40:32.627Z" agent="5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36" etag="tSiHU-89XqfZEVDr0k89" version="13.8.8" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-04T02:47:49.978Z" agent="5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36" etag="XeNbDCcIbR-HEPfVBHW9" version="13.8.8" type="github">
   <diagram id="ZXrqioaMke-Y9P5PgKKp" name="Page-1">
-    <mxGraphModel dx="873" dy="1827" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="2096" dy="2280" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="q79SqbMXwKp4XREql4Sq-42" value="" style="whiteSpace=wrap;html=1;rounded=1;strokeWidth=3;fillColor=none;arcSize=3;" vertex="1" parent="1">
-          <mxGeometry x="9" y="-1062" width="1152" height="504" as="geometry" />
-        </mxCell>
-        <mxCell id="q79SqbMXwKp4XREql4Sq-43" value="" style="whiteSpace=wrap;html=1;rounded=1;strokeWidth=3;fillColor=none;arcSize=4;" vertex="1" parent="1">
-          <mxGeometry x="9" y="-450" width="1215" height="369" as="geometry" />
-        </mxCell>
-        <mxCell id="q79SqbMXwKp4XREql4Sq-44" value="" style="whiteSpace=wrap;html=1;rounded=1;strokeWidth=4;fillColor=none;arcSize=4;" vertex="1" parent="1">
-          <mxGeometry x="9" y="36" width="1368" height="306" as="geometry" />
-        </mxCell>
         <UserObject label="Início" lucidchartObjectId="3y1JagYthgjQ" id="rHKmbyzbA7fJzTo6jydG-2">
           <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=13;fontColor=#333333;spacing=7;strokeOpacity=100;fillOpacity=100;absoluteArcSize=1;arcSize=7.199999999999999;fillColor=#b2d6ef;strokeWidth=2;rounded=1;fontStyle=1" parent="1" vertex="1" zOrder="1">
             <mxGeometry x="1314" y="-963" width="55" height="39" as="geometry" />
