@@ -1,16 +1,16 @@
-<mxfile host="app.diagrams.net" modified="2020-11-04T18:05:20.670Z" agent="5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36" etag="nG2-UQociORs1_Le3oOk" version="13.8.9-1" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-04T18:07:44.107Z" agent="5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36" etag="ZKukC7jus1FO0yv1cEyY" version="13.8.9-1" type="github">
   <diagram id="ZXrqioaMke-Y9P5PgKKp" name="Page-1">
-    <mxGraphModel dx="2109" dy="1943" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1476" dy="1690" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <UserObject label="Início" lucidchartObjectId="3y1JagYthgjQ" id="rHKmbyzbA7fJzTo6jydG-2">
-          <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=13;fontColor=#333333;spacing=7;strokeOpacity=100;fillOpacity=100;absoluteArcSize=1;arcSize=7.199999999999999;fillColor=#b2d6ef;strokeWidth=2;rounded=1;fontStyle=1" parent="1" vertex="1" zOrder="1">
+          <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=13;spacing=7;strokeOpacity=100;fillOpacity=100;absoluteArcSize=1;arcSize=7.199999999999999;fillColor=#b2d6ef;strokeWidth=2;rounded=1;fontStyle=1;" parent="1" vertex="1" zOrder="1">
             <mxGeometry x="1314" y="-963" width="55" height="39" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="Fim" lucidchartObjectId="Pz1Jr6ghEXmA" id="rHKmbyzbA7fJzTo6jydG-3">
-          <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=13;fontColor=#333333;spacing=7;strokeOpacity=100;fillOpacity=100;absoluteArcSize=1;arcSize=7.199999999999999;fillColor=#0c7cba;strokeWidth=2;rounded=1;fontStyle=1" parent="1" vertex="1" zOrder="3">
+          <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=13;spacing=7;strokeOpacity=100;fillOpacity=100;absoluteArcSize=1;arcSize=7.199999999999999;strokeWidth=2;rounded=1;fontStyle=1;fillColor=#0B75B0;fontColor=#FFFFFF;" parent="1" vertex="1" zOrder="3">
             <mxGeometry x="1566" y="-963" width="55" height="39" as="geometry" />
           </mxCell>
         </UserObject>
