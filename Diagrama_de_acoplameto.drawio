@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-11-05T11:19:57.407Z" agent="5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36" etag="mtVtkYQoknp4Gu4JNLG2" version="13.9.1" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-05T11:20:42.238Z" agent="5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36" etag="NFlvyn9aWGLt7Ad9Fv1C" version="13.9.1" type="github">
   <diagram id="ZXrqioaMke-Y9P5PgKKp" name="Page-1">
     <mxGraphModel dx="1845" dy="1838" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
@@ -556,8 +556,8 @@
         <mxCell id="q79SqbMXwKp4XREql4Sq-75" value="CÓDICO SIMPLES LEVEL 1" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=6;fontFamily=Times New Roman;fontStyle=3;labelBackgroundColor=#ffffff;" parent="1" vertex="1">
           <mxGeometry x="1365.5" y="-802.5" width="216" height="9" as="geometry" />
         </mxCell>
-        <mxCell id="q79SqbMXwKp4XREql4Sq-76" value="CÓDIGO INDISPENSÁVEL LEVEL 2" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=6;fontFamily=Times New Roman;fontStyle=3;labelBackgroundColor=#ffffff;" parent="1" vertex="1">
-          <mxGeometry x="1365.5" y="-739.5" width="279" height="9" as="geometry" />
+        <mxCell id="q79SqbMXwKp4XREql4Sq-76" value="INFORMAÇÃO INDISPENSÁVEL LEVEL 2" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=6;fontFamily=Times New Roman;fontStyle=3;labelBackgroundColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="1365.5" y="-739.5" width="324" height="9" as="geometry" />
         </mxCell>
         <mxCell id="q79SqbMXwKp4XREql4Sq-78" value="CÓDIGO OPCIONAL LEVEL 0" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;fontSize=6;fontFamily=Times New Roman;fontStyle=3;labelBackgroundColor=#ffffff;" parent="1" vertex="1">
           <mxGeometry x="1369" y="-682.5" width="225" height="9" as="geometry" />
