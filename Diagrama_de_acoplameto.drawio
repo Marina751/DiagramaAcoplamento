@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-11-05T11:20:42.238Z" agent="5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36" etag="NFlvyn9aWGLt7Ad9Fv1C" version="13.9.1" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-11T01:58:40.692Z" agent="5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36" etag="X40_9dX9YlJrxku-JFbU" version="13.9.1" type="github">
   <diagram id="ZXrqioaMke-Y9P5PgKKp" name="Page-1">
-    <mxGraphModel dx="1845" dy="1838" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="2445" dy="1838" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -286,12 +286,12 @@
         </UserObject>
         <UserObject label="QNTD DO PRODUTO" lucidchartObjectId="5~wK7thumvDX" id="2FagUGivekg9gJh4EhXs-45">
           <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=10;fontColor=#333333;fontStyle=1;spacing=7;strokeOpacity=100;fillOpacity=72;absoluteArcSize=1;arcSize=7.199999999999999;strokeWidth=2;rounded=1;fillColor=#FF0000;" parent="1" vertex="1" zOrder="64">
-            <mxGeometry x="1449" y="218" width="110" height="60" as="geometry" />
+            <mxGeometry x="1127" y="234" width="110" height="60" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="MAIS ALGUM PRODUTO?" lucidchartObjectId="d~wKO_Ew.pH2" id="2FagUGivekg9gJh4EhXs-48">
           <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=10;fontColor=#333333;fontStyle=1;spacing=7;strokeOpacity=100;fillOpacity=72;absoluteArcSize=1;arcSize=7.199999999999999;strokeWidth=2;rounded=1;fillColor=#FF0000;" parent="1" vertex="1" zOrder="61">
-            <mxGeometry x="1589.5" y="218" width="110" height="60" as="geometry" />
+            <mxGeometry x="1267.5" y="234" width="110" height="60" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="2FagUGivekg9gJh4EhXs-63" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;fontSize=3;fillColor=#B266FF;curved=1;" parent="1" target="2FagUGivekg9gJh4EhXs-64" edge="1">
@@ -364,10 +364,10 @@
           </mxCell>
         </UserObject>
         <mxCell id="2FagUGivekg9gJh4EhXs-84" value="&lt;b&gt;NÃO&lt;/b&gt;" style="triangle;whiteSpace=wrap;html=1;align=left;strokeWidth=2;rounded=1;fillColor=#FF0000;" parent="1" vertex="1">
-          <mxGeometry x="1715.5" y="228" width="54" height="44" as="geometry" />
+          <mxGeometry x="1393.5" y="244" width="54" height="44" as="geometry" />
         </mxCell>
         <mxCell id="_H8z8CWggNFPW8xt4o94-7" value="&lt;b&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;SIM&lt;/b&gt;" style="triangle;whiteSpace=wrap;html=1;align=center;strokeWidth=2;direction=west;labelPosition=center;verticalLabelPosition=top;verticalAlign=bottom;spacingBottom=-33;spacingRight=-4;spacingLeft=0;rounded=1;fillColor=#FF0000;" parent="1" vertex="1">
-          <mxGeometry x="1769.5" y="236" width="57" height="44" as="geometry" />
+          <mxGeometry x="1447.5" y="252" width="57" height="44" as="geometry" />
         </mxCell>
         <mxCell id="q79SqbMXwKp4XREql4Sq-4" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;curved=1;strokeWidth=2;" parent="1" source="q79SqbMXwKp4XREql4Sq-3" target="2FagUGivekg9gJh4EhXs-68" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -518,7 +518,7 @@
         </mxCell>
         <UserObject label="CONFIRMAR CATÁLOGO" lucidchartObjectId="5~wK7thumvDX" id="q79SqbMXwKp4XREql4Sq-51">
           <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=10;fontColor=#333333;fontStyle=1;spacing=7;strokeOpacity=100;fillOpacity=72;absoluteArcSize=1;arcSize=7.199999999999999;strokeWidth=2;align=center;rounded=1;fillColor=#FF0000;" parent="1" vertex="1" zOrder="64">
-            <mxGeometry x="1839" y="231" width="110" height="60" as="geometry" />
+            <mxGeometry x="1517" y="247" width="110" height="60" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="COMEÇAR A PEDIR FRETE" lucidchartObjectId="5~wK7thumvDX" id="q79SqbMXwKp4XREql4Sq-55">
@@ -598,7 +598,7 @@
             <mxGeometry x="224" y="925" width="110" height="60" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="EiOqhJgpfhrRnLZbss4f-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" edge="1" parent="1" source="LC3gS2kCTgs_xtCmDAWY-6" target="LC3gS2kCTgs_xtCmDAWY-10">
+        <mxCell id="EiOqhJgpfhrRnLZbss4f-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=2;" parent="1" source="LC3gS2kCTgs_xtCmDAWY-6" target="LC3gS2kCTgs_xtCmDAWY-10" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <UserObject label="DESPEJAR CARGA" lucidchartObjectId="5~wK7thumvDX" id="LC3gS2kCTgs_xtCmDAWY-6">
