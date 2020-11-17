@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-11-17T00:27:12.210Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="mk7UPtAZy2j6pcmFPfX9" version="13.9.2" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-17T00:30:52.618Z" agent="5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="XZgSOXZtdtud-jQNbFID" version="13.9.8" type="github">
   <diagram id="ZXrqioaMke-Y9P5PgKKp" name="Page-1">
-    <mxGraphModel dx="1304" dy="1625" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="751" dy="1673" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -366,7 +366,7 @@
         <mxCell id="_9A46UjWHR56a_WUUn8J-3" value="" style="group" parent="1" vertex="1" connectable="0">
           <mxGeometry x="71.5" y="51" width="1014.5" height="248" as="geometry" />
         </mxCell>
-        <mxCell id="AEDt5X0542Bi35OXiFF1-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="_9A46UjWHR56a_WUUn8J-3" source="rHKmbyzbA7fJzTo6jydG-54" target="AEDt5X0542Bi35OXiFF1-20">
+        <mxCell id="AEDt5X0542Bi35OXiFF1-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="_9A46UjWHR56a_WUUn8J-3" source="rHKmbyzbA7fJzTo6jydG-54" target="AEDt5X0542Bi35OXiFF1-20" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <UserObject label="FRETISTA ABRE O APP" lucidchartObjectId="d~wKO_Ew.pH2" id="rHKmbyzbA7fJzTo6jydG-54">
@@ -445,11 +445,11 @@
         <mxCell id="lydl9CK-ZkPdSqsnDGM0-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;fontSize=6;" parent="_9A46UjWHR56a_WUUn8J-3" source="lydl9CK-ZkPdSqsnDGM0-40" target="lydl9CK-ZkPdSqsnDGM0-41" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="AEDt5X0542Bi35OXiFF1-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="_9A46UjWHR56a_WUUn8J-3" source="AEDt5X0542Bi35OXiFF1-20" target="2FagUGivekg9gJh4EhXs-64">
+        <mxCell id="AEDt5X0542Bi35OXiFF1-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="_9A46UjWHR56a_WUUn8J-3" source="AEDt5X0542Bi35OXiFF1-20" target="2FagUGivekg9gJh4EhXs-64" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <UserObject label="PRONTO PARA RODAR?" lucidchartObjectId="5~wK7thumvDX" id="AEDt5X0542Bi35OXiFF1-20">
-          <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=10;fontColor=#333333;fontStyle=1;spacing=7;strokeOpacity=100;fillOpacity=72;absoluteArcSize=1;arcSize=7.199999999999999;strokeWidth=2;align=center;fillColor=#B266FF;rounded=1;gradientDirection=east;" vertex="1" zOrder="64" parent="_9A46UjWHR56a_WUUn8J-3">
+          <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=10;fontColor=#333333;fontStyle=1;spacing=7;strokeOpacity=100;fillOpacity=72;absoluteArcSize=1;arcSize=7.199999999999999;strokeWidth=2;align=center;fillColor=#B266FF;rounded=1;gradientDirection=east;" parent="_9A46UjWHR56a_WUUn8J-3" vertex="1" zOrder="64">
             <mxGeometry x="150" y="36" width="110" height="60" as="geometry" />
           </mxCell>
         </UserObject>
@@ -740,6 +740,17 @@
         </UserObject>
         <mxCell id="2FagUGivekg9gJh4EhXs-26" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;fontSize=3;fillColor=#B266FF;curved=1;" parent="1" source="2FagUGivekg9gJh4EhXs-27" target="2FagUGivekg9gJh4EhXs-28" edge="1">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HwygtU4Qd-4MaiJghH9O-2" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;rounded=1;" edge="1" parent="1" source="HwygtU4Qd-4MaiJghH9O-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="881.9999999999998" y="225" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="882" y="91" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="HwygtU4Qd-4MaiJghH9O-1" value="- informação do fretista (histórico)&lt;br&gt;1) de onde é&lt;br&gt;2) viagens realizadas&amp;nbsp;&lt;br&gt;3) avaliações anteriores&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1161" width="120" height="183" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
