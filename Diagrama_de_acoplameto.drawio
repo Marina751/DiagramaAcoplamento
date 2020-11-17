@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-11-17T01:37:47.112Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="gbj-1uoPgdw5yRTKaaL4" version="13.9.2" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-17T01:38:26.061Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="Vq7Xade2q9S0AhOZeewE" version="13.9.2" type="github">
   <diagram id="ZXrqioaMke-Y9P5PgKKp" name="Page-1">
-    <mxGraphModel dx="1304" dy="1625" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="3166" dy="2374" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -554,7 +554,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="q79SqbMXwKp4XREql4Sq-57" value="&lt;span&gt;&lt;span&gt;&lt;font&gt;DOWNLOAD E CADASTRO DO FRETISTA&lt;/font&gt;&lt;/span&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=Times New Roman;fontStyle=3;labelBackgroundColor=#FFFF33;strokeWidth=2;" parent="_9A46UjWHR56a_WUUn8J-5" vertex="1">
-          <mxGeometry x="27.5" width="243" height="18" as="geometry" />
+          <mxGeometry width="243" height="18" as="geometry" />
         </mxCell>
         <mxCell id="lydl9CK-ZkPdSqsnDGM0-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontStyle=0;fontSize=6;strokeWidth=2;" parent="_9A46UjWHR56a_WUUn8J-5" source="rHKmbyzbA7fJzTo6jydG-32" target="rHKmbyzbA7fJzTo6jydG-23" edge="1">
           <mxGeometry relative="1" as="geometry" />
