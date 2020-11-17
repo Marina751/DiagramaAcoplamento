@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-11-17T01:58:59.859Z" agent="5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="X7Ee-OWuW9g8OIy9Lxgb" version="13.9.8" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-17T02:02:13.458Z" agent="5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="9CEdskh-Ue-HEhuM_9Ba" version="13.9.8" type="github">
   <diagram id="ZXrqioaMke-Y9P5PgKKp" name="Page-1">
-    <mxGraphModel dx="868" dy="1613" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1054" dy="1723" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -572,12 +572,14 @@
             <mxGeometry x="221.5" y="-135" width="110" height="77" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="VlEH_Ozh7a5a1OLnvY-m-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="2FagUGivekg9gJh4EhXs-72" target="q79SqbMXwKp4XREql4Sq-3" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="r3LLLDUIKtX1h_sw6sCI-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=11;" edge="1" parent="1" source="2FagUGivekg9gJh4EhXs-72">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="369" y="342" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <UserObject label="CLIENTE COMPARA PREÇOS E PERFIS DE FRETISTAS" lucidchartObjectId="d~wKO_Ew.pH2" id="2FagUGivekg9gJh4EhXs-72">
           <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=10;fontColor=#333333;fontStyle=1;spacing=7;strokeOpacity=100;fillOpacity=72;absoluteArcSize=1;arcSize=7.199999999999999;fillColor=#B266FF;strokeWidth=2;rounded=1;gradientDirection=east;gradientColor=#FFFF00;" parent="1" vertex="1" zOrder="61">
-            <mxGeometry x="222.5" y="303.5" width="110" height="60" as="geometry" />
+            <mxGeometry x="222.5" y="303.5" width="110" height="77" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="VlEH_Ozh7a5a1OLnvY-m-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="2FagUGivekg9gJh4EhXs-73" target="2FagUGivekg9gJh4EhXs-77" edge="1">
@@ -585,37 +587,35 @@
         </mxCell>
         <UserObject label="CONFIRMAR FRETE" lucidchartObjectId="5~wK7thumvDX" id="2FagUGivekg9gJh4EhXs-73">
           <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=10;fontColor=#333333;fontStyle=1;spacing=7;strokeOpacity=100;fillOpacity=72;absoluteArcSize=1;arcSize=7.199999999999999;fillColor=#B266FF;strokeWidth=2;align=center;rounded=1;gradientDirection=east;gradientColor=#FFFF00;" parent="1" vertex="1" zOrder="64">
-            <mxGeometry x="522.5" y="303.5" width="110" height="60" as="geometry" />
+            <mxGeometry x="522.5" y="305.5" width="110" height="77" as="geometry" />
           </mxCell>
         </UserObject>
         <UserObject label="AGUARDAR MOTORISTA" lucidchartObjectId="5~wK7thumvDX" id="2FagUGivekg9gJh4EhXs-77">
           <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=10;fontColor=#333333;fontStyle=1;spacing=7;strokeOpacity=100;fillOpacity=72;absoluteArcSize=1;arcSize=7.199999999999999;fillColor=#B266FF;strokeWidth=2;align=center;rounded=1;gradientDirection=east;gradientColor=#FFFF00;" parent="1" vertex="1" zOrder="64">
-            <mxGeometry x="683" y="303.5" width="110" height="60" as="geometry" />
+            <mxGeometry x="683" y="305.5" width="110" height="77" as="geometry" />
           </mxCell>
         </UserObject>
+        <mxCell id="r3LLLDUIKtX1h_sw6sCI-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;" edge="1" parent="1" source="q79SqbMXwKp4XREql4Sq-3" target="2FagUGivekg9gJh4EhXs-73">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <UserObject label="CLIENTE COMEÇA A SOLICITAR FRETE" lucidchartObjectId="d~wKO_Ew.pH2" id="q79SqbMXwKp4XREql4Sq-3">
           <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=10;fontColor=#333333;fontStyle=1;spacing=7;strokeOpacity=100;fillOpacity=72;absoluteArcSize=1;arcSize=7.199999999999999;fillColor=#B266FF;strokeWidth=2;rounded=1;" parent="1" vertex="1" zOrder="61">
-            <mxGeometry x="372.5" y="297" width="110" height="73" as="geometry" />
+            <mxGeometry x="372.5" y="305.5" width="110" height="77" as="geometry" />
           </mxCell>
         </UserObject>
         <mxCell id="q79SqbMXwKp4XREql4Sq-81" value="&lt;span&gt;&lt;font style=&quot;font-size: 15px&quot;&gt;CLIENTE SOLICITA&lt;br&gt;&lt;/font&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;fontFamily=Times New Roman;fontStyle=3;labelBackgroundColor=#FFFF33;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="58" y="261" width="162" height="18" as="geometry" />
         </mxCell>
+        <mxCell id="r3LLLDUIKtX1h_sw6sCI-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;fontSize=11;" edge="1" parent="1" source="VlEH_Ozh7a5a1OLnvY-m-9" target="2FagUGivekg9gJh4EhXs-72">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="216" y="342" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
         <UserObject label="CLIENTE VER PREÇOS SUGERIDOS" lucidchartObjectId="d~wKO_Ew.pH2" id="VlEH_Ozh7a5a1OLnvY-m-9">
           <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=10;fontColor=#333333;fontStyle=1;spacing=7;strokeOpacity=100;fillOpacity=72;absoluteArcSize=1;arcSize=7.199999999999999;fillColor=#B266FF;strokeWidth=2;rounded=1;gradientDirection=east;gradientColor=#FFFF00;" parent="1" vertex="1" zOrder="61">
-            <mxGeometry x="72.5" y="303.5" width="110" height="60" as="geometry" />
+            <mxGeometry x="72.5" y="303.5" width="110" height="77" as="geometry" />
           </mxCell>
         </UserObject>
-        <mxCell id="VlEH_Ozh7a5a1OLnvY-m-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="VlEH_Ozh7a5a1OLnvY-m-9" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="223.99999999999977" y="333.5" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="VlEH_Ozh7a5a1OLnvY-m-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="q79SqbMXwKp4XREql4Sq-3" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="521" y="333.5" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
