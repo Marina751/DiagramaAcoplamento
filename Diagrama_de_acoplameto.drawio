@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-11-17T02:25:09.334Z" agent="5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="JVCj196eSU0KnDVne6wt" version="13.9.8" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-17T02:25:45.801Z" agent="5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="XjL-UYRniZarOM8xucrs" version="13.9.8" type="github">
   <diagram id="ZXrqioaMke-Y9P5PgKKp" name="Page-1">
     <mxGraphModel dx="868" dy="1613" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
@@ -17,8 +17,8 @@
         </UserObject>
         <mxCell id="q79SqbMXwKp4XREql4Sq-18" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;fontSize=11;fillColor=#B266FF;curved=1;" parent="_9A46UjWHR56a_WUUn8J-1" edge="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="108.50000000000023" y="21.000000000000227" as="sourcePoint" />
-            <mxPoint x="148.49999999999977" y="21.000000000000227" as="targetPoint" />
+            <mxPoint x="108.50000000000023" y="25.000000000000227" as="sourcePoint" />
+            <mxPoint x="148.49999999999977" y="25.000000000000227" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <UserObject label="CONFIRMAR CARGA" lucidchartObjectId="5~wK7thumvDX" id="q79SqbMXwKp4XREql4Sq-19">
@@ -28,8 +28,8 @@
         </UserObject>
         <mxCell id="q79SqbMXwKp4XREql4Sq-20" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;fontSize=11;fillColor=#B266FF;curved=1;" parent="_9A46UjWHR56a_WUUn8J-1" edge="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="258.5000000000002" y="21.000000000000227" as="sourcePoint" />
-            <mxPoint x="298.4999999999998" y="21.000000000000227" as="targetPoint" />
+            <mxPoint x="258.5000000000002" y="24.000000000000227" as="sourcePoint" />
+            <mxPoint x="298.4999999999998" y="24.000000000000227" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <UserObject label="TRANSPORTAR CARGA" lucidchartObjectId="5~wK7thumvDX" id="q79SqbMXwKp4XREql4Sq-21">
@@ -39,8 +39,8 @@
         </UserObject>
         <mxCell id="q79SqbMXwKp4XREql4Sq-22" style="edgeStyle=orthogonalEdgeStyle;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=2;fontSize=11;fillColor=#B266FF;curved=1;" parent="_9A46UjWHR56a_WUUn8J-1" edge="1">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="408.5000000000002" y="21.000000000000227" as="sourcePoint" />
-            <mxPoint x="448.4999999999998" y="21.000000000000227" as="targetPoint" />
+            <mxPoint x="408.5000000000002" y="22.000000000000227" as="sourcePoint" />
+            <mxPoint x="448.4999999999998" y="22.000000000000227" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <UserObject label="CHEGAR AO DESTINO FINAL" lucidchartObjectId="5~wK7thumvDX" id="q79SqbMXwKp4XREql4Sq-23">
