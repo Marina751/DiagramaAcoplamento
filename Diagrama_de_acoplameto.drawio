@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-11-17T02:07:35.570Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="nlcHTAtA6VV83WO2OwF-" version="13.9.2" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-17T02:07:47.428Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36" etag="X-k-kSFQ-ZKf7nUdqmOi" version="13.9.2" type="github">
   <diagram id="ZXrqioaMke-Y9P5PgKKp" name="Page-1">
     <mxGraphModel dx="868" dy="1546" grid="1" gridSize="9" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="none" math="0" shadow="0">
       <root>
@@ -371,7 +371,7 @@
           </mxCell>
         </UserObject>
         <UserObject label="CADASTRO DO FRETISTA" lucidchartObjectId="O~uKVIkj0mk8" id="rHKmbyzbA7fJzTo6jydG-14">
-          <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=11;fontStyle=1;spacing=7;strokeOpacity=100;fillOpacity=72;absoluteArcSize=1;arcSize=7.199999999999999;strokeWidth=2;spacingLeft=0;fillColor=#B266FF;rounded=1;gradientColor=#FFFF00;gradientDirection=east;" parent="_9A46UjWHR56a_WUUn8J-5" vertex="1" zOrder="18">
+          <mxCell style="html=1;whiteSpace=wrap;;whiteSpace=wrap;fontSize=11;fontStyle=1;spacing=7;strokeOpacity=100;fillOpacity=72;absoluteArcSize=1;arcSize=7.199999999999999;strokeWidth=2;spacingLeft=0;fillColor=#B266FF;rounded=1;gradientDirection=east;" parent="_9A46UjWHR56a_WUUn8J-5" vertex="1" zOrder="18">
             <mxGeometry x="180.5" y="44.75" width="110" height="77" as="geometry" />
           </mxCell>
         </UserObject>
