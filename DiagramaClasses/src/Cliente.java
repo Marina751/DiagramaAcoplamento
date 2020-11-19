@@ -3,5 +3,6 @@ public class Cliente extends Usuario {
     // o que um cliente tem mas que o fretista nao tem?
 
     // metodos
+    // o que um cliente faz?
     public void solicitarFrete() {}
 }

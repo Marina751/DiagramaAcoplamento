@@ -3,26 +3,23 @@ import java.util.List;
 
 public class Fretista extends Usuario {
     // atributos
+    // o que um fretista tem que um cliente nao tem?
     public List<Veiculo> veiculos = new ArrayList<>();
     public List<Frete> fretes = new ArrayList<>();
-    //public int qtdFretesConcluidos;
-
-    //public Fretista() {
-      //  this.qtdFretesConcluidos = 0;
-    //}
 
     // metodos
+    // o que o fretista pode fazer?
     public void adicionarVeiculo(Veiculo newVeiculo) {
         veiculos.add(newVeiculo);
     }
-
     public void removerVeiculo(Veiculo veiculo) {
         veiculos.remove(veiculo);
     }
-    public void novoFrete(Frete frete) {
+    public void aceitarFrete(Frete frete) {
         fretes.add(frete);
     }
 
+    // o que podemos fazer com o fretista?
     public long getQtdFretesConcluidos() {
         /* Solucao 1:
 

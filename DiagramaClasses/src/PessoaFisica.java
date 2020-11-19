@@ -4,4 +4,5 @@ public class PessoaFisica extends Cliente {
     public String cpf;
 
     // metodos
+    // o que uma pessoa fisica faz e que uma pessoa juridica nao faz?
 }

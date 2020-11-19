@@ -4,4 +4,5 @@ public class PessoaJuridica extends Cliente {
     public String cnpj;
 
     // metodos
+    // o que uma pessoa juridica faz e que uma pessoa fisica nao faz?
 }

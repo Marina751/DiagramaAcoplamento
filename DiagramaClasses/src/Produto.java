@@ -1,5 +1,7 @@
 public class Produto {
     // atributos
+    // o que um produto tem?
+    // depende da categoria? se sim, podemos dividir em outras classes?
     public CategoriaProduto categoria;
     public final int largura, altura, comprimento;
     public final double peso;
@@ -16,6 +18,7 @@ public class Produto {
     }
 
     // metodos
+    // o que fazemos com um produto
     public double getVolume() {
         return (largura * altura * comprimento);
     }

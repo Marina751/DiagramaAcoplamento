@@ -7,7 +7,7 @@ public class Main {
 
         fretista.adicionarVeiculo(carro);
         frete.adicionarProduto(produto);
-        fretista.novoFrete(frete);
+        fretista.aceitarFrete(frete);
 
         frete.setStatusFrete(StatusFrete.CONCLUIDO);
 
