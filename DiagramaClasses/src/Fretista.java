@@ -6,7 +6,10 @@ public class Fretista extends Usuario {
     // o que um fretista tem que um cliente nao tem?
     public List<Veiculo> veiculos = new ArrayList<>();
     public List<Frete> fretes = new ArrayList<>();
-
+    /*
+    public List<ClienteAntigo> clienteAntigo = new ArrayList<>();
+    public List<ClienteBloqueado> clienteBloqueado = new ArrayList<>();
+    */
     // metodos
     // o que o fretista pode fazer?
     public void adicionarVeiculo(Veiculo newVeiculo) {
@@ -18,7 +21,12 @@ public class Fretista extends Usuario {
     public void aceitarFrete(Frete frete) {
         fretes.add(frete);
     }
-
+    /*
+    public void bloquearClienteAntigo(ClienteBloqueado clienteBloqueado) {
+        clientebloqueado.add(clienteBloqueado);
+        clienteAntigo.remove(clienteBloqueado);
+    }
+    */
     // o que podemos fazer com o fretista?
     public long getQtdFretesConcluidos() {
         /* Solucao 1:
