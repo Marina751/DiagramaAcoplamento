@@ -24,23 +24,22 @@ public class Fretista extends Usuario {
     }
 
     public long getQtdFretesConcluidos() {
-        /*
-        int quantidade = 0;
+        /* Solucao 1:
 
+        int quantidade = 0;
         for (Frete frete : fretes) {
             if (frete.getStatusFrete().equals(StatusFrete.CONCLUIDO))
                 quantidade++;
         }
 
-        return quantidade;
-        // /*
+        Solucao 2:
+        Iterator<Frete> itr = fretes.iterator();
         while (itr.hasNext()) {
             if (itr.next().getStatusFrete().equals(StatusFrete.CONCLUIDO))
                 quantidade++;
-        }
+        }*/
 
-        */
+        // Solucao 3:
         return this.fretes.stream().filter(f -> f.getStatusFrete().equals(StatusFrete.CONCLUIDO)).count();
-        // */
     }
 }
