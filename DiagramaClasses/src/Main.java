@@ -5,7 +5,7 @@ public class Main {
 
         fretista.adicionarVeiculo(carro);
 
-        // Localizacao("234234", "332435")
-        // Localizacao().verNoMaps();
+        PessoaFisica pessoa = new PessoaFisica();
+
     }
 }

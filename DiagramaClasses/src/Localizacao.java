@@ -6,7 +6,7 @@ public class Localizacao {
         this.longitude = longitude;
     }
 
-    public static void verNoMaps() {
+    public void verNoMaps() {
         // ...
     }
 }
