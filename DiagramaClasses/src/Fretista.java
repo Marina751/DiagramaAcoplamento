@@ -4,7 +4,7 @@ public class Fretista extends Usuario {
     // atributos
     // o que um fretista tem que um cliente nao tem?
     public final List<Veiculo> veiculos = new ArrayList<>();
-    public final List<Frete> fretes = new ArrayList<>();
+
     public Localizacao atualLocalizacao;
     public final Calendar nascimento;
     public final String sobrenome;
