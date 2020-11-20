@@ -1,6 +1,6 @@
 public class Main {
     public static void main(String args[]) {
-        Fretista fretista = new Fretista();
+        /*Fretista fretista = new Fretista();
         VeiculoCaminhao carro = new VeiculoCaminhao();
         Frete frete = new Frete();
         Produto produto = new Produto(10, 20, 30, 50.5, CategoriaProduto.ELETRO_DOMESTICO);
@@ -12,5 +12,5 @@ public class Main {
         frete.setStatusFrete(StatusFrete.CONCLUIDO);
 
         System.out.println(fretista.getQtdFretesConcluidos());
-    }
+    */}
 }
