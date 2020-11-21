@@ -1,22 +1,13 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Fretista extends PessoaFisica {//Usuario {
+public abstract class Fretista extends Usuario { //PessoaFisica {//Usuario {
     // atributos
     // o que um fretista tem que um cliente nao tem?
     public final List<Veiculo> veiculos = new ArrayList<>();
-
     public Localizacao atualLocalizacao;
-    public final Calendar nascimento;
-    public final String cnh, sobrenome;
-    public String cidade, bairro;
+    public String cnh;
 
-    public Fretista(int dia, int mes, int ano, String cnh, String sobrenome, String cidade, String bairro) {
-        this.nascimento = new GregorianCalendar(ano, mes, dia);
-        this.sobrenome = sobrenome;
-        this.cidade = cidade;
-        this.bairro = bairro;
-        this.cnh = cnh;
-    }
     // metodos
     // o que o fretista pode fazer?
     public void adicionarVeiculo(Veiculo newVeiculo) {

@@ -1,5 +1,6 @@
-public class FretistaMEI extends PessoaJuridica {
+public class FretistaMEI extends Fretista {
     // atributos
+    public String cnpj;
 
     // metodos
 }
