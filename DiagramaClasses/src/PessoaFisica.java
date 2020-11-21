@@ -1,4 +1,4 @@
-public class PessoaFisica extends Cliente {
+public class PessoaFisica extends Usuario {//Cliente {
     // atributos
     // o que uma pessoa fisica tem que eh especifico dela?
     public String cpf;

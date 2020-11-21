@@ -1,4 +1,4 @@
-public class PessoaJuridica extends Cliente {
+public class PessoaJuridica extends Usuario {//Cliente {
     // atributos
     // o que uma pessoa juridica tem que eh especifico dela?
     public String cnpj;
