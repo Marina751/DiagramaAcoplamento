@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class TemplateFormRegister extends StatelessWidget {
-  const TemplateFormRegister(
-      {@required this.body,
-      @required this.title,
-      @required this.buttonText,
-      this.bottomAppBar});
+  const TemplateFormRegister({
+    @required this.body,
+    @required this.title,
+    @required this.buttonText,
+    this.bottomAppBar,
+  });
 
   final Widget body;
   final String title;
