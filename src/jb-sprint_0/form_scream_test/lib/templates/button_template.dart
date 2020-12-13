@@ -18,7 +18,8 @@ class ButtonTemplate extends Container {
               style: TextStyle(color: fontColor),
             ),
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(40.0)),
+              borderRadius: BorderRadius.circular(40.0),
+            ),
           ),
         );
 }
