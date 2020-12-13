@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:form_scream_test/templates/form_field_template.dart';
 
 class FormTemplate extends StatefulWidget {
   @override
@@ -14,31 +15,17 @@ class _FormTemplateState extends State<FormTemplate> {
       child: Form(
         child: Column(
           children: [
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                helperText: 'Helper Text TFF',
-                labelText: 'Label Text',
-              ),
+            FormFieldTemplate(
+              title: 'Title',
+              hintText: 'Hint Text',
             ),
-            TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                hintText: 'Hint Text',
-                helperText: 'Helper Text TF',
-              ),
+            FormFieldTemplate(
+              title: 'Title',
+              hintText: 'Hint Text',
             ),
-            TextFormField(
-              decoration: InputDecoration(border: OutlineInputBorder()),
-            ),
-            TextFormField(
-              decoration: InputDecoration(border: OutlineInputBorder()),
-            ),
-            TextFormField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                helperText: 'Helper Text',
-              ),
+            FormFieldTemplate(
+              title: 'Title',
+              hintText: 'Hint Text',
             ),
           ],
         ),
