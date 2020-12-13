@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:form_scream_test/form_template.dart';
-import 'package:form_scream_test/scaffold_template.dart';
+import 'package:form_scream_test/templates/form_template.dart';
+import 'package:form_scream_test/templates/scaffold_template.dart';
 import 'package:form_scream_test/terms_alert.dart';
 
 void main() => runApp(
@@ -27,7 +27,7 @@ class Root extends StatelessWidget {
                   body: FormTemplate(),
                   title: 'Title',
                   buttonText: 'Button Text',
-                  //bottomAppBar: TermsAlert(),
+                  bottomAppBar: TermsAlert(),
                 ),
               ),
             );
