@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:form_scream_test/button_template.dart';
 
-class TemplateFormRegister extends StatelessWidget {
-  const TemplateFormRegister({
+class ScaffoldTemplate extends StatelessWidget {
+  const ScaffoldTemplate({
     @required this.body,
     @required this.title,
     @required this.buttonText,
@@ -11,7 +12,7 @@ class TemplateFormRegister extends StatelessWidget {
   final Widget body;
   final String title;
   final String buttonText;
-  final BottomAppBar bottomAppBar;
+  final Container bottomAppBar;
 
   static const Color _black = Colors.black;
   static const Color _white = Colors.white;
@@ -35,17 +36,20 @@ class TemplateFormRegister extends StatelessWidget {
             style: TextStyle(color: _black),
           ),
         ),
-        floatingActionButton: Container(
-          width: 300.0, // resize later
-          child: FloatingActionButton.extended(
-            onPressed: () {},
-            backgroundColor: _black,
-            label: Text(buttonText),
+        body: body,
+        bottomNavigationBar: Container(
+          color: _white,
+          height: 100.0,
+          child: Column(
+            children: [
+              ButtonTemplate(
+                onPressed: () {},
+                buttonText: buttonText,
+              ),
+              bottomAppBar ?? Container(),
+            ],
           ),
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        bottomNavigationBar: bottomAppBar ?? BottomAppBar(),
-        body: body,
       ),
     );
   }
