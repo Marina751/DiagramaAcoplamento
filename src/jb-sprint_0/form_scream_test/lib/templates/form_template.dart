@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:form_scream_test/templates/form_field_template.dart';
 
 class FormTemplate extends StatefulWidget {
+  final List<Widget> children;
+
+  const FormTemplate({Key key, @required this.children});
+
   @override
   _FormTemplateState createState() => _FormTemplateState();
 }
@@ -14,20 +17,7 @@ class _FormTemplateState extends State<FormTemplate> {
       padding: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
       child: Form(
         child: Column(
-          children: [
-            FormFieldTemplate(
-              title: 'Title',
-              hintText: 'Hint Text',
-            ),
-            FormFieldTemplate(
-              title: 'Title',
-              hintText: 'Hint Text',
-            ),
-            FormFieldTemplate(
-              title: 'Title',
-              hintText: 'Hint Text',
-            ),
-          ],
+          children: widget.children,
         ),
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_scream_test/templates/form_field_template.dart';
 import 'package:form_scream_test/templates/form_template.dart';
 import 'package:form_scream_test/templates/scaffold_template.dart';
 import 'package:form_scream_test/terms_alert.dart';
@@ -24,7 +25,22 @@ class Root extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => ScaffoldTemplate(
-                  body: FormTemplate(),
+                  body: FormTemplate(
+                    children: [
+                      FormFieldTemplate(
+                        title: 'Title',
+                        hintText: 'Hint Text',
+                      ),
+                      FormFieldTemplate(
+                        title: 'Title',
+                        hintText: 'Hint Text',
+                      ),
+                      FormFieldTemplate(
+                        title: 'Title',
+                        hintText: 'Hint Text',
+                      ),
+                    ],
+                  ),
                   title: 'Title',
                   buttonText: 'Button Text',
                   bottomAppBar: TermsAlert(),
