@@ -4,11 +4,12 @@ import 'package:form_scream_test/terms_alert.dart';
 
 class ScaffoldTemplate extends StatelessWidget {
   const ScaffoldTemplate({
+    Key key,
     @required this.body,
     @required this.title,
     @required this.buttonText,
     this.hasAlertTerms = true,
-  });
+  }) : super(key: key);
 
   final Widget body;
   final String title;
