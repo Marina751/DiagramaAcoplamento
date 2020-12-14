@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:form_scream_test/templates/button_template.dart';
+import 'package:form_scream_test/terms_alert.dart';
 
 class ScaffoldTemplate extends StatelessWidget {
   const ScaffoldTemplate({
     @required this.body,
     @required this.title,
     @required this.buttonText,
-    this.bottomAppBar,
+    this.hasAlertTerms = true,
   });
 
   final Widget body;
   final String title;
   final String buttonText;
-  final Container bottomAppBar;
+  final bool hasAlertTerms;
 
   static const Color _black = Colors.black;
   static const Color _white = Colors.white;
@@ -45,7 +46,7 @@ class ScaffoldTemplate extends StatelessWidget {
               onPressed: () {},
               buttonText: buttonText,
             ),
-            bottomAppBar ?? Container(),
+            hasAlertTerms ? TermsAlert() : Container(),
           ],
         ),
       ),

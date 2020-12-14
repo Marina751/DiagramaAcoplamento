@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 class FormTemplate extends StatefulWidget {
   final List<Widget> children;
 
-  const FormTemplate({Key key, @required this.children});
+  const FormTemplate({Key key, @required this.children}) : super(key: key);
 
   @override
   _FormTemplateState createState() => _FormTemplateState();

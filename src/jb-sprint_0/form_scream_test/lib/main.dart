@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:form_scream_test/screens/cadastro_cliente_pf.dart';
+import 'package:form_scream_test/screens/cadastro_veiculo_inicio.dart';
 import 'package:form_scream_test/templates/form_field_template.dart';
 import 'package:form_scream_test/templates/form_template.dart';
 import 'package:form_scream_test/templates/scaffold_template.dart';
-import 'package:form_scream_test/terms_alert.dart';
 
-void main() => runApp(
-      MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Title',
-        home: Root(), //Home(),
-      ),
-    );
+void main() {
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Title',
+      home: Root(),
+    ),
+  );
+}
 
 class Root extends StatelessWidget {
   @override
@@ -24,27 +27,7 @@ class Root extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => ScaffoldTemplate(
-                  body: FormTemplate(
-                    children: [
-                      FormFieldTemplate(
-                        title: 'Title',
-                        hintText: 'Hint Text',
-                      ),
-                      FormFieldTemplate(
-                        title: 'Title',
-                        hintText: 'Hint Text',
-                      ),
-                      FormFieldTemplate(
-                        title: 'Title',
-                        hintText: 'Hint Text',
-                      ),
-                    ],
-                  ),
-                  title: 'Title',
-                  buttonText: 'Button Text',
-                  bottomAppBar: TermsAlert(),
-                ),
+                builder: (context) => CadastroVeiculoInicio(),
               ),
             );
           },
