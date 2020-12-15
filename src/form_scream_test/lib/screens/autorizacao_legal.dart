@@ -3,7 +3,7 @@ import 'package:form_scream_test/templates/button_template.dart';
 import 'package:form_scream_test/templates/scaffold_template.dart';
 import 'package:flutter/material.dart';
 
-class Test extends StatelessWidget {
+class AutorizacaoLegal extends StatelessWidget {
   static const String _title = 'Autorização Legal';
   static const String _buttonText = 'Próximo';
   static const String _dec = 'Declaração de investigação de antecedentes';

@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:form_scream_test/screens/cadastro_veiculo_inicio.dart';
 import 'package:form_scream_test/templates/form_field_template.dart';
 import 'package:form_scream_test/templates/form_template.dart';
 import 'package:form_scream_test/templates/scaffold_template.dart';
@@ -13,7 +15,14 @@ class CadastroFretistaFisico extends StatelessWidget {
     return ScaffoldTemplate(
       title: _title,
       button: ButtonTemplate(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CadastroVeiculoInicio(),
+            ),
+          );
+        },
         buttonText: _buttonText,
       ),
       body: FormTemplate(
