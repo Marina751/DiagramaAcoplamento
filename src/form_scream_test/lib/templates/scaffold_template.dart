@@ -39,7 +39,7 @@ class ScaffoldTemplate extends StatelessWidget {
       body: body,
       bottomNavigationBar: Container(
         color: _white,
-        height: 110.0,
+        height: hasAlertTerms ? 110.0 : 90.0,
         padding: EdgeInsets.only(top: 5.0),
         child: Column(
           children: [

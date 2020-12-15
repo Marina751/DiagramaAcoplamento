@@ -5,6 +5,7 @@ import 'package:form_scream_test/screens/cadastro_fretista_pf.dart';
 import 'package:form_scream_test/screens/cadastro_fretista_pj.dart';
 import 'package:form_scream_test/screens/cadastro_veiculo_fim.dart';
 import 'package:form_scream_test/screens/cadastro_veiculo_inicio.dart';
+import 'package:form_scream_test/widget_test.dart';
 
 void main() {
   runApp(
@@ -20,6 +21,8 @@ void main() {
         '/cfj': (context) => CadastroFretistaJuridico(),
         '/cvi': (context) => CadastroVeiculoInicio(),
         '/cvf': (context) => CadastroVeiculoFim(),
+        '/tst': (context) => Test(),
+        '/rgt': (context) => RegisterTemplate(),
       },
       //home: Root(),
     ),
@@ -69,6 +72,18 @@ class Root extends StatelessWidget {
               child: Text('CVF'),
               onPressed: () {
                 Navigator.pushNamed(context, '/cvf');
+              },
+            ),
+            ElevatedButton(
+              child: Text('TST'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/tst');
+              },
+            ),
+            ElevatedButton(
+              child: Text('RGT'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/rgt');
               },
             ),
           ],

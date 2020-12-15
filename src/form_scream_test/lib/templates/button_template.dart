@@ -8,6 +8,7 @@ class ButtonTemplate extends Container {
     Color color = Colors.black,
     Color fontColor = Colors.white,
   }) : super(
+          margin: EdgeInsets.all(10.0),
           height: 50.0,
           width: 300.0,
           child: RaisedButton(
@@ -18,6 +19,7 @@ class ButtonTemplate extends Container {
               style: TextStyle(color: fontColor),
             ),
             shape: RoundedRectangleBorder(
+              side: BorderSide(color: Colors.black),
               borderRadius: BorderRadius.circular(40.0),
             ),
           ),
