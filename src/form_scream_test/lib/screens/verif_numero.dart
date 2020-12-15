@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:form_scream_test/templates/button_template.dart';
 import 'package:flutter/material.dart';
 
-class Test extends StatelessWidget {
+class VerifNumero extends StatelessWidget {
   static const String _title = 'Verificação';
 
   @override
@@ -28,7 +28,9 @@ class Test extends StatelessWidget {
         buttonText: 'Verificar',
       ),
       body: SingleChildScrollView(
+        padding: EdgeInsets.only(top: 30.0, left: 10.0, right: 10.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text.rich(
               TextSpan(
@@ -42,6 +44,23 @@ class Test extends StatelessWidget {
                       decoration: TextDecoration.underline,
                     ),
                   ),
+                ],
+              ),
+              textAlign: TextAlign.center,
+            ),
+            Container(
+              padding: EdgeInsets.all(80.0),
+              child: Column(
+                children: [
+                  TextField(
+                    textAlign: TextAlign.center,
+                    keyboardType: TextInputType.number,
+                    style: TextStyle(fontSize: 24.0),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 10.0),
+                    child: Text('Digite o código de 6 dígitos'),
+                  )
                 ],
               ),
             ),

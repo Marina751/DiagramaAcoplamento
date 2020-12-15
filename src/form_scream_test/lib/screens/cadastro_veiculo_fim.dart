@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:form_scream_test/templates/form_field_template.dart';
 import 'package:form_scream_test/templates/form_template.dart';
 import 'package:form_scream_test/templates/scaffold_template.dart';
+import 'package:form_scream_test/templates/button_template.dart';
 
 class CadastroVeiculoFim extends StatelessWidget {
   static const String _title = 'Cadastro Veículo';
@@ -11,7 +12,10 @@ class CadastroVeiculoFim extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScaffoldTemplate(
       title: _title,
-      buttonText: _buttonText,
+      button: ButtonTemplate(
+        onPressed: () {},
+        buttonText: _buttonText,
+      ),
       body: FormTemplate(
         children: [
           FormFieldTemplate(

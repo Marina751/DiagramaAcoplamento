@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:form_scream_test/screens/cadastro_cliente_pf.dart';
-import 'package:form_scream_test/screens/cadastro_cliente_pj.dart';
-import 'package:form_scream_test/screens/cadastro_fretista_pf.dart';
-import 'package:form_scream_test/screens/cadastro_fretista_pj.dart';
+import 'package:form_scream_test/screens/cadastro_inicio.dart';
 import 'package:form_scream_test/screens/cadastro_veiculo_fim.dart';
 import 'package:form_scream_test/screens/cadastro_veiculo_inicio.dart';
-import 'package:form_scream_test/widget_test.dart';
+import 'package:form_scream_test/screens/verif_numero.dart';
 
 void main() {
   runApp(
@@ -15,16 +12,11 @@ void main() {
       title: 'Title',
       routes: {
         '/': (context) => Root(),
-        '/ccf': (context) => CadastroClienteFisico(),
-        '/ccj': (context) => CadastroClienteJuridico(),
-        '/cff': (context) => CadastroFretistaFisico(),
-        '/cfj': (context) => CadastroFretistaJuridico(),
         '/cvi': (context) => CadastroVeiculoInicio(),
         '/cvf': (context) => CadastroVeiculoFim(),
-        '/tst': (context) => Test(),
-        '/rgt': (context) => RegisterTemplate(),
+        '/tst': (context) => VerifNumero(),
+        '/cdi': (context) => CadastroInicio(),
       },
-      //home: Root(),
     ),
   );
 }
@@ -38,30 +30,6 @@ class Root extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              child: Text('CCF'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/ccf');
-              },
-            ),
-            ElevatedButton(
-              child: Text('CCJ'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/ccj');
-              },
-            ),
-            ElevatedButton(
-              child: Text('CFF'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/cff');
-              },
-            ),
-            ElevatedButton(
-              child: Text('CFJ'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/cfj');
-              },
-            ),
             ElevatedButton(
               child: Text('CVI'),
               onPressed: () {
@@ -81,9 +49,9 @@ class Root extends StatelessWidget {
               },
             ),
             ElevatedButton(
-              child: Text('RGT'),
+              child: Text('CDI'),
               onPressed: () {
-                Navigator.pushNamed(context, '/rgt');
+                Navigator.pushNamed(context, '/cdi');
               },
             ),
           ],

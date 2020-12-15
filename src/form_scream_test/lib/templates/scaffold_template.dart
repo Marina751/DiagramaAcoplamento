@@ -7,14 +7,14 @@ class ScaffoldTemplate extends StatelessWidget {
     Key key,
     @required this.body,
     @required this.title,
-    @required this.buttonText,
+    @required this.button,
     this.hasAlertTerms = true,
   }) : super(key: key);
 
   final Widget body;
   final String title;
-  final String buttonText;
   final bool hasAlertTerms;
+  final ButtonTemplate button;
 
   static const Color _black = Colors.black;
   static const Color _white = Colors.white;
@@ -39,14 +39,11 @@ class ScaffoldTemplate extends StatelessWidget {
       body: body,
       bottomNavigationBar: Container(
         color: _white,
-        height: hasAlertTerms ? 110.0 : 90.0,
+        height: hasAlertTerms ? 130.0 : 90.0,
         padding: EdgeInsets.only(top: 5.0),
         child: Column(
           children: [
-            ButtonTemplate(
-              onPressed: () {},
-              buttonText: buttonText,
-            ),
+            button,
             hasAlertTerms ? TermsAlert() : Container(),
           ],
         ),
