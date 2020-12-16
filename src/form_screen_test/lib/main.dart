@@ -14,7 +14,7 @@ void main() {
       title: 'Title',
       routes: {
         '/': (context) => Root(),
-        '/cdi': (context) => CadastroInicio(),
+        //'/cdi': (context) => CadastroInicio(),
         '/vfnu': (context) => VerifNumero(),
         '/vfne': (context) => VerifNegada(),
         '/vfap': (context) => VerifAprovada(),
@@ -34,12 +34,12 @@ class Root extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
+            /*ElevatedButton(
               child: Text('CDI'),
               onPressed: () {
                 Navigator.pushNamed(context, '/cdi');
               },
-            ),
+            ),*/
             ElevatedButton(
               child: Text('VRNU'),
               onPressed: () {

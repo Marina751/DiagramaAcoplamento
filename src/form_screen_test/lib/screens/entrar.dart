@@ -1,95 +1,110 @@
 import 'package:flutter/material.dart';
+import 'package:form_scream_test/screens/cadastro_inicio.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:form_scream_test/templates/button_template.dart';
 
-class Entrar extends StatelessWidget {
+class Entrar extends StatefulWidget {
+  @override
+  _EntrarState createState() => _EntrarState();
+}
+
+class _EntrarState extends State<Entrar> {
+  bool _showPassword = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        child: SafeArea(
-          child: Container(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Row(
-                children: <Widget>[
-                  Icon(Icons.arrow_back, size: 20.0),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(30.0, 0.0, 50.0, 0.0),
-                    child: Text(
-                      "Entrar",
-                      style: TextStyle(fontSize: 24.0),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        preferredSize: Size.fromHeight(100),
-      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
+        padding: EdgeInsets.fromLTRB(20.0, 150.0, 20.0, 20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              children: [
+                Icon(Icons.local_shipping_rounded, size: 34.0),
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextField(
-                      keyboardType: TextInputType.text,
-                      style: TextStyle(color: Colors.black, fontSize: 15),
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: "Login",
-                        labelStyle: TextStyle(color: Colors.grey),
-                      )),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: TextField(
-                      keyboardType: TextInputType.text,
-                      style: TextStyle(color: Colors.black, fontSize: 15),
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: "***",
-                        labelStyle: TextStyle(color: Colors.grey),
-                      )),
-                ),
-                Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child: ButtonTheme(
-                    height: 50.0,
-                    child: RaisedButton(
-                      onPressed: () => {},
-                      shape: new RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(100.0)),
-                      child: Text(
-                        "Entrar",
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ), //Text
-                      color: Colors.black,
-                    ),
-                  ), //RaisedButton
-                ), //ButtonTheme
-                Container(
-                  height: 40,
-                  alignment: Alignment.center,
-                  child: FlatButton(
-                    child: Text(
-                      "Esqueceu sua Senha?",
-                      style: TextStyle(
-                        color: Colors.teal,
-                        fontSize: 15,
-                      ),
-                    ),
-                    onPressed: () {},
+                  padding: EdgeInsets.only(left: 10.0),
+                  child: Text(
+                    'Freckt',
+                    style: GoogleFonts.comfortaa(fontSize: 24.0),
                   ),
-                ),
+                )
               ],
             ),
-          ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 5.0, top: 20.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.person),
+                  border: OutlineInputBorder(),
+                  hintText: 'E-mail',
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+              child: TextField(
+                obscureText: !_showPassword,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.lock),
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _showPassword = !_showPassword;
+                      });
+                    },
+                    child: Icon(
+                      _showPassword ? Icons.visibility : Icons.visibility_off,
+                    ),
+                  ),
+                  border: OutlineInputBorder(),
+                  hintText: 'Senha',
+                ),
+              ),
+            ),
+            ButtonTemplate(
+              onPressed: () {},
+              buttonText: 'Entrar',
+            ),
+            Row(
+              children: [
+                Expanded(child: Divider()),
+                Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: Text('ou'),
+                ),
+                Expanded(child: Divider()),
+              ],
+            ),
+            InkWell(
+              child: Text(
+                'Esqueceu sua Senha?',
+                style: TextStyle(color: Colors.blue),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Ainda não tem uma conta? '),
+                InkWell(
+                  child: Text(
+                    'Cadastre-se',
+                    style: TextStyle(color: Colors.blue),
+                  ),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CadastroInicio(),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            )
+          ],
         ),
       ),
     );
