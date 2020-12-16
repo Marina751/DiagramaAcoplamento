@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:form_scream_test/screens/autorizacao_legal.dart';
-import 'package:form_scream_test/screens/cadastro_inicio.dart';
 import 'package:form_scream_test/screens/entrar.dart';
 import 'package:form_scream_test/screens/verif_numero.dart';
 import 'package:form_scream_test/verif_aprovada.dart';
@@ -34,12 +33,6 @@ class Root extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            /*ElevatedButton(
-              child: Text('CDI'),
-              onPressed: () {
-                Navigator.pushNamed(context, '/cdi');
-              },
-            ),*/
             ElevatedButton(
               child: Text('VRNU'),
               onPressed: () {
