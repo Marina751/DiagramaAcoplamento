@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:form_scream_test/screens/autorizacao_legal.dart';
 import 'package:form_scream_test/screens/cadastro_inicio.dart';
-import 'package:form_scream_test/screens/cadastro_veiculo_fim.dart';
-import 'package:form_scream_test/screens/cadastro_veiculo_inicio.dart';
 import 'package:form_scream_test/screens/entrar.dart';
 import 'package:form_scream_test/screens/verif_numero.dart';
 import 'package:form_scream_test/verif_aprovada.dart';
