@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:form_scream_test/screens/cadastro_fim.dart';
-import 'package:form_scream_test/templates/button_template.dart';
+//import 'package:freckt_cliente/screens/cadastro_fim.dart';
+import 'package:freckt_cliente/templates/button_template.dart';
 
 class CadastroInicio extends StatelessWidget {
   static const String _title = 'Cadastrar';
@@ -28,14 +28,14 @@ class CadastroInicio extends StatelessWidget {
           children: [
             ButtonTemplate(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CadastroFim(
-                      isCustomer: true,
-                    ),
-                  ),
-                );
+                //Navigator.push(
+                //  context,
+                //  MaterialPageRoute(
+                //    builder: (context) => CadastroFim(
+                //      isCustomer: true,
+                //    ),
+                //  ),
+                //);
               },
               buttonText: 'Cliente',
               color: Colors.white,
@@ -43,14 +43,14 @@ class CadastroInicio extends StatelessWidget {
             ),
             ButtonTemplate(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CadastroFim(
-                        isCustomer: false,
-                      ),
-                    ),
-                  );
+                  //Navigator.push(
+                  //  context,
+                  //  MaterialPageRoute(
+                  //    builder: (context) => CadastroFim(
+                  //      isCustomer: false,
+                  //    ),
+                  //  ),
+                  //);
                 },
                 buttonText: 'Fretista'),
           ],

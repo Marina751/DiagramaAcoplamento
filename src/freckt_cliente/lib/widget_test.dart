@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:form_scream_test/templates/button_template.dart';
+import 'package:freckt_cliente/templates/button_template.dart';
 import 'package:flutter/material.dart';
 
 class Test extends StatelessWidget {

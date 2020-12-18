@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
-import 'package:form_scream_test/templates/form_field_template.dart';
-import 'package:form_scream_test/templates/form_template.dart';
-import 'package:form_scream_test/templates/button_template.dart';
-import 'package:form_scream_test/templates/scaffold_template.dart';
+import 'package:freckt_cliente/templates/form_field_template.dart';
+import 'package:freckt_cliente/templates/form_template.dart';
+import 'package:freckt_cliente/templates/button_template.dart';
+import 'package:freckt_cliente/templates/scaffold_template.dart';
 
 class CadastroClienteJuridico extends StatelessWidget {
   static const String _title = 'Pessoa Jurídica';

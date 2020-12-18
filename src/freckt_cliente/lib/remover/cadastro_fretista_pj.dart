@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:form_scream_test/screens/cadastro_veiculo_inicio.dart';
-import 'package:form_scream_test/templates/form_field_template.dart';
-import 'package:form_scream_test/templates/form_template.dart';
-import 'package:form_scream_test/templates/scaffold_template.dart';
-import 'package:form_scream_test/templates/button_template.dart';
+//import 'package:freckt_cliente/screens/cadastro_veiculo_inicio.dart';
+import 'package:freckt_cliente/templates/form_field_template.dart';
+import 'package:freckt_cliente/templates/form_template.dart';
+import 'package:freckt_cliente/templates/scaffold_template.dart';
+import 'package:freckt_cliente/templates/button_template.dart';
 
-class CadastroFretistaFisico extends StatelessWidget {
-  static const String _title = 'Fretista Físico';
+class CadastroFretistaJuridico extends StatelessWidget {
+  static const String _title = 'Fretista Jurídico';
   static const String _buttonText = 'Próximo';
 
   @override
@@ -16,24 +16,24 @@ class CadastroFretistaFisico extends StatelessWidget {
       title: _title,
       button: ButtonTemplate(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CadastroVeiculoInicio(),
-            ),
-          );
+          //Navigator.push(
+          //  context,
+          //  MaterialPageRoute(
+          //    builder: (context) => CadastroVeiculoInicio(),
+          //  ),
+          //);
         },
         buttonText: _buttonText,
       ),
       body: FormTemplate(
         children: [
           FormFieldTemplate(
-            title: 'Nome',
-            hintText: 'José',
+            title: 'Nome da Empresa',
+            hintText: 'josé empreendimentos',
           ),
           FormFieldTemplate(
-            title: 'CPF',
-            hintText: '123.456.789.00',
+            title: 'CNPJ',
+            hintText: '12.345.678/0001-90',
           ),
           FormFieldTemplate(
             title: 'CNH',
@@ -41,7 +41,7 @@ class CadastroFretistaFisico extends StatelessWidget {
           ),
           FormFieldTemplate(
             title: 'E-mail',
-            hintText: 'jose@email.com',
+            hintText: 'jose_e@email.com',
           ),
           FormFieldTemplate(
             title: 'Telefone',

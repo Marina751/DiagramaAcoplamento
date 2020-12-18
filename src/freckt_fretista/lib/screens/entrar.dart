@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:form_scream_test/screens/cadastro_inicio.dart';
+import 'package:freckt_fretista/screens/cadastro.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:form_scream_test/templates/button_template.dart';
+import 'package:freckt_fretista/templates/button_template.dart';
 
 class Entrar extends StatefulWidget {
   @override
@@ -97,7 +97,7 @@ class _EntrarState extends State<Entrar> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CadastroInicio(),
+                        builder: (context) => Cadastro(),
                       ),
                     );
                   },

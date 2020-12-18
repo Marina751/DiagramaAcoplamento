@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:form_scream_test/screens/cadastro_veiculo_fim.dart';
-import 'package:form_scream_test/templates/form_field_template.dart';
-import 'package:form_scream_test/templates/form_template.dart';
-import 'package:form_scream_test/templates/scaffold_template.dart';
-import 'package:form_scream_test/templates/button_template.dart';
+//import 'package:freckt_cliente/screens/cadastro_veiculo_fim.dart';
+import 'package:freckt_cliente/templates/form_field_template.dart';
+import 'package:freckt_cliente/templates/form_template.dart';
+import 'package:freckt_cliente/templates/scaffold_template.dart';
+import 'package:freckt_cliente/templates/button_template.dart';
 
 class CadastroVeiculoInicio extends StatelessWidget {
   static const String _title = 'Cadastro Veículo';
@@ -16,12 +16,12 @@ class CadastroVeiculoInicio extends StatelessWidget {
       title: _title,
       button: ButtonTemplate(
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CadastroVeiculoFim(),
-            ),
-          );
+          //Navigator.push(
+          //  context,
+          //  MaterialPageRoute(
+          //    builder: (context) => CadastroVeiculoFim(),
+          //  ),
+          //);
         },
         buttonText: _buttonText,
       ),

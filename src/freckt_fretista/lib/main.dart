@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:form_scream_test/screens/autorizacao_legal.dart';
-import 'package:form_scream_test/screens/entrar.dart';
-import 'package:form_scream_test/screens/verif_numero.dart';
-import 'package:form_scream_test/verif_aprovada.dart';
-import 'package:form_scream_test/verif_negada.dart';
+import 'package:freckt_fretista/screens/autorizacao_legal.dart';
+import 'package:freckt_fretista/screens/entrar.dart';
+import 'package:freckt_fretista/screens/verif_numero.dart';
+import 'package:freckt_fretista/screens/verif_aprovada.dart';
+import 'package:freckt_fretista/screens/verif_negada.dart';
 
 void main() {
   runApp(
@@ -13,7 +13,6 @@ void main() {
       title: 'Title',
       routes: {
         '/': (context) => Root(),
-        //'/cdi': (context) => CadastroInicio(),
         '/vfnu': (context) => VerifNumero(),
         '/vfne': (context) => VerifNegada(),
         '/vfap': (context) => VerifAprovada(),

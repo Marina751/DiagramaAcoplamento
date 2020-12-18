@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:form_scream_test/templates/button_template.dart';
-import 'package:form_scream_test/terms_alert.dart';
+import 'package:freckt_fretista/templates/button_template.dart';
+import 'package:freckt_fretista/templates/terms_alert.dart';
 
 class ScaffoldTemplate extends StatelessWidget {
   const ScaffoldTemplate({

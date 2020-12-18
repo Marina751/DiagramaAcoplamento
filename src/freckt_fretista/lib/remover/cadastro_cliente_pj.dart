@@ -1,11 +1,11 @@
 import 'package:flutter/widgets.dart';
-import 'package:form_scream_test/templates/form_field_template.dart';
-import 'package:form_scream_test/templates/form_template.dart';
-import 'package:form_scream_test/templates/scaffold_template.dart';
-import 'package:form_scream_test/templates/button_template.dart';
+import 'package:freckt_fretista/templates/form_field_template.dart';
+import 'package:freckt_fretista/templates/form_template.dart';
+import 'package:freckt_fretista/templates/button_template.dart';
+import 'package:freckt_fretista/templates/scaffold_template.dart';
 
-class CadastroClienteFisico extends StatelessWidget {
-  static const String _title = 'Pessoa Física';
+class CadastroClienteJuridico extends StatelessWidget {
+  static const String _title = 'Pessoa Jurídica';
   static const String _buttonText = 'Cadastrar';
 
   @override
@@ -19,16 +19,16 @@ class CadastroClienteFisico extends StatelessWidget {
       body: FormTemplate(
         children: [
           FormFieldTemplate(
-            title: 'Nome',
-            hintText: 'José',
+            title: 'Nome da Empresa',
+            hintText: 'josé empreendimentos',
           ),
           FormFieldTemplate(
-            title: 'CPF',
-            hintText: '123.456.789.00',
+            title: 'CNPJ',
+            hintText: '12.345.678/0001-90',
           ),
           FormFieldTemplate(
             title: 'E-mail',
-            hintText: 'jose@email.com',
+            hintText: 'jose_e@email.com',
           ),
           FormFieldTemplate(
             title: 'Telefone',

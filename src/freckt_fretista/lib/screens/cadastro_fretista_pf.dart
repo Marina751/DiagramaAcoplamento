@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:form_scream_test/screens/cadastro_veiculo_inicio.dart';
-import 'package:form_scream_test/templates/form_field_template.dart';
-import 'package:form_scream_test/templates/form_template.dart';
-import 'package:form_scream_test/templates/scaffold_template.dart';
-import 'package:form_scream_test/templates/button_template.dart';
+import 'package:freckt_fretista/screens/cadastro_veiculo_inicio.dart';
+import 'package:freckt_fretista/templates/form_field_template.dart';
+import 'package:freckt_fretista/templates/form_template.dart';
+import 'package:freckt_fretista/templates/scaffold_template.dart';
+import 'package:freckt_fretista/templates/button_template.dart';
 
 class CadastroFretistaFisico extends StatelessWidget {
   static const String _title = 'Fretista Físico';

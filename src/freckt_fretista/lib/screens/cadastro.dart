@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:form_scream_test/screens/cadastro_fim.dart';
-import 'package:form_scream_test/templates/button_template.dart';
+import 'package:freckt_fretista/screens/cadastro_fretista_pf.dart';
+import 'package:freckt_fretista/screens/cadastro_fretista_pj.dart';
+import 'package:freckt_fretista/templates/button_template.dart';
 
-class CadastroInicio extends StatelessWidget {
+class Cadastro extends StatelessWidget {
   static const String _title = 'Cadastrar';
 
   @override
@@ -31,28 +32,23 @@ class CadastroInicio extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CadastroFim(
-                      isCustomer: true,
-                    ),
-                  ),
+                      builder: (context) => CadastroFretistaFisico()),
                 );
               },
-              buttonText: 'Cliente',
+              buttonText: 'Pessoa Fisica',
               color: Colors.white,
               fontColor: Colors.black,
             ),
             ButtonTemplate(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CadastroFim(
-                        isCustomer: false,
-                      ),
-                    ),
-                  );
-                },
-                buttonText: 'Fretista'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CadastroFretistaJuridico()),
+                );
+              },
+              buttonText: 'Pessoa Jurídica',
+            ),
           ],
         ),
       ),
