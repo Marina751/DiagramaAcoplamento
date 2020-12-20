@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:freckt_fretista/screens/cadastro.dart';
+import 'package:freckt_fretista/views/cadastro_fretista.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:freckt_fretista/templates/button_template.dart';
 
@@ -97,7 +97,7 @@ class _EntrarState extends State<Entrar> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Cadastro(),
+                        builder: (context) => CadastroFretista(),
                       ),
                     );
                   },

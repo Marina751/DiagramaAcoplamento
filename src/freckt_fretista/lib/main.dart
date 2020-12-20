@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:freckt_fretista/screens/autorizacao_legal.dart';
-import 'package:freckt_fretista/screens/entrar.dart';
-import 'package:freckt_fretista/screens/verif_numero.dart';
-import 'package:freckt_fretista/screens/verif_aprovada.dart';
-import 'package:freckt_fretista/screens/verif_negada.dart';
+import 'package:freckt_fretista/views/autorizacao_legal.dart';
+import 'package:freckt_fretista/views/entrar.dart';
+import 'package:freckt_fretista/views/verif_aprovada.dart';
+import 'package:freckt_fretista/views/verif_negada.dart';
+import 'package:freckt_fretista/views/verif_numero.dart';
 
 void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      title: 'Title',
+      title: 'Freckt Fretista',
       routes: {
         '/': (context) => Root(),
         '/vfnu': (context) => VerifNumero(),
