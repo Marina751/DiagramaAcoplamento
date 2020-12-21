@@ -13,14 +13,16 @@ class ElevatedButtonTemplate extends Container {
           width: 300.0,
           child: ElevatedButton(
             onPressed: onPressed,
-            color: color,
+            style: ElevatedButton.styleFrom(
+              primary: color,
+              onPrimary: color,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(40.0),
+              ),
+            ),
             child: Text(
               buttonText,
               style: TextStyle(color: fontColor),
-            ),
-            shape: RoundedRectangleBorder(
-              side: BorderSide(color: Colors.black),
-              borderRadius: BorderRadius.circular(40.0),
             ),
           ),
         );
