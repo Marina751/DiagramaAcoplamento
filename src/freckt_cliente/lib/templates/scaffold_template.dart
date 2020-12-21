@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:freckt_cliente/templates/button_template.dart';
+import 'package:freckt_cliente/templates/elevated_button_template.dart';
 import 'package:freckt_cliente/templates/terms_alert.dart';
 
 class ScaffoldTemplate extends StatelessWidget {
@@ -14,7 +14,7 @@ class ScaffoldTemplate extends StatelessWidget {
   final Widget body;
   final String title;
   final bool hasAlertTerms;
-  final ButtonTemplate button;
+  final ElevatedButtonTemplate button;
 
   static const Color _black = Colors.black;
   static const Color _white = Colors.white;
