@@ -4,7 +4,7 @@ import 'package:freckt_fretista/screens/cadastro_veiculo_inicio.dart';
 import 'package:freckt_fretista/templates/form_field_template.dart';
 import 'package:freckt_fretista/templates/form_template.dart';
 import 'package:freckt_fretista/templates/scaffold_template.dart';
-import 'package:freckt_fretista/templates/button_template.dart';
+import 'package:freckt_fretista/templates/elevated_button_template.dart';
 
 class CadastroFretistaJuridico extends StatelessWidget {
   static const String _title = 'Fretista Jurídico';
@@ -14,7 +14,7 @@ class CadastroFretistaJuridico extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScaffoldTemplate(
       title: _title,
-      button: ButtonTemplate(
+      button: ElevatedButtonTemplate(
         onPressed: () {
           Navigator.push(
             context,
