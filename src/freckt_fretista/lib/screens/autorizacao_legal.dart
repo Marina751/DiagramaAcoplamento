@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:freckt_fretista/templates/button_template.dart';
+import 'package:freckt_fretista/templates/elevated_button_template.dart';
 import 'package:freckt_fretista/templates/scaffold_template.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class AutorizacaoLegal extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScaffoldTemplate(
       title: _title,
-      button: ButtonTemplate(
+      button: ElevatedButtonTemplate(
         onPressed: () {},
         buttonText: _buttonText,
       ),

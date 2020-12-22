@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:freckt_cliente/templates/form_field_template.dart';
 import 'package:freckt_cliente/templates/form_template.dart';
 import 'package:freckt_cliente/templates/scaffold_template.dart';
-import 'package:freckt_cliente/templates/button_template.dart';
+import 'package:freckt_cliente/templates/elevated_button_template.dart';
 
 class CadastroClienteFisico extends StatelessWidget {
   static const String _title = 'Pessoa Física';
@@ -12,7 +12,7 @@ class CadastroClienteFisico extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScaffoldTemplate(
       title: _title,
-      button: ButtonTemplate(
+      button: ElevatedButtonTemplate(
         onPressed: () {},
         buttonText: _buttonText,
       ),

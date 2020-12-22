@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:freckt_cliente/templates/button_template.dart';
+import 'package:freckt_cliente/templates/elevated_button_template.dart';
 
 class VerifNegada extends StatelessWidget {
   @override
@@ -27,7 +27,7 @@ class VerifNegada extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: ButtonTemplate(
+      floatingActionButton: ElevatedButtonTemplate(
         onPressed: () {},
         buttonText: 'Continuar',
       ),
