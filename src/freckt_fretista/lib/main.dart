@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freckt_fretista/views/autorizacao_legal.dart';
 import 'package:freckt_fretista/views/entrar.dart';
+import 'package:freckt_fretista/views/splash_screen.dart';
 import 'package:freckt_fretista/views/verif_aprovada.dart';
 import 'package:freckt_fretista/views/verif_negada.dart';
 import 'package:freckt_fretista/views/verif_numero.dart';
@@ -9,6 +10,7 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
+      //theme: ThemeData.fallback(),
       initialRoute: '/',
       title: 'Freckt Fretista',
       routes: {
@@ -18,6 +20,7 @@ void main() {
         '/vfap': (context) => VerifAprovada(),
         '/aul': (context) => AutorizacaoLegal(),
         '/ent': (context) => Entrar(),
+        '/splash': (context) => Splash(),
       },
     ),
   );
@@ -60,6 +63,12 @@ class Root extends StatelessWidget {
               child: Text('ENT'),
               onPressed: () {
                 Navigator.pushNamed(context, '/ent');
+              },
+            ),
+            ElevatedButton(
+              child: Text('SPLASH'),
+              onPressed: () {
+                Navigator.pushNamed(context, '/splash');
               },
             ),
           ],

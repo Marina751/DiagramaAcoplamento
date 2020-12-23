@@ -23,6 +23,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  mobx: ^1.2.1
+  flutter_mobx: ^1.1.0
+  provider: ^4.3.2
+  firebase_auth: ^0.18.4+1
+  cloud_firestore: ^0.14.4
+  firebase_core: ^0.5.3
+  email_validator: ^1.0.6
+  cpfcnpj: ^1.0.3
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -33,6 +41,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mobx_codegen: ^1.1.2
+  build_runner: ^1.10.11
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -49,6 +59,7 @@ flutter:
   assets:
     - images/aprovacao.png
     - images/negado.png
+    - images/foto-perfil.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

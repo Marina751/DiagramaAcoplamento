@@ -5,7 +5,7 @@ class FretistaModel {
   String email;
   String phone;
   String password;
-  List<Vehicles> vehicles;
+  List<Vehicle> vehicles;
 
   FretistaModel({
     this.id,
@@ -16,7 +16,7 @@ class FretistaModel {
     this.password,
     this.vehicles,
   });
-
+/*
   FretistaModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
@@ -44,10 +44,10 @@ class FretistaModel {
       data['vehicles'] = this.vehicles.map((v) => v.toJson()).toList();
     }
     return data;
-  }
+  }*/
 }
 
-class Vehicles {
+class Vehicle {
   String placa;
   String uf;
   String renavam;
@@ -57,7 +57,7 @@ class Vehicles {
   String tipo;
   String capacidade;
 
-  Vehicles({
+  Vehicle({
     this.placa,
     this.uf,
     this.renavam,
@@ -68,6 +68,7 @@ class Vehicles {
     this.capacidade,
   });
 
+/*
   Vehicles.fromJson(Map<String, dynamic> json) {
     placa = json['placa'];
     uf = json['uf'];
@@ -90,5 +91,5 @@ class Vehicles {
     data['tipo'] = this.tipo;
     data['capacidade'] = this.capacidade;
     return data;
-  }
+  }*/
 }
