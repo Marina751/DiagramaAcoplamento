@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "93604800554",
+    "project_id": "freckt",
+    "storage_bucket": "freckt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:93604800554:android:90715c61fc2a8a7ec43b53",
+        "android_client_info": {
+          "package_name": "com.example.freckt_fretista"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "93604800554-je21eio9f398qgleb8vlb42cfnlq9u0h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.freckt_fretista",
+            "certificate_hash": "7ed084429ad0f11ce7f19c38a7f99a818cd6781e"
+          }
+        },
+        {
+          "client_id": "93604800554-83u1vg2nq1tb85ad0apjm1puvvg4eb2t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPvTS-TMUgjmWEr2Hz38ndUpMcC3Y-okk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "93604800554-83u1vg2nq1tb85ad0apjm1puvvg4eb2t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

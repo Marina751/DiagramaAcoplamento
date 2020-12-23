@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:freckt_cliente/screens/autorizacao_legal.dart';
-import 'package:freckt_cliente/screens/entrar.dart';
-import 'package:freckt_cliente/screens/verif_numero.dart';
-import 'package:freckt_cliente/screens/verif_aprovada.dart';
-import 'package:freckt_cliente/screens/verif_negada.dart';
+import 'package:freckt_cliente/views/autorizacao_legal.dart';
+import 'package:freckt_cliente/views/entrar.dart';
+import 'package:freckt_cliente/views/verif_numero.dart';
+import 'package:freckt_cliente/views/verif_aprovada.dart';
+import 'package:freckt_cliente/views/verif_negada.dart';
 
 void main() {
   runApp(
