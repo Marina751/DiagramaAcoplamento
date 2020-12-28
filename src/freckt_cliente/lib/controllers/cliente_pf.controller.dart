@@ -1,4 +1,4 @@
-import 'package:freckt_cliente/models/cliente_pj.model.dart';
+/*import 'package:freckt_cliente/models/cliente_pj.model.dart';
 import 'package:freckt_cliente/repositories/account_pj.repository.dart';
 import 'package:freckt_cliente/view-models/cliente_pj.viewmodel.dart';
 
@@ -15,3 +15,4 @@ class ClientePJController {
     return user;
   }
 }
+*/

@@ -3,12 +3,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:freckt_fretista/controllers/cadastro_fretista.controller.dart';
 import 'package:freckt_fretista/templates/elevated_button_template.dart';
-//import 'package:freckt_fretista/controllers/fretista.controller.dart';
 import 'package:freckt_fretista/templates/form_field_template.dart';
 import 'package:freckt_fretista/templates/scaffold_template.dart';
-//import 'package:freckt_fretista/templates/button_template.dart';
+import 'package:freckt_fretista/utils/enums/response_status.dart';
 import 'package:freckt_fretista/views/cadastro_veiculo.dart';
-//import 'package:freckt_fretista/views/cadastro_veiculo.dart';
 
 class CadastroFretista extends StatefulWidget {
   @override
@@ -19,27 +17,38 @@ class _CadastroFretistaState extends State<CadastroFretista> {
   final String _title = 'Cadastrar Fretista';
   final String _buttonText = 'Próximo';
   final _formKey = GlobalKey<FormState>();
-  final controller = CadastroFretistaController();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _controller = CadastroFretistaController();
 
-  void register() {
-    //print('${controller.store.name.split(' ')[0]}');
-    controller.store.pressButton();
-    if (controller.validate()) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => CadastroVeiculo(controller.store),
-        ),
-      );
-      print('tudo certo!');
+  void register() async {
+    _controller.viewModel.pressButton();
+
+    if (_controller.validate()) {
+      _controller.save();
+
+      final response = await _controller.register();
+
+      if (response.status == ResponseStatus.SUCCESS) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CadastroVeiculo(),
+          ),
+        );
+      } else {
+        _scaffoldKey.currentState.showSnackBar(
+          SnackBar(
+            content: Text(response.message),
+          ),
+        );
+      }
     }
-
-    print('chegou aqui!');
   }
 
   @override
   Widget build(BuildContext context) {
     return ScaffoldTemplate(
+      key: _scaffoldKey,
       title: _title,
       button: ElevatedButtonTemplate(
         onPressed: register,
@@ -56,9 +65,9 @@ class _CadastroFretistaState extends State<CadastroFretista> {
                   title: 'Nome',
                   hintText: 'José',
                   keyboardType: TextInputType.name,
-                  errorText: controller.validateName(),
-                  //validator: controller.validateName,
-                  onChanged: controller.store.changeName,
+                  errorText: _controller.validateName(),
+                  //validator: _controller.validateName,
+                  onChanged: _controller.viewModel.changeName,
                 ),
               ),
               Observer(
@@ -66,9 +75,9 @@ class _CadastroFretistaState extends State<CadastroFretista> {
                   title: 'CPF',
                   hintText: '123.456.789.00',
                   keyboardType: TextInputType.number,
-                  errorText: controller.validateCPF(),
-                  //validator: controller.validateCPF,
-                  onChanged: controller.store.changeCPF,
+                  errorText: _controller.validateCPF(),
+                  //validator: _controller.validateCPF,
+                  onChanged: _controller.viewModel.changeCPF,
                 ),
               ),
               //Observer(
@@ -77,8 +86,8 @@ class _CadastroFretistaState extends State<CadastroFretista> {
                 title: 'CNH',
                 hintText: '123456789',
                 keyboardType: TextInputType.number,
-                //errorText: controller.validateCNH(),
-                onChanged: controller.store.changeCNH,
+                //errorText: _controller.validateCNH(),
+                onChanged: _controller.viewModel.changeCNH,
               ),
               //),
               Observer(
@@ -86,9 +95,9 @@ class _CadastroFretistaState extends State<CadastroFretista> {
                   title: 'E-mail',
                   hintText: 'jose@email.com',
                   keyboardType: TextInputType.emailAddress,
-                  errorText: controller.validateEmail(),
-                  onChanged: controller.store.changeEmail,
-                  //validator: controller.validateEmail,
+                  errorText: _controller.validateEmail(),
+                  onChanged: _controller.viewModel.changeEmail,
+                  //validator: _controller.validateEmail,
                 ),
               ),
               //Observer(
@@ -97,8 +106,8 @@ class _CadastroFretistaState extends State<CadastroFretista> {
                 title: 'Telefone',
                 hintText: '(85) 98888-8888',
                 keyboardType: TextInputType.phone,
-                //errorText: controller.validatePhone(),
-                onChanged: controller.store.changePhone,
+                //errorText: _controller.validatePhone(),
+                onChanged: _controller.viewModel.changePhone,
               ),
               //),
               Observer(
@@ -107,9 +116,9 @@ class _CadastroFretistaState extends State<CadastroFretista> {
                   hintText: '••••••',
                   obscureText: true,
                   keyboardType: TextInputType.text,
-                  errorText: controller.validatePassword(),
-                  onChanged: controller.store.changePassword,
-                  //validator: controller.validatePassword,
+                  errorText: _controller.validatePassword(),
+                  onChanged: _controller.viewModel.changePassword,
+                  //validator: _controller.validatePassword,
                 ),
               ),
             ],

@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:freckt_fretista/controllers/fretista.controller.dart';
-import 'package:freckt_fretista/models/fretista.model.dart';
-import 'package:freckt_fretista/stores/cadastro_fretista.store.dart';
+import 'package:freckt_fretista/controllers/cadastro_veiculo.controller.dart';
 import 'package:freckt_fretista/templates/elevated_button_template.dart';
 import 'package:freckt_fretista/templates/form_field_template.dart';
 import 'package:freckt_fretista/templates/scaffold_template.dart';
-import 'package:freckt_fretista/templates/button_template.dart';
-//import 'package:freckt_fretista/views/cadastro_perfil.dart';
 import 'package:freckt_fretista/views/home_fretista.dart';
 
 class CadastroVeiculo extends StatefulWidget {
-  CadastroVeiculo(this.store);
-
-  final CadastroFretistaStore store;
-
   @override
   _CadastroVeiculoState createState() => _CadastroVeiculoState();
 }
@@ -25,32 +17,19 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
   final String _buttonText = 'Próximo';
 
   final _formKey = GlobalKey<FormState>();
+  final _controller = CadastroVeiculoController();
 
-  final vehicle = Vehicle();
-
-  final controller = FretistaController();
-
-  //final _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  void onPressed() async {
+  void buttonPressed() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      widget.store.vehicles.add(vehicle);
+      await _controller.save();
 
-      //_scaffoldKey.currentState.showSnackBar(SnackBar(
-      //  content: LinearProgressIndicator(),
-      //));
-
-      await controller.createFretistaAccount(
-          widget.store.email, widget.store.password);
-
-      controller.saveFretistaData(widget.store);
-
-      Navigator.push(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) => HomeFretista(),
         ),
+        (route) => false,
       );
     }
   }
@@ -58,10 +37,9 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
   @override
   Widget build(BuildContext context) {
     return ScaffoldTemplate(
-      //key: _scaffoldKey,
       title: _title,
       button: ElevatedButtonTemplate(
-        onPressed: onPressed,
+        onPressed: buttonPressed,
         buttonText: _buttonText,
       ),
       body: SingleChildScrollView(
@@ -80,13 +58,14 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Informe a capacidade';
+                          return 'Informe a placa';
                         }
                         return null;
                       },
-                      onSaved: (val) {
-                        vehicle.placa = val;
-                      },
+                      onSaved: _controller.viewModel.changePlaca,
+                      //(val) {
+                      //  vehicle.placa = val;
+                      //},
                     ),
                   ),
                   Expanded(
@@ -96,13 +75,14 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                       keyboardType: TextInputType.text,
                       validator: (value) {
                         if (value.isEmpty) {
-                          return 'Informe a capacidade';
+                          return 'Informe a UF';
                         }
                         return null;
                       },
-                      onSaved: (val) {
-                        vehicle.placa = val;
-                      },
+                      onSaved: _controller.viewModel.changeUf,
+                      //(val) {
+                      //  vehicle.placa = val;
+                      //},
                     ),
                   ),
                 ],
@@ -121,9 +101,10 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                         }
                         return null;
                       },
-                      onSaved: (val) {
-                        vehicle.renavam = val;
-                      },
+                      onSaved: _controller.viewModel.changeRenavam,
+                      //(val) {
+                      //  vehicle.renavam = val;
+                      //},
                     ),
                   ),
                   Expanded(
@@ -137,9 +118,10 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                         }
                         return null;
                       },
-                      onSaved: (val) {
-                        vehicle.ano = val;
-                      },
+                      onSaved: _controller.viewModel.changeAno,
+                      //(val) {
+                      //  vehicle.ano = val;
+                      //},
                     ),
                   ),
                 ],
@@ -154,9 +136,10 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                   }
                   return null;
                 },
-                onSaved: (val) {
-                  vehicle.marcaModelo = val;
-                },
+                onSaved: _controller.viewModel.changeMarca,
+                //(val) {
+                //  vehicle.marca = val;
+                //},
               ),
               FormFieldTemplate(
                 title: 'Cor',
@@ -168,9 +151,10 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                   }
                   return null;
                 },
-                onSaved: (val) {
-                  vehicle.cor = val;
-                },
+                onSaved: _controller.viewModel.changeCor,
+                //(val) {
+                //  vehicle.cor = val;
+                //},
               ),
               FormFieldTemplate(
                 title: 'Tipo',
@@ -182,13 +166,14 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                   }
                   return null;
                 },
-                onSaved: (val) {
-                  vehicle.tipo = val;
-                },
+                onSaved: _controller.viewModel.changeTipo,
+                //(val) {
+                //  vehicle.tipo = val;
+                //},
               ),
               FormFieldTemplate(
                 title: 'Capacidade',
-                hintText: '1T',
+                hintText: '1500',
                 keyboardType: TextInputType.text,
                 validator: (value) {
                   if (value.isEmpty) {
@@ -196,9 +181,10 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                   }
                   return null;
                 },
-                onSaved: (val) {
-                  vehicle.capacidade = val;
-                },
+                onSaved: _controller.viewModel.changeCapacidade,
+                //(val) {
+                //  vehicle.capacidade = val;
+                //},
               ),
             ],
           ),

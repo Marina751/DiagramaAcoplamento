@@ -1,8 +1,8 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:freckt_fretista/controllers/fretista.controller.dart';
+import 'package:freckt_fretista/controllers/entrar.controller.dart';
+import 'package:freckt_fretista/utils/enums/response_status.dart';
 import 'package:freckt_fretista/views/cadastro_fretista.dart';
-import 'package:freckt_fretista/views/home_fretista.dart';
+import 'package:freckt_fretista/views/get_user_data.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:freckt_fretista/templates/button_template.dart';
 
@@ -13,39 +13,34 @@ class Entrar extends StatefulWidget {
 
 class _EntrarState extends State<Entrar> {
   bool _showPassword = false;
-  String email;
-  String password;
-  String error;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final controller = FretistaController();
+  final _formKey = GlobalKey<FormState>();
+  final _controller = EntrarController();
 
   void login() async {
-    email = emailController.text;
-    password = passwordController.text;
+    if (_formKey.currentState.validate()) {
+      _formKey.currentState.save();
 
-    if (email.isNotEmpty && password.isNotEmpty) {
-      error = await controller.loginFretistaAccount(email, password);
+      final response = await _controller.login();
 
-      if (error == null) {
+      if (response.status == ResponseStatus.SUCCESS) {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => HomeFretista(),
+            builder: (context) => GetUserData(response.object.uid),
           ),
         );
       } else {
         _scaffoldKey.currentState.showSnackBar(
           SnackBar(
-            content: Text(error),
+            content: Text(response.message),
           ),
         );
       }
     } else {
       _scaffoldKey.currentState.showSnackBar(
         SnackBar(
-          content: Text('Faça login ou cadastre-se'),
+          content: Text('entre ou cadastre-se'),
         ),
       );
     }
@@ -74,37 +69,64 @@ class _EntrarState extends State<Entrar> {
                 )
               ],
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 5.0, top: 20.0),
-              child: TextField(
-                controller: emailController,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.person),
-                  border: OutlineInputBorder(),
-                  hintText: 'E-mail',
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-              child: TextField(
-                controller: passwordController,
-                obscureText: !_showPassword,
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.lock),
-                  suffixIcon: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _showPassword = !_showPassword;
-                      });
-                    },
-                    child: Icon(
-                      _showPassword ? Icons.visibility : Icons.visibility_off,
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 5.0, top: 20.0),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        hintText: 'E-mail',
+                      ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'informe seu email';
+                        }
+
+                        return null;
+                      },
+                      onSaved: (value) {
+                        _controller.viewModel.changeEmail(value);
+                      },
                     ),
                   ),
-                  border: OutlineInputBorder(),
-                  hintText: 'Senha',
-                ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                    child: TextFormField(
+                      obscureText: !_showPassword,
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.lock),
+                        suffixIcon: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              _showPassword = !_showPassword;
+                            });
+                          },
+                          child: Icon(
+                            _showPassword
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
+                        ),
+                        border: OutlineInputBorder(),
+                        hintText: 'Senha',
+                      ),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'informe sua senha';
+                        }
+
+                        return null;
+                      },
+                      onSaved: (value) {
+                        _controller.viewModel.changePassword(value);
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
             ButtonTemplate(

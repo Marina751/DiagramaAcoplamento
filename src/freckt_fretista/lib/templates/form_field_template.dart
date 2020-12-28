@@ -26,8 +26,8 @@ class FormFieldTemplate extends Container {
                   hintText: hintText,
                 ),
                 validator: validator,
-                onSaved: onSaved,
-                onChanged: onChanged,
+                onSaved: onSaved ?? null,
+                onChanged: onChanged ?? null,
               )
             ],
           ),

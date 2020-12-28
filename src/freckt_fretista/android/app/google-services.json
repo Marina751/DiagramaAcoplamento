@@ -1,20 +1,57 @@
 {
   "project_info": {
-    "project_number": "93604800554",
-    "project_id": "freckt",
-    "storage_bucket": "freckt.appspot.com"
+    "project_number": "782290795805",
+    "project_id": "freckt-8dc50",
+    "storage_bucket": "freckt-8dc50.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:93604800554:android:90715c61fc2a8a7ec43b53",
+        "mobilesdk_app_id": "1:782290795805:android:7af2db33eedad8cf61b5f4",
+        "android_client_info": {
+          "package_name": "com.example.freckt_cliente"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782290795805-gtsvnchs3qa18jd2apot3kgomf482llf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.freckt_cliente",
+            "certificate_hash": "7ed084429ad0f11ce7f19c38a7f99a818cd6781e"
+          }
+        },
+        {
+          "client_id": "782290795805-fe1svr8hb0jua48g44a9krga3rg1a17l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVU5KcDFBxxrnWO9w2AprMV2fjXawqh0o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782290795805-fe1svr8hb0jua48g44a9krga3rg1a17l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782290795805:android:4987d4567529635661b5f4",
         "android_client_info": {
           "package_name": "com.example.freckt_fretista"
         }
       },
       "oauth_client": [
         {
-          "client_id": "93604800554-je21eio9f398qgleb8vlb42cfnlq9u0h.apps.googleusercontent.com",
+          "client_id": "782290795805-lb96skohdegq5fo7s9276d3c9f2sf696.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.freckt_fretista",
@@ -22,20 +59,20 @@
           }
         },
         {
-          "client_id": "93604800554-83u1vg2nq1tb85ad0apjm1puvvg4eb2t.apps.googleusercontent.com",
+          "client_id": "782290795805-fe1svr8hb0jua48g44a9krga3rg1a17l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBPvTS-TMUgjmWEr2Hz38ndUpMcC3Y-okk"
+          "current_key": "AIzaSyBVU5KcDFBxxrnWO9w2AprMV2fjXawqh0o"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "93604800554-83u1vg2nq1tb85ad0apjm1puvvg4eb2t.apps.googleusercontent.com",
+              "client_id": "782290795805-fe1svr8hb0jua48g44a9krga3rg1a17l.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

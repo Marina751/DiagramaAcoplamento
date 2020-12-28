@@ -1,10 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:freckt_fretista/views/entrar.dart';
-import 'package:freckt_fretista/views/home_fretista.dart';
-import 'dart:async';
+//import 'package:freckt_fretista/views/entrar.dart';
+//import 'package:freckt_fretista/views/home_fretista.dart';
 import 'package:google_fonts/google_fonts.dart';
+//import 'dart:async';
 
 class Splash extends StatefulWidget {
   @override
@@ -12,28 +12,28 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  User currentUser;
+  //User currentUser;
   //bool _initialized = false;
   //bool _error = false;
 
   // Define an async function to initialize FlutterFire
-  void initializeFlutterFire() async {
-    try {
-      // Wait for Firebase to initialize and set `_initialized` state to true
-      await Firebase.initializeApp();
-      FirebaseAuth.instance.authStateChanges().listen((user) {
-        currentUser = user; //FirebaseAuth.instance.currentUser;
-      });
-      //setState(() {
-      //  _initialized = true;
-      //});
-    } catch (e) {
-      // Set `_error` state to true if Firebase initialization fails
-      //setState(() {
-      //  _error = true;
-      //});
-    }
-  }
+  //void initializeFlutterFire() async {
+  //try {
+  // Wait for Firebase to initialize and set `_initialized` state to true
+  //  await Firebase.initializeApp();
+  //FirebaseAuth.instance.authStateChanges().listen((user) {
+  //  currentUser = user; //FirebaseAuth.instance.currentUser;
+  //});
+  //setState(() {
+  //  _initialized = true;
+  //});
+  //} catch (e) {
+  // Set `_error` state to true if Firebase initialization fails
+  //setState(() {
+  //  _error = true;
+  //});
+  //}
+  //}
 
   // Show error message if initialization failed
   //if(_error) {
@@ -49,28 +49,28 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
 
-    Timer(
-      Duration(seconds: 2),
-      () {
-        initializeFlutterFire();
+    //Timer(
+    //  Duration(seconds: 2),
+    //() {
+    //initializeFlutterFire();
 
-        if (currentUser != null) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomeFretista(),
-            ),
-          );
-        } else {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Entrar(),
-            ),
-          );
-        }
-      },
-    );
+    //if (currentUser != null) {
+    //  Navigator.push(
+    //    context,
+    //    MaterialPageRoute(
+    //      builder: (context) => HomeFretista(),
+    //    ),
+    //  );
+    //} else {
+    //  Navigator.push(
+    //    context,
+    //    MaterialPageRoute(
+    //      builder: (context) => Entrar(),
+    //    ),
+    //  );
+    //}
+    //},
+    //);
   }
 
   @override

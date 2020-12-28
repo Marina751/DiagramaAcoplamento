@@ -1,95 +1,124 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
+import 'package:freckt_fretista/repositories/account.repository.dart';
+import 'package:freckt_fretista/utils/enums/response_status.dart';
+import 'package:freckt_fretista/utils/responses/default_response.dart';
+import 'package:freckt_fretista/utils/vehicle.util.dart';
+import 'package:freckt_fretista/view-models/cadastro_fretista.viewmodel.dart';
+
 class FretistaModel {
-  String id;
-  String name;
-  String cpf;
-  String email;
-  String phone;
-  String password;
-  List<Vehicle> vehicles;
+  String id = '';
+  String name = '';
+  String cnh = '';
+  String cpf = '';
+  String email = '';
+  String phone = '';
+  String password = '';
+  //List<Vehicle> vehicles = List<Vehicle>();
+  final vehicles = <Vehicle>[];
 
-  FretistaModel({
-    this.id,
-    this.name,
-    this.cpf,
-    this.email,
-    this.phone,
-    this.password,
-    this.vehicles,
-  });
-/*
-  FretistaModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-    cpf = json['cpf'];
-    email = json['email'];
-    phone = json['phone'];
-    password = json['password'];
-    if (json['vehicles'] != null) {
-      vehicles = new List<Vehicles>();
-      json['vehicles'].forEach((v) {
-        vehicles.add(new Vehicles.fromJson(v));
-      });
-    }
+  final _repository = AccountRepository();
+
+  static final FretistaModel _fretistaModel = FretistaModel._internal();
+
+  factory FretistaModel() {
+    return _fretistaModel;
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['cpf'] = this.cpf;
-    data['email'] = this.email;
-    data['phone'] = this.phone;
-    data['password'] = this.password;
-    if (this.vehicles != null) {
-      data['vehicles'] = this.vehicles.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }*/
-}
+  FretistaModel._internal();
 
-class Vehicle {
-  String placa;
-  String uf;
-  String renavam;
-  String ano;
-  String marcaModelo;
-  String cor;
-  String tipo;
-  String capacidade;
-
-  Vehicle({
-    this.placa,
-    this.uf,
-    this.renavam,
-    this.ano,
-    this.marcaModelo,
-    this.cor,
-    this.tipo,
-    this.capacidade,
-  });
-
-/*
-  Vehicles.fromJson(Map<String, dynamic> json) {
-    placa = json['placa'];
-    uf = json['uf'];
-    renavam = json['renavam'];
-    ano = json['ano'];
-    marcaModelo = json['marca_modelo'];
-    cor = json['cor'];
-    tipo = json['tipo'];
-    capacidade = json['capacidade'];
+  void addVehicle(Vehicle vehicle) {
+    vehicles.add(vehicle);
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['placa'] = this.placa;
-    data['uf'] = this.uf;
-    data['renavam'] = this.renavam;
-    data['ano'] = this.ano;
-    data['marca_modelo'] = this.marcaModelo;
-    data['cor'] = this.cor;
-    data['tipo'] = this.tipo;
-    data['capacidade'] = this.capacidade;
-    return data;
-  }*/
+  void setRegistrationData(CadastroFretistaViewModel viewModel) {
+    name = viewModel.name;
+    cnh = viewModel.cnh;
+    cpf = viewModel.cpf;
+    email = viewModel.email;
+    phone = viewModel.phone;
+    password = viewModel.password;
+  }
+
+  Future<DefaultResponse> createFretistaAccount({
+    @required String uEmail,
+    @required String uPassword,
+  }) async {
+    final response = await _repository.registerEmailPassword(
+      email: uEmail,
+      password: uPassword,
+    );
+
+    if (response.status == ResponseStatus.SUCCESS) {
+      id = response.object.uid;
+    }
+
+    return response;
+  }
+
+  Future<DefaultResponse> loginFretistaAccount({
+    @required String uEmail,
+    @required String uPassword,
+  }) async {
+    final response = await _repository.doLoginEmailPassword(
+      email: uEmail,
+      password: uPassword,
+    );
+
+    //if (response.status == ResponseStatus.SUCCESS) {
+    //  id = response.object.uid;
+    //}
+
+    return response;
+  }
+
+  Future<DefaultResponse> signOutFretista() async {
+    return await _repository.signOut();
+  }
+
+  void loadDataFromFirestore({@required Map<String, dynamic> data}) {
+    //List<Map<String, dynamic>>
+    final aux = data['vehicles'];
+
+    print(aux.toString());
+
+    name = data['name'];
+    cnh = data['cnh'];
+    cpf = data['cpf'];
+    email = data['email'];
+    phone = data['phone'];
+    password = data['password'];
+
+    aux.forEach((element) {
+      vehicles.add(new Vehicle(
+        placa: element['placa'],
+        uf: element['uf'],
+        renavam: element['renavam'],
+        ano: element['ano'],
+        marca: element['marca'],
+        cor: element['cor'],
+        tipo: element['tipo'],
+        capacidade: element['capacidade'],
+      ));
+    });
+  }
+
+  Future<void> saveFretistaData() async {
+    final aux = List<Map<String, dynamic>>();
+
+    vehicles.forEach((vehicle) {
+      aux.add(vehicle.toMap());
+    });
+
+    Map<String, dynamic> data = {
+      'name': name,
+      'cpf': cpf,
+      'cnh': cnh,
+      'email': email,
+      'phone': phone,
+      'password': password,
+      'vehicles': aux
+    };
+    await FirebaseFirestore.instance.collection('fretistas').doc(id).set(data);
+  }
 }

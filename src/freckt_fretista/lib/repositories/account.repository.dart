@@ -1,66 +1,120 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:freckt_fretista/utils/interfaces/auth_repository.interface.dart';
+import 'package:freckt_fretista/utils/responses/default_response.dart';
+import 'package:freckt_fretista/utils/responses/response_builder.dart';
 
-class AccountRepository {
-  //FirebaseAuth auth = FirebaseAuth.instance;
+class AccountRepository implements IAuthRepository {
+  final firebaseAuth = FirebaseAuth.instance;
 
-  Future<User> register({String email = '', String password = ''}) async {
+  @override
+  Future<DefaultResponse> doLoginEmailPassword({
+    String email,
+    String password,
+  }) async {
     try {
-      UserCredential userCredential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
+      await firebaseAuth.signInWithEmailAndPassword(
+        email: email.trim(),
+        password: password.trim(),
       );
 
-      return userCredential.user;
-      //return FretistaModel(
-      //  id: '1',
-      //  name: model.name,
-      //  cpf: model.cpf,
-      //  email: model.email,
-      //  phone: model.phone, //userCredential.user.phoneNumber, //
-      //  password: model.password,
-      //vehicles: model.vehicles,
-      //);
-      //} on FirebaseAuthException catch (e) {
-      //  if (e.code == 'weak-password') {
-      //    print('The password provided is too weak.');
-      //  } else if (e.code == 'email-already-in-use') {
-      //    print('The account already exists for that email.');
-      //  }
-      //  return null;
-    } catch (e) {
-      //print(e);
-      return null;
-    }
-  }
-
-  Future<String> login({String email = '', String password = ''}) async {
-    try {
-      //UserCredential userCredential =
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      return null; //userCredential.user;
+      return ResponseBuilder.success<User>(object: firebaseAuth.currentUser);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        return 'No user found for that email.';
-      } else if (e.code == 'wrong-password') {
-        return 'Wrong password provided for that user.';
+      String message;
+
+      switch (e.code) {
+        case 'user-not-found':
+          {
+            message = 'No user found for that email';
+          }
+          break;
+        case 'wrong-password':
+          {
+            message = 'Wrong password provided for that user';
+          }
+          break;
+        default:
+          {
+            message = 'há algo errado';
+          }
+          break;
       }
-      return 'há algo errado';
+
+      return ResponseBuilder.failed(message: message);
+    } catch (e) {
+      return ResponseBuilder.failed(message: 'há algo errado');
     }
   }
 
-  Future signOut() async {
-    await FirebaseAuth.instance.signOut();
+  @override
+  Future<DefaultResponse> getUser() async {
+    try {
+      return ResponseBuilder.success<User>(object: firebaseAuth.currentUser);
+    } catch (e) {
+      return ResponseBuilder.failed(message: 'há algo errado');
+    }
   }
 
-  void checkUserEmail() async {
-    User user = FirebaseAuth.instance.currentUser;
+  @override
+  Future<DefaultResponse> signOut() async {
+    try {
+      await firebaseAuth.signOut();
+      return ResponseBuilder.success(message: 'saiu com sucesso');
+    } catch (e) {
+      return ResponseBuilder.failed(message: 'algo deu errado');
+    }
+  }
+
+  @override
+  Future<DefaultResponse> registerEmailPassword({
+    String email,
+    String password,
+  }) async {
+    try {
+      return await firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((auth) {
+        //firebaseAuth.setPersistence(Persistence.LOCAL);
+        return ResponseBuilder.success<User>(object: auth.user);
+      });
+    } on FirebaseAuthException catch (e) {
+      String message;
+
+      switch (e.code) {
+        case 'weak-password':
+          {
+            message = 'The password provided is too weak.';
+          }
+          break;
+        case 'email-already-in-use':
+          {
+            message = 'The account already exists for that email.';
+          }
+          break;
+        default:
+          {
+            message = 'há algo errado';
+          }
+          break;
+      }
+
+      return ResponseBuilder.failed(message: message);
+    } catch (e) {
+      return ResponseBuilder.failed(message: 'há algo errado');
+    }
+  }
+
+  @override
+  Future<DefaultResponse> checkUserEmail() async {
+    User user = firebaseAuth.currentUser;
 
     if (!user.emailVerified) {
-      await user.sendEmailVerification();
+      try {
+        await user.sendEmailVerification();
+        return ResponseBuilder.success(message: 'email enviado');
+      } catch (e) {
+        return ResponseBuilder.failed(message: 'há algo errado');
+      }
     }
+    return ResponseBuilder.failed(message: 'já foi verificado antes');
   }
 }

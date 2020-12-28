@@ -1,22 +1,26 @@
 import 'package:cpfcnpj/cpfcnpj.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:freckt_fretista/stores/cadastro_fretista.store.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:freckt_fretista/models/fretista.model.dart';
+import 'package:freckt_fretista/utils/responses/default_response.dart';
+import 'package:freckt_fretista/view-models/cadastro_fretista.viewmodel.dart';
 
 class CadastroFretistaController {
-  final store = CadastroFretistaStore();
+  final viewModel = CadastroFretistaViewModel();
+  final model = FretistaModel();
 
   String validateName() {
-    if (store.name.isEmpty && store.clickedButton) {
+    if (viewModel.name.isEmpty && viewModel.clickedButton) {
       return 'É necessário informar seu nome';
     }
     return null;
   }
 
   String validateCPF() {
-    if (store.clickedButton) {
-      if (store.cpf.isEmpty) {
+    if (viewModel.clickedButton) {
+      if (viewModel.cpf.isEmpty) {
         return 'É necessário informar seu cpf';
-      } else if (!CPF.isValid(store.cpf)) {
+      } else if (!CPF.isValid(viewModel.cpf)) {
         return 'CPF inválido';
       }
     }
@@ -29,10 +33,10 @@ class CadastroFretistaController {
   }
 
   String validateEmail() {
-    if (store.clickedButton) {
-      if (store.email.isEmpty) {
+    if (viewModel.clickedButton) {
+      if (viewModel.email.isEmpty) {
         return 'É necessário informar seu e-mail';
-      } else if (!EmailValidator.validate(store.email)) {
+      } else if (!EmailValidator.validate(viewModel.email)) {
         return 'E-mail inválido';
       }
     }
@@ -45,15 +49,19 @@ class CadastroFretistaController {
   }
 
   String validatePassword() {
-    if (store.clickedButton) {
-      if (store.password.isEmpty) {
+    if (viewModel.clickedButton) {
+      if (viewModel.password.isEmpty) {
         return 'É necessário criar uma senha';
-      } else if (store.password.length < 6) {
+      } else if (viewModel.password.length < 6) {
         return 'Deve ter no mínimo 6 caracteres';
       }
     }
 
     return null;
+  }
+
+  void save() {
+    model.setRegistrationData(viewModel);
   }
 
   // Pensar em um jeito melhor depois
@@ -65,5 +73,12 @@ class CadastroFretistaController {
         validateEmail() == null &&
         validatePhone() == null &&
         validatePassword() == null);
+  }
+
+  Future<DefaultResponse<User>> register() async {
+    return await model.createFretistaAccount(
+      uEmail: viewModel.email,
+      uPassword: viewModel.password,
+    );
   }
 }
