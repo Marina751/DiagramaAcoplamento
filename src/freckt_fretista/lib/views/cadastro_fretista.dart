@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:freckt_fretista/controllers/cadastro_fretista.controller.dart';
-import 'package:freckt_fretista/templates/elevated_button_template.dart';
-import 'package:freckt_fretista/templates/form_field_template.dart';
-import 'package:freckt_fretista/templates/scaffold_template.dart';
+import 'package:freckt_fretista/utils/templates/elevated_button_template.dart';
+import 'package:freckt_fretista/utils/templates/form_field_template.dart';
+import 'package:freckt_fretista/utils/templates/scaffold_template.dart';
 import 'package:freckt_fretista/utils/enums/response_status.dart';
 import 'package:freckt_fretista/views/cadastro_veiculo.dart';
 

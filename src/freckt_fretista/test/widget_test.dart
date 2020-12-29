@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:freckt_fretista/templates/button_template.dart';
+import 'package:freckt_fretista/utils/templates/button_template.dart';
 import 'package:flutter/material.dart';
 
 class Test extends StatelessWidget {

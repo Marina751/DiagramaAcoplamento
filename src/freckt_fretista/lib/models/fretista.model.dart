@@ -65,10 +65,6 @@ class FretistaModel {
       password: uPassword,
     );
 
-    //if (response.status == ResponseStatus.SUCCESS) {
-    //  id = response.object.uid;
-    //}
-
     return response;
   }
 

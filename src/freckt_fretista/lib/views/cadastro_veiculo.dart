@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freckt_fretista/controllers/cadastro_veiculo.controller.dart';
-import 'package:freckt_fretista/templates/elevated_button_template.dart';
-import 'package:freckt_fretista/templates/form_field_template.dart';
-import 'package:freckt_fretista/templates/scaffold_template.dart';
+import 'package:freckt_fretista/utils/templates/elevated_button_template.dart';
+import 'package:freckt_fretista/utils/templates/form_field_template.dart';
+import 'package:freckt_fretista/utils/templates/scaffold_template.dart';
 import 'package:freckt_fretista/views/home_fretista.dart';
 
 class CadastroVeiculo extends StatefulWidget {
@@ -12,9 +12,8 @@ class CadastroVeiculo extends StatefulWidget {
 }
 
 class _CadastroVeiculoState extends State<CadastroVeiculo> {
-  final String _title = 'Veículo';
-
-  final String _buttonText = 'Próximo';
+  static const String _title = 'Veículo';
+  static const String _buttonText = 'Próximo';
 
   final _formKey = GlobalKey<FormState>();
   final _controller = CadastroVeiculoController();
@@ -63,9 +62,6 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                         return null;
                       },
                       onSaved: _controller.viewModel.changePlaca,
-                      //(val) {
-                      //  vehicle.placa = val;
-                      //},
                     ),
                   ),
                   Expanded(
@@ -80,9 +76,6 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                         return null;
                       },
                       onSaved: _controller.viewModel.changeUf,
-                      //(val) {
-                      //  vehicle.placa = val;
-                      //},
                     ),
                   ),
                 ],
@@ -102,9 +95,6 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                         return null;
                       },
                       onSaved: _controller.viewModel.changeRenavam,
-                      //(val) {
-                      //  vehicle.renavam = val;
-                      //},
                     ),
                   ),
                   Expanded(
@@ -119,9 +109,6 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                         return null;
                       },
                       onSaved: _controller.viewModel.changeAno,
-                      //(val) {
-                      //  vehicle.ano = val;
-                      //},
                     ),
                   ),
                 ],
@@ -137,9 +124,6 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                   return null;
                 },
                 onSaved: _controller.viewModel.changeMarca,
-                //(val) {
-                //  vehicle.marca = val;
-                //},
               ),
               FormFieldTemplate(
                 title: 'Cor',
@@ -152,9 +136,6 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                   return null;
                 },
                 onSaved: _controller.viewModel.changeCor,
-                //(val) {
-                //  vehicle.cor = val;
-                //},
               ),
               FormFieldTemplate(
                 title: 'Tipo',
@@ -167,9 +148,6 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                   return null;
                 },
                 onSaved: _controller.viewModel.changeTipo,
-                //(val) {
-                //  vehicle.tipo = val;
-                //},
               ),
               FormFieldTemplate(
                 title: 'Capacidade',
@@ -182,9 +160,6 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
                   return null;
                 },
                 onSaved: _controller.viewModel.changeCapacidade,
-                //(val) {
-                //  vehicle.capacidade = val;
-                //},
               ),
             ],
           ),

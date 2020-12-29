@@ -4,7 +4,7 @@ import 'package:freckt_fretista/utils/enums/response_status.dart';
 import 'package:freckt_fretista/views/cadastro_fretista.dart';
 import 'package:freckt_fretista/views/get_user_data.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:freckt_fretista/templates/button_template.dart';
+import 'package:freckt_fretista/utils/templates/button_template.dart';
 
 class Entrar extends StatefulWidget {
   @override

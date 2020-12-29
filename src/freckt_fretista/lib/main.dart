@@ -5,7 +5,7 @@ import 'package:freckt_fretista/views/entrar.dart';
 import 'package:freckt_fretista/views/get_user_data.dart';
 import 'package:freckt_fretista/views/splash_screen.dart';
 
-void main() async {
+void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
