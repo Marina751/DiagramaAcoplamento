@@ -9,6 +9,7 @@ class HomeFretista extends StatefulWidget {
   _HomeFretistaState createState() => _HomeFretistaState();
 }
 
+/// Uma [home] não oficial apenas para testar o cadastro e o login
 class _HomeFretistaState extends State<HomeFretista> {
   final model = FretistaModel();
 

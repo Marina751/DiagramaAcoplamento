@@ -12,11 +12,19 @@ class Entrar extends StatefulWidget {
 }
 
 class _EntrarState extends State<Entrar> {
+  /// Um [bool] para dizer se exibe ou não a senha
   bool _showPassword = false;
+
+  /// Uma [Key] para o estado do [Form] e outra para o [Scaffold]
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
+
+  // O controller servirá como uma ponte entre esta view e o model
   final _controller = EntrarController();
 
+  /// Se o preenchimento dos campos [email] e [senha] passaram na
+  /// validação, será feita uma tentativa de [login].
+  /// No caso de erros será exibido um [SnackBar] com uma mensagem.
   void login() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();

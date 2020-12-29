@@ -14,11 +14,12 @@ class FretistaModel {
   String email = '';
   String phone = '';
   String password = '';
-  //List<Vehicle> vehicles = List<Vehicle>();
   final vehicles = <Vehicle>[];
 
   final _repository = AccountRepository();
 
+  /// Para o model é usado um contrutor [factory] para que sempre
+  /// que instanciado, seja o mesmo objeto model.
   static final FretistaModel _fretistaModel = FretistaModel._internal();
 
   factory FretistaModel() {
@@ -27,10 +28,13 @@ class FretistaModel {
 
   FretistaModel._internal();
 
+  /// Recebe um [Vehicle] e adiciona este a lista
   void addVehicle(Vehicle vehicle) {
     vehicles.add(vehicle);
   }
 
+  // Este metodo salva aqui no model os dados do usuário quando ele está
+  // se cadastrando.
   void setRegistrationData(CadastroFretistaViewModel viewModel) {
     name = viewModel.name;
     cnh = viewModel.cnh;
@@ -40,6 +44,8 @@ class FretistaModel {
     password = viewModel.password;
   }
 
+  /// Solicita ao [repository] a criação de uma nova conta
+  /// via email e senha.
   Future<DefaultResponse> createFretistaAccount({
     @required String uEmail,
     @required String uPassword,
@@ -56,6 +62,7 @@ class FretistaModel {
     return response;
   }
 
+  /// Solicita ao [repository] um login via email e senha.
   Future<DefaultResponse> loginFretistaAccount({
     @required String uEmail,
     @required String uPassword,
@@ -68,12 +75,14 @@ class FretistaModel {
     return response;
   }
 
+  // Siplesmente faz o logout do atual usuário autenticado.
   Future<DefaultResponse> signOutFretista() async {
     return await _repository.signOut();
   }
 
+  /// Recebe os dados vindos do [FirebaseFirestore] e os coloca
+  /// nos atributos adequadamente.
   void loadDataFromFirestore({@required Map<String, dynamic> data}) {
-    //List<Map<String, dynamic>>
     final aux = data['vehicles'];
 
     print(aux.toString());
@@ -99,6 +108,7 @@ class FretistaModel {
     });
   }
 
+  /// Usado no ato de um cadastro. Salva dos dados no [FirebaseFirestore]
   Future<void> saveFretistaData() async {
     final aux = List<Map<String, dynamic>>();
 

@@ -7,10 +7,18 @@ import 'package:freckt_fretista/views/home_fretista.dart';
 class GetUserData extends StatelessWidget {
   GetUserData(this.path);
 
+  /// O [path] deverá ser o [uid] do usuário autenticado e será o nome
+  /// do documento deste usuário no [FirebaseFirestore].
   final String path;
+
+  /// O [model] e uma [Reference] para a coleção [fretistas] no
+  /// [FirebaseFirestore].
   final model = FretistaModel();
   final fretistas = FirebaseFirestore.instance.collection('fretistas');
 
+  /// O [build] metodo retorna um [FutureBuilder] que buscará os dados
+  /// do usuário autenticado e carregará no model. Enquanto isso é feito,
+  /// será exibido um [CircularProgressIndicator]
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(

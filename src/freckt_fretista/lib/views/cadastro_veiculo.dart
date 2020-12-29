@@ -15,10 +15,17 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
   static const String _title = 'Veículo';
   static const String _buttonText = 'Próximo';
 
+  /// Uma [Key] para gerenciar o estado do [Form]
   final _formKey = GlobalKey<FormState>();
+
+  // O controller servirá como uma ponte entre esta view e o model
   final _controller = CadastroVeiculoController();
 
   void buttonPressed() async {
+    // Uma vez que o formulário de cadastro de um veículo foi
+    // preenchido de forma válida e o botão foi pressionado,
+    // as informações do veiculo são salvas no model e o usuário é
+    // direcionado para o cadastro de perfil.
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       await _controller.save();

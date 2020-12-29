@@ -14,15 +14,26 @@ class CadastroFretista extends StatefulWidget {
 }
 
 class _CadastroFretistaState extends State<CadastroFretista> {
-  final String _title = 'Cadastrar Fretista';
-  final String _buttonText = 'Próximo';
+  static const String _title = 'Cadastrar Fretista';
+  static const String _buttonText = 'Próximo';
+
+  /// Uma [Key] para o estado do [Form] e outra para o [Scaffold]
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  // O controller servirá como uma ponte entre esta view e o model
   final _controller = CadastroFretistaController();
 
   void register() async {
+    // Muda o estado do botão para 'já pressionado'.Isso serve para o
+    // MobX não apresentar qualquer erro na validação dos campos
+    // do formulário, antes que o botão seja pressionado.
     _controller.viewModel.pressButton();
 
+    // Se todos os campos foram preenchidos de forma válida, os dados
+    // serão salvos e será criada uma conta com o email e a senha
+    // informados e o usuário será direcionado para o cadastro de um
+    // veículo.
     if (_controller.validate()) {
       _controller.save();
 
@@ -36,6 +47,9 @@ class _CadastroFretistaState extends State<CadastroFretista> {
           ),
         );
       } else {
+        /// Esta [SnackBar] não está ficando visível quando devia.
+        /// o problema possivelmente é no [ScaffoldTenplate].
+        /// Corrigir isso o mais breve!!
         _scaffoldKey.currentState.showSnackBar(
           SnackBar(
             content: Text(response.message),
@@ -66,7 +80,6 @@ class _CadastroFretistaState extends State<CadastroFretista> {
                   hintText: 'José',
                   keyboardType: TextInputType.name,
                   errorText: _controller.validateName(),
-                  //validator: _controller.validateName,
                   onChanged: _controller.viewModel.changeName,
                 ),
               ),
@@ -76,7 +89,6 @@ class _CadastroFretistaState extends State<CadastroFretista> {
                   hintText: '123.456.789.00',
                   keyboardType: TextInputType.number,
                   errorText: _controller.validateCPF(),
-                  //validator: _controller.validateCPF,
                   onChanged: _controller.viewModel.changeCPF,
                 ),
               ),
@@ -97,7 +109,6 @@ class _CadastroFretistaState extends State<CadastroFretista> {
                   keyboardType: TextInputType.emailAddress,
                   errorText: _controller.validateEmail(),
                   onChanged: _controller.viewModel.changeEmail,
-                  //validator: _controller.validateEmail,
                 ),
               ),
               //Observer(
@@ -118,7 +129,6 @@ class _CadastroFretistaState extends State<CadastroFretista> {
                   keyboardType: TextInputType.text,
                   errorText: _controller.validatePassword(),
                   onChanged: _controller.viewModel.changePassword,
-                  //validator: _controller.validatePassword,
                 ),
               ),
             ],
