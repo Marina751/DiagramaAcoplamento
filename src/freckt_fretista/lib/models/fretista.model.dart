@@ -14,6 +14,8 @@ class FretistaModel {
   String email = '';
   String phone = '';
   String password = '';
+  String photoUrl = '';
+  String photoPath = '';
   final vehicles = <Vehicle>[];
 
   final _repository = AccountRepository();
@@ -28,13 +30,8 @@ class FretistaModel {
 
   FretistaModel._internal();
 
-  /// Recebe um [Vehicle] e adiciona este a lista
-  void addVehicle(Vehicle vehicle) {
-    vehicles.add(vehicle);
-  }
+  String get getUserId => id;
 
-  // Este metodo salva aqui no model os dados do usuário quando ele está
-  // se cadastrando.
   void setRegistrationData(CadastroFretistaViewModel viewModel) {
     name = viewModel.name;
     cnh = viewModel.cnh;
@@ -43,6 +40,19 @@ class FretistaModel {
     phone = viewModel.phone;
     password = viewModel.password;
   }
+
+  /// Recebe um [Vehicle] e adiciona este a lista
+  void addVehicle(Vehicle vehicle) {
+    vehicles.add(vehicle);
+  }
+
+  void setProfileData({String uPhotoPath, String uPhotoUrl}) {
+    photoPath = uPhotoPath;
+    photoUrl = uPhotoUrl;
+  }
+
+  // Este metodo salva aqui no model os dados do usuário quando ele está
+  // se cadastrando.
 
   /// Solicita ao [repository] a criação de uma nova conta
   /// via email e senha.
@@ -77,7 +87,13 @@ class FretistaModel {
 
   // Siplesmente faz o logout do atual usuário autenticado.
   Future<DefaultResponse> signOutFretista() async {
-    return await _repository.signOut();
+    final response = await _repository.signOut();
+
+    if (response.status == ResponseStatus.SUCCESS) {
+      vehicles.clear();
+    }
+
+    return response;
   }
 
   /// Recebe os dados vindos do [FirebaseFirestore] e os coloca
@@ -93,6 +109,8 @@ class FretistaModel {
     email = data['email'];
     phone = data['phone'];
     password = data['password'];
+    photoPath = data['photoPath'];
+    photoUrl = data['photoUrl'];
 
     aux.forEach((element) {
       vehicles.add(new Vehicle(
@@ -123,7 +141,9 @@ class FretistaModel {
       'email': email,
       'phone': phone,
       'password': password,
-      'vehicles': aux
+      'vehicles': aux,
+      'photoPath': photoPath,
+      'photoUrl': photoUrl
     };
     await FirebaseFirestore.instance.collection('fretistas').doc(id).set(data);
   }

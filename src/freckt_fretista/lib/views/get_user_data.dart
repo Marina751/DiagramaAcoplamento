@@ -1,8 +1,8 @@
+import 'package:freckt_fretista/models/fretista.model.dart';
+import 'package:freckt_fretista/views/home_fretista.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:freckt_fretista/models/fretista.model.dart';
-import 'package:freckt_fretista/views/home_fretista.dart';
 
 class GetUserData extends StatelessWidget {
   GetUserData(this.path);
@@ -16,13 +16,23 @@ class GetUserData extends StatelessWidget {
   final model = FretistaModel();
   final fretistas = FirebaseFirestore.instance.collection('fretistas');
 
+  //Future<DocumentSnapshot> future() async {
+  //  model.photoUrl = await firebase_storage.FirebaseStorage.instance
+  //      .ref(model.photoPath)
+  //      .getDownloadURL();
+  //
+  //  return await fretistas.doc(path).get();
+  //}
+
+  //Future load
+
   /// O [build] metodo retorna um [FutureBuilder] que buscará os dados
   /// do usuário autenticado e carregará no model. Enquanto isso é feito,
   /// será exibido um [CircularProgressIndicator]
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: fretistas.doc(path).get(),
+      future: fretistas.doc(path).get(), // future(), //
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {

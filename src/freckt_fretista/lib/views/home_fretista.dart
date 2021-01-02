@@ -1,8 +1,8 @@
+import 'package:freckt_fretista/utils/enums/response_status.dart';
+import 'package:freckt_fretista/models/fretista.model.dart';
+import 'package:freckt_fretista/views/entrar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:freckt_fretista/models/fretista.model.dart';
-import 'package:freckt_fretista/utils/enums/response_status.dart';
-import 'package:freckt_fretista/views/entrar.dart';
 
 class HomeFretista extends StatefulWidget {
   @override
@@ -12,8 +12,15 @@ class HomeFretista extends StatefulWidget {
 /// Uma [home] não oficial apenas para testar o cadastro e o login
 class _HomeFretistaState extends State<HomeFretista> {
   final model = FretistaModel();
-
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  void showSnackBar(String info) {
+    _scaffoldKey.currentState.showSnackBar(
+      SnackBar(
+        content: Text(info),
+      ),
+    );
+  }
 
   void signOut() async {
     final response = await model.signOutFretista();
@@ -27,11 +34,7 @@ class _HomeFretistaState extends State<HomeFretista> {
         (route) => false,
       );
     } else {
-      _scaffoldKey.currentState.showSnackBar(
-        SnackBar(
-          content: Text(response.message),
-        ),
-      );
+      showSnackBar(response.message);
     }
   }
 
@@ -43,7 +46,8 @@ class _HomeFretistaState extends State<HomeFretista> {
         title: Text('Olá ${model.name.split(' ')[0]}'),
         actions: [
           CircleAvatar(
-            backgroundImage: NetworkImage('https://picsum.photos/100'),
+            backgroundImage: NetworkImage(model.photoUrl),
+            // ?? 'https://picsum.photos/100'),
           ),
           IconButton(
             icon: Icon(Icons.logout),

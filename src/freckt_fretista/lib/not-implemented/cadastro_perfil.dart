@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
 //import 'package:freckt_fretista/templates/button_template.dart';
-import 'package:freckt_fretista/templates/elevated_button_template.dart';
-import 'package:freckt_fretista/templates/scaffold_template.dart';
+import 'package:freckt_fretista/utils/templates/elevated_button_template.dart';
+import 'package:freckt_fretista/utils/templates/scaffold_template.dart';
+import 'package:freckt_fretista/views/home_fretista.dart';
 //import 'package:freckt_fretista/templates/form_field_template.dart';
 
 class CadastroPerfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldTemplate(
-      title: 'Cadastrar',
+      title: 'Cadastrar Perfil',
       hasAlertTerms: false,
       button: ElevatedButtonTemplate(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomeFretista(),
+            ),
+            (route) => false,
+          );
+        },
         buttonText: 'Próximo',
       ),
       body: SingleChildScrollView(
@@ -137,6 +146,35 @@ class CadastroPerfil extends StatelessWidget {
               //),
             ),
             //),
+            SizedBox(
+              height: 200,
+              width: 200,
+              child: Stack(
+                children: [
+                  //Container(
+                  //child:
+                  CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Text('child'),
+                    radius: 100.0,
+                  ),
+                  //),
+                  Container(
+                    alignment: Alignment.bottomRight,
+                    child: CircleAvatar(
+                      //backgroundColor: Colors.white,
+                      child: IconButton(
+                        //color: Colors.red,
+                        //iconSize: 50.0,
+                        icon: Icon(Icons.edit),
+                        onPressed: () {},
+                      ),
+                      radius: 32.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Padding(
               padding: EdgeInsets.all(10.0),
               //child: Expanded(

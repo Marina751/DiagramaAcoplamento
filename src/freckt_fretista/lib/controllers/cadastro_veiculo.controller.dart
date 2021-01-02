@@ -20,6 +20,6 @@ class CadastroVeiculoController {
       ),
     );
 
-    await model.saveFretistaData();
+    //await model.saveFretistaData();
   }
 }

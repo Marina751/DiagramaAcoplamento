@@ -4,6 +4,7 @@ import 'package:freckt_fretista/controllers/cadastro_veiculo.controller.dart';
 import 'package:freckt_fretista/utils/templates/elevated_button_template.dart';
 import 'package:freckt_fretista/utils/templates/form_field_template.dart';
 import 'package:freckt_fretista/utils/templates/scaffold_template.dart';
+import 'package:freckt_fretista/views/cadastro_perfil.dart';
 import 'package:freckt_fretista/views/home_fretista.dart';
 
 class CadastroVeiculo extends StatefulWidget {
@@ -30,12 +31,12 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
       _formKey.currentState.save();
       await _controller.save();
 
-      Navigator.pushAndRemoveUntil(
+      Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeFretista(),
+          builder: (context) => CadastroPerfil(), //HomeFretista(),
         ),
-        (route) => false,
+        //(route) => false,
       );
     }
   }

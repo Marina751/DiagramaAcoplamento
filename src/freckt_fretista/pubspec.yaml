@@ -23,20 +23,27 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  # Para gerencia de estados
   mobx: ^1.2.1+2
   flutter_mobx: ^1.1.0
-  provider: ^4.3.2
+
+  # Firebase
   firebase_auth: ^0.18.4+1
   cloud_firestore: ^0.14.4
   firebase_core: ^0.5.3
+  firebase_storage: ^5.2.0
+  
+  # Utilitarios
+  path: ^1.7.0
+  image_picker: ^0.6.7+17
   email_validator: ^1.0.6
+  google_fonts: ^1.1.1
   cpfcnpj: ^1.0.3
-
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
-  google_fonts: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -62,7 +69,7 @@ flutter:
   assets:
     - images/aprovacao.png
     - images/negado.png
-    - images/foto-perfil.jpg
+    - images/sem-foto-perfil.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
