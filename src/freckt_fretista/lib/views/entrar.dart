@@ -32,11 +32,12 @@ class _EntrarState extends State<Entrar> {
       final response = await _controller.login();
 
       if (response.status == ResponseStatus.SUCCESS) {
-        Navigator.push(
+        Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
             builder: (context) => GetUserData(response.object.uid),
           ),
+          (route) => false,
         );
       } else {
         _scaffoldKey.currentState.showSnackBar(

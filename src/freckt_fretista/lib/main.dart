@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:freckt_fretista/views/entrar.dart';
 import 'package:freckt_fretista/views/get_user_data.dart';
-import 'package:freckt_fretista/views/splash_screen.dart';
+import 'package:freckt_fretista/views/loading.dart';
 
 void main() {
   runApp(
@@ -50,7 +50,7 @@ class Root extends StatelessWidget {
 
         /// [warning]: a tela de [Splash] não está pronta.
         // Otherwise, show something whilst waiting for initialization to complete.
-        return Splash(); //Loading();
+        return Loading(); //Loading();
       },
     );
   }
@@ -63,7 +63,10 @@ class SomethingWentWrong extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Algo deu errado :('),
+      child: Text(
+        'Algo deu errado!\nVerifique sua conexão com a internet.',
+        textAlign: TextAlign.center,
+      ),
     );
   }
 }

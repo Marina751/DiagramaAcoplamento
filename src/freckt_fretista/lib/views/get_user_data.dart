@@ -3,6 +3,7 @@ import 'package:freckt_fretista/views/home_fretista.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:freckt_fretista/views/loading.dart';
 
 class GetUserData extends StatelessWidget {
   GetUserData(this.path);
@@ -15,16 +16,6 @@ class GetUserData extends StatelessWidget {
   /// [FirebaseFirestore].
   final model = FretistaModel();
   final fretistas = FirebaseFirestore.instance.collection('fretistas');
-
-  //Future<DocumentSnapshot> future() async {
-  //  model.photoUrl = await firebase_storage.FirebaseStorage.instance
-  //      .ref(model.photoPath)
-  //      .getDownloadURL();
-  //
-  //  return await fretistas.doc(path).get();
-  //}
-
-  //Future load
 
   /// O [build] metodo retorna um [FutureBuilder] que buscará os dados
   /// do usuário autenticado e carregará no model. Enquanto isso é feito,
@@ -47,18 +38,9 @@ class GetUserData extends StatelessWidget {
           model.loadDataFromFirestore(data: data);
 
           return HomeFretista();
-          //Navigator.pushAndRemoveUntil(
-          //  context,
-          //  MaterialPageRoute(
-          //    builder: (context) => HomeFretista(),
-          //  ),
-          //  (route) => false,
-          //);
         }
 
-        return Center(
-          child: CircularProgressIndicator(),
-        );
+        return Loading();
       },
     );
   }

@@ -101,7 +101,7 @@ class FretistaModel {
   void loadDataFromFirestore({@required Map<String, dynamic> data}) {
     final aux = data['vehicles'];
 
-    print(aux.toString());
+    //print(aux.toString());
 
     name = data['name'];
     cnh = data['cnh'];
