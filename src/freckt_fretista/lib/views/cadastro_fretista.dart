@@ -18,7 +18,7 @@ class _CadastroFretistaState extends State<CadastroFretista> {
   static const String _buttonText = 'Próximo';
 
   /// Uma [Key] para o estado do [Form] e outra para o [Scaffold]
-  final _formKey = GlobalKey<FormState>();
+  //final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   // O controller servirá como uma ponte entre esta view e o model
@@ -71,7 +71,7 @@ class _CadastroFretistaState extends State<CadastroFretista> {
       body: SingleChildScrollView(
         padding: EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
         child: Form(
-          key: _formKey,
+          //key: _formKey,
           child: Column(
             children: [
               Observer(

@@ -30,6 +30,7 @@ dependencies:
   cloud_firestore: ^0.14.4
   firebase_core: ^0.5.3
   firebase_storage: ^5.2.0
+  image_picker: ^0.6.7+17
   email_validator: ^1.0.6
   cpfcnpj: ^1.0.3
 
@@ -59,6 +60,7 @@ flutter:
   assets:
     - images/negado.png
     - images/aprovacao.png
+    - images/sem-foto-perfil.png
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

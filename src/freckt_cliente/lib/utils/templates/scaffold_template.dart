@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:freckt_cliente/templates/elevated_button_template.dart';
-import 'package:freckt_cliente/templates/terms_alert.dart';
+import 'package:freckt_cliente/utils/templates/elevated_button_template.dart';
+import 'package:freckt_cliente/utils/templates/terms_alert.dart';
 
 class ScaffoldTemplate extends StatelessWidget {
   const ScaffoldTemplate({

@@ -49,7 +49,7 @@ class _EntrarState extends State<Entrar> {
     } else {
       _scaffoldKey.currentState.showSnackBar(
         SnackBar(
-          content: Text('entre ou cadastre-se'),
+          content: Text('Entre ou cadastre-se.'),
         ),
       );
     }
