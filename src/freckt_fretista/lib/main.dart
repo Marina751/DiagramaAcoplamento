@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:freckt_fretista/views/entrar.dart';
 import 'package:freckt_fretista/views/get_user_data.dart';
 import 'package:freckt_fretista/views/loading.dart';
+import 'package:freckt_fretista/views/something_went_wrong.dart';
 
 void main() {
   runApp(
@@ -31,7 +32,7 @@ class Root extends StatelessWidget {
       builder: (context, snapshot) {
         // Check for errors
         if (snapshot.hasError) {
-          return SomethingWentWrong();
+          return SomethingWentWrong(snapshot.error.toString());
         }
 
         // Once complete, show your application
@@ -52,21 +53,6 @@ class Root extends StatelessWidget {
         // Otherwise, show something whilst waiting for initialization to complete.
         return Loading(); //Loading();
       },
-    );
-  }
-}
-
-/// [Root] retorna um [FutureBuilder]. Se durante este processo ocorrer um
-/// erro, a tela [SomethingWentWrong] será exibida.
-///
-class SomethingWentWrong extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Algo deu errado!\nVerifique sua conexão com a internet.',
-        textAlign: TextAlign.center,
-      ),
     );
   }
 }

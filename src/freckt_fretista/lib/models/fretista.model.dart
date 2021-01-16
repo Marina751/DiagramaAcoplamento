@@ -16,6 +16,12 @@ class FretistaModel {
   String password = '';
   String photoUrl = '';
   String photoPath = '';
+  String cnhPath = '';
+  String licenciamentoPath = '';
+  String carroPath = '';
+  String cnhUrl = '';
+  String licenciamentoUrl = '';
+  String carroUrl = '';
   final vehicles = <Vehicle>[];
 
   final _repository = AccountRepository();
@@ -32,13 +38,13 @@ class FretistaModel {
 
   String get getUserId => id;
 
-  void setRegistrationData(CadastroFretistaViewModel viewModel) {
-    name = viewModel.name;
-    cnh = viewModel.cnh;
-    cpf = viewModel.cpf;
-    email = viewModel.email;
-    phone = viewModel.phone;
-    password = viewModel.password;
+  void setRegistrationData(CadastroFretistaViewModel map) {
+    name = map.name;
+    cnh = map.cnh;
+    cpf = map.cpf;
+    email = map.email;
+    phone = map.phone;
+    password = map.password;
   }
 
   /// Recebe um [Vehicle] e adiciona este a lista
@@ -49,6 +55,22 @@ class FretistaModel {
   void setProfileData({String uPhotoPath, String uPhotoUrl}) {
     photoPath = uPhotoPath;
     photoUrl = uPhotoUrl;
+  }
+
+  void setDocumentationData({
+    String uCnhPath,
+    String uLicenciamentoPath,
+    String uCarroPath,
+    String uCnhUrl,
+    String uLicenciamentoUrl,
+    String uCarroUrl,
+  }) {
+    cnhPath = uCnhPath;
+    licenciamentoPath = uLicenciamentoPath;
+    carroPath = uCarroPath;
+    cnhUrl = uCnhUrl;
+    licenciamentoUrl = uLicenciamentoUrl;
+    carroUrl = uCarroUrl;
   }
 
   // Este metodo salva aqui no model os dados do usuário quando ele está
@@ -98,11 +120,15 @@ class FretistaModel {
 
   /// Recebe os dados vindos do [FirebaseFirestore] e os coloca
   /// nos atributos adequadamente.
-  void loadDataFromFirestore({@required Map<String, dynamic> data}) {
+  void loadDataFromFirestore({
+    @required Map<String, dynamic> data,
+    @required String uid,
+  }) {
     final aux = data['vehicles'];
 
     //print(aux.toString());
 
+    id = uid;
     name = data['name'];
     cnh = data['cnh'];
     cpf = data['cpf'];
@@ -111,6 +137,12 @@ class FretistaModel {
     password = data['password'];
     photoPath = data['photoPath'];
     photoUrl = data['photoUrl'];
+    cnhPath = data['cnhPath'];
+    licenciamentoPath = data['licenciamentoPath'];
+    carroPath = data['carroPath'];
+    cnhUrl = data['cnhUrl'];
+    licenciamentoUrl = data['licenciamentoUrl'];
+    carroUrl = data['carroUrl'];
 
     aux.forEach((element) {
       vehicles.add(new Vehicle(
@@ -124,6 +156,19 @@ class FretistaModel {
         capacidade: element['capacidade'],
       ));
     });
+  }
+
+  void loadRegistrationData({
+    @required Map<String, dynamic> data,
+    @required String uid,
+  }) {
+    id = uid;
+    name = data['name'];
+    cnh = data['cnh'];
+    cpf = data['cpf'];
+    email = data['email'];
+    phone = data['phone'];
+    password = data['password'];
   }
 
   /// Usado no ato de um cadastro. Salva dos dados no [FirebaseFirestore]
@@ -143,7 +188,25 @@ class FretistaModel {
       'password': password,
       'vehicles': aux,
       'photoPath': photoPath,
-      'photoUrl': photoUrl
+      'photoUrl': photoUrl,
+      'cnhPath': cnhPath,
+      'licenciamentoPath': licenciamentoPath,
+      'carroPath': carroPath,
+      'cnhUrl': cnhUrl,
+      'licenciamentoUrl': licenciamentoUrl,
+      'carroUrl': carroUrl,
+    };
+    await FirebaseFirestore.instance.collection('fretistas').doc(id).set(data);
+  }
+
+  Future<void> saveRegistrationData() async {
+    Map<String, dynamic> data = {
+      'name': name,
+      'cpf': cpf,
+      'cnh': cnh,
+      'email': email,
+      'phone': phone,
+      'password': password,
     };
     await FirebaseFirestore.instance.collection('fretistas').doc(id).set(data);
   }

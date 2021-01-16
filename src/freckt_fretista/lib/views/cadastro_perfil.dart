@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:freckt_fretista/models/fretista.model.dart';
 import 'package:freckt_fretista/utils/templates/elevated_button_template.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:freckt_fretista/views/home_fretista.dart';
+import 'package:freckt_fretista/views/documentacao.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:flutter/material.dart';
@@ -26,6 +26,7 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
     _scaffoldKey.currentState.showSnackBar(
       SnackBar(
         content: Text(info),
+        behavior: SnackBarBehavior.floating,
       ),
     );
   }
@@ -181,14 +182,11 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
                 uPhotoUrl: photoUrl,
               );
 
-              await model.saveFretistaData();
+              //await model.saveFretistaData();
 
-              Navigator.pushAndRemoveUntil(
+              Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => HomeFretista(),
-                ),
-                (route) => false,
+                MaterialPageRoute(builder: (context) => Documentacao()),
               );
             } on firebase_storage.FirebaseException catch (e) {
               showSnackBar('Algo deu errado. Erro: ${e.code}.');

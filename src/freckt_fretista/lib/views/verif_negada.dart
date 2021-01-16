@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:freckt_fretista/templates/button_template.dart';
+import 'package:freckt_fretista/utils/templates/button_template.dart';
 
 class VerifNegada extends StatelessWidget {
   @override
@@ -7,7 +7,7 @@ class VerifNegada extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset(
@@ -28,8 +28,10 @@ class VerifNegada extends StatelessWidget {
         ),
       ),
       floatingActionButton: ButtonTemplate(
-        onPressed: () {},
-        buttonText: 'Continuar',
+        onPressed: () {
+          Navigator.pop(context);
+        },
+        buttonText: 'Voltar',
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

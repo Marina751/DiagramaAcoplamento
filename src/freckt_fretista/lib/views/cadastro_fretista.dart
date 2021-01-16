@@ -40,6 +40,7 @@ class _CadastroFretistaState extends State<CadastroFretista> {
       final response = await _controller.register();
 
       if (response.status == ResponseStatus.SUCCESS) {
+        _controller.uploadData();
         Navigator.push(
           context,
           MaterialPageRoute(
