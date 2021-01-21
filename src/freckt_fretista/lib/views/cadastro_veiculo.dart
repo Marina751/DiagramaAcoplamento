@@ -159,7 +159,7 @@ class _CadastroVeiculoState extends State<CadastroVeiculo> {
               FormFieldTemplate(
                 title: 'Capacidade',
                 hintText: '1500',
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value.isEmpty) {
                     return 'Informe a capacidade';

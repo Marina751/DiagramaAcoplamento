@@ -9,11 +9,13 @@ class ScaffoldTemplate extends StatelessWidget {
     @required this.title,
     @required this.button,
     this.hasAlertTerms = true,
+    this.isLoading = false,
   }) : super(key: key);
 
   final Widget body;
   final String title;
   final bool hasAlertTerms;
+  final bool isLoading;
   final ElevatedButtonTemplate button;
 
   static const Color _black = Colors.black;
@@ -24,6 +26,15 @@ class ScaffoldTemplate extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: _white,
+        bottom: PreferredSize(
+          preferredSize: Size(double.infinity, 4.0),
+          child: isLoading
+              ? LinearProgressIndicator(
+                  backgroundColor: Colors.white,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+                )
+              : Container(),
+        ),
         leading: IconButton(
           color: _black,
           icon: Icon(Icons.arrow_back),

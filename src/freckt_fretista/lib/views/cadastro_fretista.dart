@@ -17,6 +17,9 @@ class _CadastroFretistaState extends State<CadastroFretista> {
   static const String _title = 'Cadastrar Fretista';
   static const String _buttonText = 'Próximo';
 
+  bool _showPassword = false;
+  bool _isLoading = false;
+
   /// Uma [Key] para o estado do [Form] e outra para o [Scaffold]
   //final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -35,6 +38,10 @@ class _CadastroFretistaState extends State<CadastroFretista> {
     // informados e o usuário será direcionado para o cadastro de um
     // veículo.
     if (_controller.validate()) {
+      setState(() {
+        _isLoading = true;
+      });
+
       _controller.save();
 
       final response = await _controller.register();
@@ -48,6 +55,10 @@ class _CadastroFretistaState extends State<CadastroFretista> {
           ),
         );
       } else {
+        setState(() {
+          _isLoading = false;
+        });
+
         /// Esta [SnackBar] não está ficando visível quando devia.
         /// o problema possivelmente é no [ScaffoldTenplate].
         /// Corrigir isso o mais breve!!
@@ -65,8 +76,9 @@ class _CadastroFretistaState extends State<CadastroFretista> {
     return ScaffoldTemplate(
       key: _scaffoldKey,
       title: _title,
+      isLoading: _isLoading,
       button: ElevatedButtonTemplate(
-        onPressed: register,
+        onPressed: _isLoading ? null : register,
         buttonText: _buttonText,
       ),
       body: SingleChildScrollView(
@@ -87,7 +99,7 @@ class _CadastroFretistaState extends State<CadastroFretista> {
               Observer(
                 builder: (_) => FormFieldTemplate(
                   title: 'CPF',
-                  hintText: '123.456.789.00',
+                  hintText: '12345678900',
                   keyboardType: TextInputType.number,
                   errorText: _controller.validateCPF(),
                   onChanged: _controller.viewModel.changeCPF,
@@ -122,14 +134,47 @@ class _CadastroFretistaState extends State<CadastroFretista> {
                 onChanged: _controller.viewModel.changePhone,
               ),
               //),
+              //Observer(
+              //  builder: (_) => FormFieldTemplate(
+              //    title: 'Senha',
+              //    hintText: 'Crie uma senha',
+              //    obscureText: true,
+              //    keyboardType: TextInputType.text,
+              //    errorText: _controller.validatePassword(),
+              //    onChanged: _controller.viewModel.changePassword,
+              //  ),
+              //),
               Observer(
-                builder: (_) => FormFieldTemplate(
-                  title: 'Senha',
-                  hintText: '••••••',
-                  obscureText: true,
-                  keyboardType: TextInputType.text,
-                  errorText: _controller.validatePassword(),
-                  onChanged: _controller.viewModel.changePassword,
+                builder: (_) => Container(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text('Senha'),
+                      TextFormField(
+                        keyboardType: TextInputType.text,
+                        obscureText: !_showPassword,
+                        decoration: InputDecoration(
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _showPassword = !_showPassword;
+                              });
+                            },
+                            child: Icon(
+                              _showPassword
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                          ),
+                          errorText: _controller.validatePassword(),
+                          border: OutlineInputBorder(),
+                          hintText: 'Crie uma senha',
+                        ),
+                        onChanged: _controller.viewModel.changePassword,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ],

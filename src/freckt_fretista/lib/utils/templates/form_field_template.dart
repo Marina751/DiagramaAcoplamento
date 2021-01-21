@@ -33,29 +33,3 @@ class FormFieldTemplate extends Container {
           ),
         );
 }
-
-/**
- * _textField({
-    @required String hintText,
-    @required TextInputType keyboardType,
-    @required void Function(String) onSaved,
-    @required String Function() validator,
-    @required void Function(String) onChanged,
-    bool obscureText = false,
-  }) =>
-      TextFormField(
-        keyboardType: keyboardType,
-        obscureText: obscureText,
-        decoration: InputDecoration(
-          errorText: validator(),
-          border: OutlineInputBorder(),
-          hintText: hintText,
-        ),
-        validator: (data) {
-          return null;
-        }, //validator,
-        onSaved: onSaved,
-        onChanged: onChanged,
-      );
-
- */

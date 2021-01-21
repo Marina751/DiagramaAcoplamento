@@ -28,11 +28,12 @@ dependencies:
   mobx: ^1.2.1+2
   flutter_mobx: ^1.1.0
 
-  # Firebase
+  # Firebase e maps
   firebase_auth: ^0.18.4+1
   cloud_firestore: ^0.14.4
   firebase_core: ^0.5.3
   firebase_storage: ^5.2.0
+  google_maps_flutter: ^1.1.1
   
   # Utilitarios
   path: ^1.7.0
@@ -72,6 +73,7 @@ flutter:
     - images/negado.png
     - images/sem-foto-perfil.png
     - images/upload-foto.png
+    - images/freckt_logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

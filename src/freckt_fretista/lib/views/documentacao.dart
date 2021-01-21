@@ -18,6 +18,7 @@ class _DocumentacaoState extends State<Documentacao> {
   File _cnh, _licenciamento, _carro;
   String cnhPath, licenciamentoPath, carroPath;
   String cnhUrl, licenciamentoUrl, carroUrl;
+  bool _isLoading = false;
 
   final picker = ImagePicker();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -94,12 +95,74 @@ class _DocumentacaoState extends State<Documentacao> {
 
   bool allRight() => (_cnh != null && _licenciamento != null && _carro != null);
 
+  void uploadPhotos() async {
+    if (!allRight()) {
+      showSnackBar();
+    } else {
+      setState(() {
+        _isLoading = true;
+      });
+
+      try {
+        cnhPath =
+            'fretistas/${model.getUserId}/foto-cnh${p.extension(_cnh.path)}';
+        licenciamentoPath =
+            'fretistas/${model.getUserId}/foto-licenciamento${p.extension(_licenciamento.path)}';
+        carroPath =
+            'fretistas/${model.getUserId}/foto-veiculo${p.extension(_carro.path)}';
+
+        final storage = firebase_storage.FirebaseStorage.instance;
+
+        await storage.ref(cnhPath).putFile(_cnh);
+        await storage.ref(licenciamentoPath).putFile(_licenciamento);
+        await storage.ref(carroPath).putFile(_carro);
+
+        cnhUrl = await storage.ref(cnhPath).getDownloadURL();
+        licenciamentoUrl =
+            await storage.ref(licenciamentoPath).getDownloadURL();
+        carroUrl = await storage.ref(carroPath).getDownloadURL();
+
+        model.setDocumentationData(
+          uCnhPath: cnhPath,
+          uLicenciamentoPath: licenciamentoPath,
+          uCarroPath: carroPath,
+          uCnhUrl: cnhUrl,
+          uLicenciamentoUrl: licenciamentoUrl,
+          uCarroUrl: carroUrl,
+        );
+
+        await model.saveFretistaData();
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Verificacao(),
+          ),
+        );
+      } on firebase_storage.FirebaseException catch (e) {
+        setState(() {
+          _isLoading = false;
+        });
+        showSnackBar(info: 'Algo deu errado. Erro: ${e.code}.');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.white,
+        bottom: PreferredSize(
+          preferredSize: Size(double.infinity, 4.0),
+          child: _isLoading
+              ? LinearProgressIndicator(
+                  backgroundColor: Colors.white,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+                )
+              : Container(),
+        ),
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
@@ -119,51 +182,7 @@ class _DocumentacaoState extends State<Documentacao> {
       ),
       floatingActionButton: ElevatedButtonTemplate(
         buttonText: 'Verificar',
-        onPressed: () async {
-          if (!allRight()) {
-            showSnackBar();
-          } else {
-            try {
-              cnhPath =
-                  'fretistas/${model.getUserId}/foto-cnh${p.extension(_cnh.path)}';
-              licenciamentoPath =
-                  'fretistas/${model.getUserId}/foto-licenciamento${p.extension(_licenciamento.path)}';
-              carroPath =
-                  'fretistas/${model.getUserId}/foto-veiculo${p.extension(_carro.path)}';
-
-              final storage = firebase_storage.FirebaseStorage.instance;
-
-              await storage.ref(cnhPath).putFile(_cnh);
-              await storage.ref(licenciamentoPath).putFile(_licenciamento);
-              await storage.ref(carroPath).putFile(_carro);
-
-              cnhUrl = await storage.ref(cnhPath).getDownloadURL();
-              licenciamentoUrl =
-                  await storage.ref(licenciamentoPath).getDownloadURL();
-              carroUrl = await storage.ref(carroPath).getDownloadURL();
-
-              model.setDocumentationData(
-                uCnhPath: cnhPath,
-                uLicenciamentoPath: licenciamentoPath,
-                uCarroPath: carroPath,
-                uCnhUrl: cnhUrl,
-                uLicenciamentoUrl: licenciamentoUrl,
-                uCarroUrl: carroUrl,
-              );
-
-              await model.saveFretistaData();
-
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Verificacao(),
-                ),
-              );
-            } on firebase_storage.FirebaseException catch (e) {
-              showSnackBar(info: 'Algo deu errado. Erro: ${e.code}.');
-            }
-          }
-        },
+        onPressed: _isLoading ? null : uploadPhotos,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: SingleChildScrollView(

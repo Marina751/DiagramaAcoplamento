@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:freckt_fretista/controllers/entrar.controller.dart';
 import 'package:freckt_fretista/utils/enums/response_status.dart';
+import 'package:freckt_fretista/utils/templates/elevated_button_template.dart';
 import 'package:freckt_fretista/views/cadastro_fretista.dart';
 import 'package:freckt_fretista/views/get_user_data.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:freckt_fretista/utils/templates/button_template.dart';
 
 class Entrar extends StatefulWidget {
   @override
@@ -14,6 +14,7 @@ class Entrar extends StatefulWidget {
 class _EntrarState extends State<Entrar> {
   /// Um [bool] para dizer se exibe ou não a senha
   bool _showPassword = false;
+  bool _isLoading = false;
 
   /// Uma [Key] para o estado do [Form] e outra para o [Scaffold]
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -29,6 +30,10 @@ class _EntrarState extends State<Entrar> {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
 
+      setState(() {
+        _isLoading = true;
+      });
+
       final response = await _controller.login();
 
       if (response.status == ResponseStatus.SUCCESS) {
@@ -40,6 +45,9 @@ class _EntrarState extends State<Entrar> {
           (route) => false,
         );
       } else {
+        setState(() {
+          _isLoading = false;
+        });
         _scaffoldKey.currentState.showSnackBar(
           SnackBar(
             content: Text(response.message),
@@ -138,8 +146,8 @@ class _EntrarState extends State<Entrar> {
                 ],
               ),
             ),
-            ButtonTemplate(
-              onPressed: login,
+            ElevatedButtonTemplate(
+              onPressed: _isLoading ? null : login,
               buttonText: 'Entrar',
             ),
             Row(
@@ -177,7 +185,17 @@ class _EntrarState extends State<Entrar> {
                   },
                 ),
               ],
-            )
+            ),
+            _isLoading
+                ? Container(
+                    padding: EdgeInsets.all(40.0),
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+                      ),
+                    ),
+                  )
+                : Container(),
           ],
         ),
       ),

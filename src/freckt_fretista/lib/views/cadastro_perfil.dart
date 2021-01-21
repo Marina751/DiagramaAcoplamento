@@ -17,6 +17,7 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
   File _picture;
   String photoPath;
   String photoUrl;
+  bool _isLoading = false;
 
   final picker = ImagePicker();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -82,12 +83,67 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
     );
   }
 
+  void uploadPhoto() async {
+    if (_picture == null) {
+      showSnackBar('É necessário adicionar uma foto de perfil.');
+    } else {
+      try {
+        setState(() {
+          _isLoading = true;
+        });
+
+        photoPath =
+            'fretistas/${model.getUserId}/foto-perfil${p.extension(_picture.path)}';
+
+        await firebase_storage.FirebaseStorage.instance
+            .ref(photoPath)
+            .putFile(_picture);
+
+        photoUrl = await firebase_storage.FirebaseStorage.instance
+            .ref(photoPath)
+            .getDownloadURL();
+
+        model.setProfileData(
+          uPhotoPath: photoPath,
+          uPhotoUrl: photoUrl,
+        );
+
+        //await model.saveFretistaData();
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Documentacao()),
+        );
+      } on firebase_storage.FirebaseException catch (e) {
+        setState(() {
+          _isLoading = false;
+        });
+        showSnackBar('Algo deu errado. Erro: ${e.code}.');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.white,
+        bottom: PreferredSize(
+          preferredSize: Size(double.infinity, 4.0),
+          child: _isLoading
+              ? LinearProgressIndicator(
+                  backgroundColor: Colors.white,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+                )
+              : Container(),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Text(
           'Cadastrar Perfil',
           style: TextStyle(
@@ -161,38 +217,7 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
       ),
       floatingActionButton: ElevatedButtonTemplate(
         buttonText: 'Próximo',
-        onPressed: () async {
-          if (_picture == null) {
-            showSnackBar('É necessário adicionar uma foto de perfil.');
-          } else {
-            try {
-              photoPath =
-                  'fretistas/${model.getUserId}/foto-perfil${p.extension(_picture.path)}';
-
-              await firebase_storage.FirebaseStorage.instance
-                  .ref(photoPath)
-                  .putFile(_picture);
-
-              photoUrl = await firebase_storage.FirebaseStorage.instance
-                  .ref(photoPath)
-                  .getDownloadURL();
-
-              model.setProfileData(
-                uPhotoPath: photoPath,
-                uPhotoUrl: photoUrl,
-              );
-
-              //await model.saveFretistaData();
-
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => Documentacao()),
-              );
-            } on firebase_storage.FirebaseException catch (e) {
-              showSnackBar('Algo deu errado. Erro: ${e.code}.');
-            }
-          }
-        },
+        onPressed: _isLoading ? null : uploadPhoto,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

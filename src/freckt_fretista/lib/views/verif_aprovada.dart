@@ -13,6 +13,7 @@ class VerifAprovada extends StatelessWidget {
           children: [
             Padding(
               padding: EdgeInsets.only(right: 10.0),
+              // mudar para o icone verified_rounded
               child: Image.asset(
                 'images/aprovacao.png',
                 height: 100.0,

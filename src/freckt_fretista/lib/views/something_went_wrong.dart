@@ -10,11 +10,16 @@ class SomethingWentWrong extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ListTile(
-          title: Text(
-            'Algo deu errado!\nVerifique sua conexão com a internet.',
+        child: Container(
+          padding: EdgeInsets.all(20.0),
+          child: Card(
+            child: ListTile(
+              title: Text(
+                'Algo deu errado!\nVerifique sua conexão com a internet.',
+              ),
+              subtitle: Text('Error: $error'),
+            ),
           ),
-          subtitle: Text('Error: $error'),
         ),
       ),
     );
