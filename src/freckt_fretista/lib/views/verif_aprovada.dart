@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:freckt_fretista/templates/button_template.dart';
+import 'package:freckt_fretista/utils/templates/button_template.dart';
+import 'package:freckt_fretista/views/home_fretista.dart';
 
 class VerifAprovada extends StatelessWidget {
   @override
@@ -7,11 +8,12 @@ class VerifAprovada extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: EdgeInsets.only(right: 10.0),
+              // mudar para o icone verified_rounded
               child: Image.asset(
                 'images/aprovacao.png',
                 height: 100.0,
@@ -30,7 +32,13 @@ class VerifAprovada extends StatelessWidget {
         ),
       ),
       floatingActionButton: ButtonTemplate(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => HomeFretista()),
+            (route) => false,
+          );
+        },
         buttonText: 'Continuar',
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
