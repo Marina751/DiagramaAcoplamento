@@ -5,6 +5,8 @@ import 'package:freckt_cliente/screens/verif_numero.dart';
 import 'package:freckt_cliente/screens/verif_aprovada.dart';
 import 'package:freckt_cliente/screens/verif_negada.dart';
 import 'package:freckt_cliente/screens/splash_screem.dart';
+import 'package:freckt_cliente/screens/configuracoes.dart';
+import 'package:freckt_cliente/screens/perfilfretista.dart';
 
 void main() {
   runApp(
@@ -20,6 +22,8 @@ void main() {
         '/aul': (context) => AutorizacaoLegal(),
         '/ent': (context) => Entrar(),
         '/splsh': (context) => Splash(),
+        '/config': (context) => Configuracoes(),
+        '/perffre': (context) => perfil(),
       },
     ),
   );
@@ -70,6 +74,18 @@ class Root extends StatelessWidget {
             Navigator.pushNamed(context, '/splsh');
           },
         ),
+                ElevatedButton(
+                  child: Text('CONFIG'),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/config');
+                  },
+                ),
+                ElevatedButton(
+                  child: Text('PERFILFRE'),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/perffre');
+                  },
+                ),
     ],
     ),
     ),
