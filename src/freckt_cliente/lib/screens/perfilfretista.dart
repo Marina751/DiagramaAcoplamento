@@ -22,7 +22,7 @@ class _perfilState extends State<perfil> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal[400],
+        backgroundColor: Color(0xff20B8A6),
         leading: IconButton(
           color: Colors.white,
           icon: Icon(Icons.arrow_back),
@@ -59,7 +59,7 @@ class _perfilState extends State<perfil> {
                 padding: EdgeInsets.only(top:10.0),
               child: GFRating(
                 size: 15.0,
-                color: Colors.teal[400],
+                color: Color(0xff20B8A6),
                 value: _bom,
                 onChanged: (value) {
                   setState(() {
@@ -101,7 +101,7 @@ class _perfilState extends State<perfil> {
                 padding: EdgeInsets.only(right: 140.0),
               child:GFRating(
                 size: 10.0,
-                color: Colors.teal[400],
+                color: Color(0xff20B8A6),
                 
                 value:_top,
                 onChanged: (value) {
@@ -136,7 +136,7 @@ class _perfilState extends State<perfil> {
                 padding: EdgeInsets.only(right: 140.0),
               child:GFRating(
                 size: 10.0,
-                color: Colors.teal[400],
+                color: Color(0xff20B8A6),
                 value: _regular,
                 onChanged: (value) {
                   setState(() {
@@ -168,7 +168,7 @@ class _perfilState extends State<perfil> {
                 padding: EdgeInsets.only(right: 140.0),
               child:GFRating(
                 size: 10.0,
-                color: Colors.teal[400],
+                color: Color(0xff20B8A6),
                 value: _top,
                 onChanged: (value) {
                   setState(() {
@@ -200,7 +200,7 @@ class _perfilState extends State<perfil> {
                 padding: EdgeInsets.only(right: 140.0),
               child:GFRating(
                 size: 10.0,
-                color: Colors.teal[400],
+                color: Color(0xff20B8A6),
                 value: _top,
                 onChanged: (value) {
                   setState(() {

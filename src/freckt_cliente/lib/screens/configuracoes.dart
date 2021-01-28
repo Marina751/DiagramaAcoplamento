@@ -11,7 +11,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.teal[400],
+          backgroundColor: Color(0xff20B8A6),
           leading: IconButton(
             color: Colors.white,
             icon: Icon(Icons.arrow_back),
