@@ -1,8 +1,12 @@
+import 'package:freckt_fretista/views/agendamentos.dart';
 import 'package:freckt_fretista/utils/enums/response_status.dart';
 import 'package:freckt_fretista/models/fretista.model.dart';
+import 'package:freckt_fretista/views/configuracoes.dart';
 import 'package:freckt_fretista/views/entrar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:freckt_fretista/views/fale_conosco.dart';
+import 'package:freckt_fretista/views/fretes.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomeFretista extends StatefulWidget {
@@ -111,18 +115,50 @@ class _HomeFretistaState extends State<HomeFretista> {
               //),
             ),
             ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Agendamentos(),
+                  ),
+                );
+              },
               leading: Icon(Icons.watch_later_rounded),
               title: Text('Agendamentos'),
             ),
             ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Fretes(),
+                  ),
+                );
+              },
               leading: Icon(Icons.local_shipping_rounded),
               title: Text('Fretes'),
             ),
             ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FaleConosco(),
+                  ),
+                );
+              },
               leading: Icon(Icons.message_rounded),
               title: Text('Fale conosco'),
             ),
             ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Configuracoes(),
+                  ),
+                );
+              },
               leading: Icon(Icons.settings),
               title: Text('Configurações'),
             ),
