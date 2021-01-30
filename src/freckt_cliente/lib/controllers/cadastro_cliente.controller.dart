@@ -60,6 +60,10 @@ class CadastroClienteController {
     model.setRegistrationData(viewModel);
   }
 
+  void uploadData() {
+    model.saveRegistrationData();
+  }
+
   // Pensar em um jeito melhor depois
   //
   bool validate() {

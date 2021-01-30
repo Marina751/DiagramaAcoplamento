@@ -15,8 +15,8 @@ class _ContaState extends State<Conta> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         backgroundColor: Color(0xff20B8A6),
-          leading: IconButton(
+        backgroundColor: Color(0xff20B8A6),
+        leading: IconButton(
           color: Colors.white,
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -25,7 +25,7 @@ class _ContaState extends State<Conta> {
         ),
         title: Text('Conta'),
       ),
-      body:SingleChildScrollView(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -51,13 +51,12 @@ class _ContaState extends State<Conta> {
                           Icons.edit,
                           color: Colors.white,
                         ),
-                        onPressed: (){}, //showBottomSheet, 
+                        onPressed: () {}, //showBottomSheet,
                       ),
                     ),
                   ),
                 ],
               ),
-              
             ),
             ListTile(
               title: Text('Nome'),
@@ -71,11 +70,9 @@ class _ContaState extends State<Conta> {
               title: Text('E-mail'),
               subtitle: Text(widget.model.getUserEmail),
             ),
-            
           ],
         ),
       ),
     );
   }
 }
- 

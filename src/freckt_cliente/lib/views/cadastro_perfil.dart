@@ -3,10 +3,11 @@ import 'dart:io';
 import 'package:freckt_cliente/models/cliente.model.dart';
 import 'package:freckt_cliente/utils/templates/elevated_button_template.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:freckt_cliente/views/home_cliente.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:flutter/material.dart';
+
+import 'home_cliente.dart';
 
 class CadastroPerfil extends StatefulWidget {
   @override
@@ -17,6 +18,7 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
   File _picture;
   String photoPath;
   String photoUrl;
+  bool _isLoading = false;
 
   final picker = ImagePicker();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -81,12 +83,71 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
     );
   }
 
+  void uploadPhoto() async {
+    if (_picture == null) {
+      showSnackBar('É necessário adicionar uma foto de perfil.');
+    } else {
+      try {
+        setState(() {
+          _isLoading = true;
+        });
+
+        photoPath =
+            'clientes/${model.getUserId}/foto-perfil${p.extension(_picture.path)}';
+
+        await firebase_storage.FirebaseStorage.instance
+            .ref(photoPath)
+            .putFile(_picture);
+
+        photoUrl = await firebase_storage.FirebaseStorage.instance
+            .ref(photoPath)
+            .getDownloadURL();
+
+        model.setProfileData(
+          uPhotoPath: photoPath,
+          uPhotoUrl: photoUrl,
+        );
+
+        await model.saveUserData();
+
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomeCliente(),
+          ),
+          (route) => false,
+        );
+      } on firebase_storage.FirebaseException catch (e) {
+        setState(() {
+          _isLoading = false;
+        });
+
+        showSnackBar('Algo deu errado. Erro: ${e.code}.');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.white,
+        bottom: PreferredSize(
+          preferredSize: Size(double.infinity, 4.0),
+          child: _isLoading
+              ? LinearProgressIndicator(
+                  backgroundColor: Colors.white,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+                )
+              : Container(),
+        ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
         title: Text(
           'Cadastrar Perfil',
           style: TextStyle(
@@ -160,41 +221,7 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
       ),
       floatingActionButton: ElevatedButtonTemplate(
         buttonText: 'Próximo',
-        onPressed: () async {
-          if (_picture == null) {
-            showSnackBar('É necessário adicionar uma foto de perfil.');
-          } else {
-            try {
-              photoPath =
-                  'clientes/${model.getUserId}/foto-perfil${p.extension(_picture.path)}';
-
-              await firebase_storage.FirebaseStorage.instance
-                  .ref(photoPath)
-                  .putFile(_picture);
-
-              photoUrl = await firebase_storage.FirebaseStorage.instance
-                  .ref(photoPath)
-                  .getDownloadURL();
-
-              model.setProfileData(
-                uPhotoPath: photoPath,
-                uPhotoUrl: photoUrl,
-              );
-
-              await model.saveUserData();
-
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => HomeFretista(),
-                ),
-                (route) => false,
-              );
-            } on firebase_storage.FirebaseException catch (e) {
-              showSnackBar('Algo deu errado. Erro: ${e.code}.');
-            }
-          }
-        },
+        onPressed: _isLoading ? null : uploadPhoto,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

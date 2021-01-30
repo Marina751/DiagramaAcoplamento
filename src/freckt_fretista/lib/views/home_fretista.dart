@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freckt_fretista/views/fale_conosco.dart';
 import 'package:freckt_fretista/views/fretes.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+//import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomeFretista extends StatefulWidget {
   @override
@@ -21,13 +21,13 @@ class _HomeFretistaState extends State<HomeFretista> {
 
   bool _isLoading = false;
 
-  GoogleMapController mapController;
+  //GoogleMapController mapController;
 
-  final LatLng _center = const LatLng(-3.7443621, -38.5382412);
+  //final LatLng _center = const LatLng(-3.7443621, -38.5382412);
 
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
+  //void _onMapCreated(GoogleMapController controller) {
+  //  mapController = controller;
+  //}
 
   void showSnackBar(String info) {
     _scaffoldKey.currentState.showSnackBar(
@@ -37,21 +37,21 @@ class _HomeFretistaState extends State<HomeFretista> {
     );
   }
 
-  void signOut() async {
-    final response = await model.signOutFretista();
-
-    if (response.status == ResponseStatus.SUCCESS) {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Entrar(),
-        ),
-        (route) => false,
-      );
-    } else {
-      showSnackBar(response.message);
-    }
-  }
+  //void signOut() async {
+  //  final response = await model.signOutFretista();
+  //
+  //  if (response.status == ResponseStatus.SUCCESS) {
+  //    Navigator.pushAndRemoveUntil(
+  //      context,
+  //      MaterialPageRoute(
+  //        builder: (context) => Entrar(),
+  //      ),
+  //      (route) => false,
+  //    );
+  //  } else {
+  //    showSnackBar(response.message);
+  //  }
+  //}
 
   @override
   Widget build(BuildContext context) {
@@ -85,10 +85,10 @@ class _HomeFretistaState extends State<HomeFretista> {
             //),
             //),
           ),
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: signOut,
-          ),
+          //IconButton(
+          //  icon: Icon(Icons.logout),
+          //  onPressed: signOut,
+          //),
         ],
         bottom: PreferredSize(
           preferredSize: Size(double.infinity, 4.0),
@@ -168,26 +168,27 @@ class _HomeFretistaState extends State<HomeFretista> {
       body: Stack(
         alignment: AlignmentDirectional.bottomStart,
         children: [
-          //Container(
-          //  color: Colors.black12,
-          //  child: Center(
-          //    child: ElevatedButton(
-          //      onPressed: () {
-          //        setState(() {
-          //          _isLoading = !_isLoading;
-          //        });
-          //      },
-          //      child: Text(_isLoading ? 'Parar de Carregar' : 'Carregar'),
-          //    ),
-          //  ),
-          //),
-          GoogleMap(
-            onMapCreated: _onMapCreated,
-            initialCameraPosition: CameraPosition(
-              target: _center,
-              zoom: 11.0,
+          Container(
+            color: Colors.black12,
+            child: Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    _isLoading = !_isLoading;
+                  });
+                },
+                child: Text(_isLoading ? 'Parar de Carregar' : 'Carregar'),
+              ),
             ),
           ),
+
+          //GoogleMap(
+          //  onMapCreated: _onMapCreated,
+          //  initialCameraPosition: CameraPosition(
+          //    target: _center,
+          //    zoom: 11.0,
+          //  ),
+          //),
           Container(
             //color: Colors.blue,
             height: 200.0,

@@ -1,9 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:freckt_fretista/utils/templates/submenu_scaffold_template.dart';
+import 'package:freckt_cliente/utils/templates/submenu_scaffold_template.dart';
 
-class Agendamentos extends StatelessWidget {
-  static const String _title = 'Agendamentos';
+class Fretes extends StatelessWidget {
+  static const String _title = 'Fretes realizados';
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class Agendamentos extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'Você não possui nenhum agendamento\n:(',
+                'Você não possui nenhum frete já realizado\n:(',
                 style: TextStyle(
                   //color: Colors.black,
                   fontSize: 30.0,

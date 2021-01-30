@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:freckt_fretista/models/fretista.model.dart';
 
-class Veiculos extends StatefulWidget {
-  final model = FretistaModel();
+import '../models/cliente.model.dart';
+
+class Conta extends StatefulWidget {
+  final model = ClienteModel();
 
   @override
-  _VeiculosState createState() => _VeiculosState();
+  _ContaState createState() => _ContaState();
 }
 
-class _VeiculosState extends State<Veiculos> {
+class _ContaState extends State<Conta> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +23,7 @@ class _VeiculosState extends State<Veiculos> {
             Navigator.pop(context);
           },
         ),
-        title: Text('Veículos'),
+        title: Text('Conta'),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10.0),
@@ -36,7 +37,7 @@ class _VeiculosState extends State<Veiculos> {
                 alignment: AlignmentDirectional.bottomEnd,
                 children: [
                   CircleAvatar(
-                    backgroundImage: NetworkImage(widget.model.getCarroUrl),
+                    backgroundImage: NetworkImage(widget.model.getPhotoUrl),
                     backgroundColor: Colors.black12,
                     radius: 100.0,
                   ),
@@ -58,24 +59,16 @@ class _VeiculosState extends State<Veiculos> {
               ),
             ),
             ListTile(
-              title: Text('Placa'),
-              subtitle: Text(widget.model.getVehiclePlaca),
+              title: Text('Nome'),
+              subtitle: Text(widget.model.getUserName),
             ),
             ListTile(
-              title: Text('Marca/Modelo'),
-              subtitle: Text(widget.model.getVehicleMarca),
+              title: Text('Telefone'),
+              subtitle: Text(widget.model.getUserPhone),
             ),
             ListTile(
-              title: Text('Cor'),
-              subtitle: Text(widget.model.getVehicleCor),
-            ),
-            ListTile(
-              title: Text('Tipo'),
-              subtitle: Text(widget.model.getVehicleTipo),
-            ),
-            ListTile(
-              title: Text('Ano'),
-              subtitle: Text(widget.model.getVehicleAno),
+              title: Text('E-mail'),
+              subtitle: Text(widget.model.getUserEmail),
             ),
           ],
         ),

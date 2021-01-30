@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:freckt_cliente/templates/elevated_button_template.dart';
-import 'package:freckt_cliente/templates/scaffold_template.dart';
+import 'package:freckt_cliente/utils/templates/elevated_button_template.dart';
+import 'package:freckt_cliente/utils/templates/scaffold_template.dart';
 import 'package:flutter/material.dart';
 
 class AutorizacaoLegal extends StatelessWidget {
