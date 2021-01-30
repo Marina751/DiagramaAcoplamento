@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:freckt_fretista/views/conta.dart';
+//import 'package:google_fonts/google_fonts.dart';
 
 class Configuracoes extends StatefulWidget {
   @override
@@ -25,7 +26,46 @@ class _ConfiguracoesState extends State<Configuracoes> {
             //style: GoogleFonts.roboto(color: Colors.white),
           ),
         ),
-        body: Padding(
+        body: Container(
+          padding: EdgeInsets.all(10.0),
+            height: double.infinity,
+            child: ListView(
+            children: [
+              ListTile(
+                title: Text('Conta'),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Conta()));
+                },
+              ),
+              ListTile(
+                title: Text('Meus Veículos'),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text('Privacidade'),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text('Segurança'),
+                onTap: () {},
+              ),ListTile(
+                title: Text('Sobre'),
+                onTap: () {},
+              ),
+              ListTile(
+                title: Text('Encerrar Seção',
+                style: TextStyle(color: Colors.red),),
+                onTap: () {},
+              ),
+
+            ],
+          ),
+          ),
+        
+        );
+  }
+}
+/*Padding(
           padding: EdgeInsets.fromLTRB(30.0, 20.0, 0.0, 20.0),
           child: Center(
             child: Column(
@@ -37,10 +77,10 @@ class _ConfiguracoesState extends State<Configuracoes> {
                   child: FlatButton(
                     child: Text(
                       "Conta",
-                      style: GoogleFonts.comfortaa(
+                      /*style: GoogleFonts.comfortaa(
                         color: Colors.black,
                         fontSize: 15,
-                      ),
+                      ),*/
                     ),
                     onPressed: () {},
                   ),
@@ -51,10 +91,10 @@ class _ConfiguracoesState extends State<Configuracoes> {
                   child: FlatButton(
                     child: Text(
                       "Meus Veículos",
-                      style: GoogleFonts.comfortaa(
-                        color: Colors.black,
-                        fontSize: 15,
-                      ),
+                      //style: GoogleFonts.comfortaa(
+                      //  color: Colors.black,
+                      //  fontSize: 15,
+                      //),
                     ),
                     onPressed: () {},
                   ),
@@ -65,10 +105,10 @@ class _ConfiguracoesState extends State<Configuracoes> {
                   child: FlatButton(
                     child: Text(
                       "Privacidade",
-                      style: GoogleFonts.comfortaa(
-                        color: Colors.black,
-                        fontSize: 15,
-                      ),
+                      //style: GoogleFonts.comfortaa(
+                       // color: Colors.black,
+                        //fontSize: 15,
+                      //),
                     ),
                     onPressed: () {},
                   ),
@@ -79,10 +119,10 @@ class _ConfiguracoesState extends State<Configuracoes> {
                   child: FlatButton(
                     child: Text(
                       "Segurança",
-                      style: GoogleFonts.comfortaa(
-                        color: Colors.black,
-                        fontSize: 15,
-                      ),
+                      //style: GoogleFonts.comfortaa(
+                      //  color: Colors.black,
+                      //  fontSize: 15,
+                      //),
                     ),
                     onPressed: () {},
                   ),
@@ -93,10 +133,10 @@ class _ConfiguracoesState extends State<Configuracoes> {
                   child: FlatButton(
                     child: Text(
                       "Sobre",
-                      style: GoogleFonts.comfortaa(
-                        color: Colors.black,
-                        fontSize: 15,
-                      ),
+                      //style: GoogleFonts.comfortaa(
+                      //  color: Colors.black,
+                      //  fontSize: 15,
+                      //),
                     ),
                     onPressed: () {},
                   ),
@@ -107,10 +147,10 @@ class _ConfiguracoesState extends State<Configuracoes> {
                   child: FlatButton(
                     child: Text(
                       "Encerrar Sessão",
-                      style: GoogleFonts.comfortaa(
-                        color: Colors.red,
-                        fontSize: 15,
-                      ),
+                      //style: GoogleFonts.comfortaa(
+                      //  color: Colors.red,
+                        //fontSize: 15,
+                      //),
                     ),
                     onPressed: () {},
                   ),
@@ -118,6 +158,4 @@ class _ConfiguracoesState extends State<Configuracoes> {
               ],
             ),
           ),
-        ));
-  }
-}
+        )*/

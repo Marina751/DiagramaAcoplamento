@@ -37,6 +37,10 @@ class FretistaModel {
   FretistaModel._internal();
 
   String get getUserId => id;
+  String get getUserName => name;
+  String get getUserPhone => phone;
+  String get getUserEmail => email;
+  String get getPhotoUrl => photoUrl;
 
   void setRegistrationData(CadastroFretistaViewModel map) {
     name = map.name;
