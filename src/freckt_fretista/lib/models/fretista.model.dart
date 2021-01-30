@@ -41,6 +41,12 @@ class FretistaModel {
   String get getUserPhone => phone;
   String get getUserEmail => email;
   String get getPhotoUrl => photoUrl;
+  String get getVehiclePlaca => vehicles[0].placa;
+  String get getVehicleMarca => vehicles[0].marca;
+  String get getVehicleCor => vehicles[0].cor;
+  String get getVehicleTipo => vehicles[0].tipo;
+  String get getVehicleAno => vehicles[0].ano;
+  String get getCarroUrl => carroUrl;
 
   void setRegistrationData(CadastroFretistaViewModel map) {
     name = map.name;

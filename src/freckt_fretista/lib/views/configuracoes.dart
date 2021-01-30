@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freckt_fretista/views/conta.dart';
-//import 'package:google_fonts/google_fonts.dart';
+import 'package:freckt_fretista/views/veiculos.dart';
 
 class Configuracoes extends StatefulWidget {
   @override
@@ -38,8 +38,10 @@ class _ConfiguracoesState extends State<Configuracoes> {
                 },
               ),
               ListTile(
-                title: Text('Meus Veículos'),
-                onTap: () {},
+                title: Text('Veículos'),
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => Veiculos()));
+                },
               ),
               ListTile(
                 title: Text('Privacidade'),
