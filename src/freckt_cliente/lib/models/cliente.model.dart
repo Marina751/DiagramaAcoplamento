@@ -28,6 +28,10 @@ class ClienteModel {
   ClienteModel._internal();
 
   String get getUserId => id;
+  String get getUserName => name;
+  String get getUserPhone => phone;
+  String get getUserEmail => email;
+  String get getPhotoUrl => photoUrl;
 
   void setRegistrationData(CadastroClienteViewModel viewModel) {
     name = viewModel.name;
@@ -83,7 +87,10 @@ class ClienteModel {
 
   /// Recebe os dados vindos do [FirebaseFirestore] e os coloca
   /// nos atributos adequadamente.
-  void loadDataFromFirestore({@required Map<String, dynamic> data}) {
+  void loadDataFromFirestore({
+    @required Map<String, dynamic> data,
+    @required String uid,
+  }) {
     //print(aux.toString());
 
     name = data['name'];
@@ -93,6 +100,18 @@ class ClienteModel {
     password = data['password'];
     photoPath = data['photoPath'];
     photoUrl = data['photoUrl'];
+  }
+
+  void loadRegistrationData({
+    @required Map<String, dynamic> data,
+    @required String uid,
+  }) {
+    id = uid;
+    name = data['name'];
+    cpf = data['cpf'];
+    email = data['email'];
+    phone = data['phone'];
+    password = data['password'];
   }
 
   /// Usado no ato de um cadastro. Salva dos dados no [FirebaseFirestore]
@@ -105,6 +124,17 @@ class ClienteModel {
       'password': password,
       'photoPath': photoPath,
       'photoUrl': photoUrl
+    };
+    await FirebaseFirestore.instance.collection('clientes').doc(id).set(data);
+  }
+
+  Future<void> saveRegistrationData() async {
+    Map<String, dynamic> data = {
+      'name': name,
+      'cpf': cpf,
+      'email': email,
+      'phone': phone,
+      'password': password,
     };
     await FirebaseFirestore.instance.collection('clientes').doc(id).set(data);
   }

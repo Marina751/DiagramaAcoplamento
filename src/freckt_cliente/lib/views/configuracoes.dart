@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:freckt_fretista/models/fretista.model.dart';
-import 'package:freckt_fretista/utils/enums/response_status.dart';
-import 'package:freckt_fretista/views/conta.dart';
-import 'package:freckt_fretista/views/entrar.dart';
-import 'package:freckt_fretista/views/veiculos.dart';
+import 'package:freckt_cliente/models/cliente.model.dart';
+import 'package:freckt_cliente/utils/enums/response_status.dart';
+import 'package:freckt_cliente/views/conta.dart';
+import 'package:freckt_cliente/views/entrar.dart';
+
+import '../models/cliente.model.dart';
 
 class Configuracoes extends StatefulWidget {
-  final model = FretistaModel();
+  final model = ClienteModel();
 
   @override
   _ConfiguracoesState createState() => _ConfiguracoesState();
@@ -44,13 +45,6 @@ class _ConfiguracoesState extends State<Configuracoes> {
               },
             ),
             ListTile(
-              title: Text('Veículos'),
-              onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Veiculos()));
-              },
-            ),
-            ListTile(
               title: Text('Privacidade'),
               onTap: () {},
             ),
@@ -68,7 +62,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
                 style: TextStyle(color: Colors.red),
               ),
               onTap: () async {
-                final response = await widget.model.signOutFretista();
+                final response = await widget.model.signOutUser();
 
                 if (response.status == ResponseStatus.SUCCESS) {
                   Navigator.pushAndRemoveUntil(

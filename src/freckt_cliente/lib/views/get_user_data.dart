@@ -1,9 +1,14 @@
 import 'package:freckt_cliente/models/cliente.model.dart';
+import 'package:freckt_cliente/views/completar_cadastro.dart';
 import 'package:freckt_cliente/views/home_cliente.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freckt_cliente/views/loading.dart';
+import 'package:freckt_cliente/views/something_went_wrong.dart';
+
+import 'home_cliente.dart';
+import 'home_cliente.dart';
 
 class GetUserData extends StatelessWidget {
   GetUserData(this.path);
@@ -27,17 +32,19 @@ class GetUserData extends StatelessWidget {
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Center(
-            child: Text('Algo deu errado :('),
-          );
+          return SomethingWentWrong(snapshot.error.toString());
         }
 
         if (snapshot.connectionState == ConnectionState.done) {
-          Map<String, dynamic> data = snapshot.data.data();
+          final data = snapshot.data.data();
 
-          model.loadDataFromFirestore(data: data);
-
-          return HomeFretista();
+          if (data['photoUrl'] != null) {
+            model.loadDataFromFirestore(data: data, uid: path);
+            return HomeCliente();
+          } else {
+            model.loadRegistrationData(data: data, uid: path);
+            return CompletarCadastro();
+          }
         }
 
         return Loading();

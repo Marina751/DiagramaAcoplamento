@@ -1,7 +1,5 @@
 import 'package:freckt_fretista/models/fretista.model.dart';
-import 'package:freckt_fretista/views/cadastro_veiculo.dart';
 import 'package:freckt_fretista/views/completar_cadastro.dart';
-import 'package:freckt_fretista/views/entrar.dart';
 import 'package:freckt_fretista/views/home_fretista.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
