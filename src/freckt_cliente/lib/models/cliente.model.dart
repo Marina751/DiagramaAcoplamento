@@ -46,6 +46,57 @@ class ClienteModel {
     photoUrl = uPhotoUrl;
   }
 
+  /// Recebe os dados vindos do [FirebaseFirestore] e os coloca
+  /// nos atributos adequadamente.
+  void loadDataFromFirestore({@required Map<String, dynamic> data}) {
+    id = data['id'];
+    name = data['name'];
+    cpf = data['cpf'];
+    email = data['email'];
+    phone = data['phone'];
+    password = data['password'];
+    photoPath = data['photoPath'];
+    photoUrl = data['photoUrl'];
+  }
+
+  void loadRegistrationData({@required Map<String, dynamic> data}) {
+    id = data['id'];
+    name = data['name'];
+    cpf = data['cpf'];
+    email = data['email'];
+    phone = data['phone'];
+    password = data['password'];
+  }
+
+  /// Usado no ato de um cadastro. Salva dos dados no [FirebaseFirestore]
+  Future<void> saveUserData() async {
+    Map<String, dynamic> data = {
+      'id': id,
+      'name': name,
+      'cpf': cpf,
+      'email': email,
+      'phone': phone,
+      'password': password,
+      'photoPath': photoPath,
+      'photoUrl': photoUrl,
+      'completeRegistration': true
+    };
+    await FirebaseFirestore.instance.collection('clientes').doc(id).set(data);
+  }
+
+  Future<void> saveRegistrationData() async {
+    Map<String, dynamic> data = {
+      'id': id,
+      'name': name,
+      'cpf': cpf,
+      'email': email,
+      'phone': phone,
+      'password': password,
+      'completeRegistration': false
+    };
+    await FirebaseFirestore.instance.collection('clientes').doc(id).set(data);
+  }
+
   // Este metodo salva aqui no model os dados do usuário quando ele está
   // se cadastrando.
 
@@ -83,59 +134,5 @@ class ClienteModel {
   // Siplesmente faz o logout do atual usuário autenticado.
   Future<DefaultResponse> signOutUser() async {
     return await _repository.signOut();
-  }
-
-  /// Recebe os dados vindos do [FirebaseFirestore] e os coloca
-  /// nos atributos adequadamente.
-  void loadDataFromFirestore({
-    @required Map<String, dynamic> data,
-    @required String uid,
-  }) {
-    //print(aux.toString());
-
-    name = data['name'];
-    cpf = data['cpf'];
-    email = data['email'];
-    phone = data['phone'];
-    password = data['password'];
-    photoPath = data['photoPath'];
-    photoUrl = data['photoUrl'];
-  }
-
-  void loadRegistrationData({
-    @required Map<String, dynamic> data,
-    @required String uid,
-  }) {
-    id = uid;
-    name = data['name'];
-    cpf = data['cpf'];
-    email = data['email'];
-    phone = data['phone'];
-    password = data['password'];
-  }
-
-  /// Usado no ato de um cadastro. Salva dos dados no [FirebaseFirestore]
-  Future<void> saveUserData() async {
-    Map<String, dynamic> data = {
-      'name': name,
-      'cpf': cpf,
-      'email': email,
-      'phone': phone,
-      'password': password,
-      'photoPath': photoPath,
-      'photoUrl': photoUrl
-    };
-    await FirebaseFirestore.instance.collection('clientes').doc(id).set(data);
-  }
-
-  Future<void> saveRegistrationData() async {
-    Map<String, dynamic> data = {
-      'name': name,
-      'cpf': cpf,
-      'email': email,
-      'phone': phone,
-      'password': password,
-    };
-    await FirebaseFirestore.instance.collection('clientes').doc(id).set(data);
   }
 }

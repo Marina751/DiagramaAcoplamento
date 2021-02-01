@@ -43,10 +43,10 @@ class _GetUserDataState extends State<GetUserData> {
           final data = snapshot.data.data();
 
           if (data['vehicles'] != null) {
-            model.loadDataFromFirestore(data: data, uid: widget.path);
+            model.loadDataFromFirestore(data: data);
             return HomeFretista();
           } else {
-            model.loadRegistrationData(data: data, uid: widget.path);
+            model.loadRegistrationData(data: data);
             return CompletarCadastro();
           }
         }
