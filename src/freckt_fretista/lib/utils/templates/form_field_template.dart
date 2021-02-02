@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:freckt_fretista/utils/consts.dart';
 
 class FormFieldTemplate extends Container {
   FormFieldTemplate({
@@ -16,7 +17,10 @@ class FormFieldTemplate extends Container {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(title),
+              Text(
+                title,
+                style: TextStyle(color: Consts.frecktThemeColor),
+              ),
               TextFormField(
                 keyboardType: keyboardType,
                 obscureText: obscureText,
@@ -24,6 +28,9 @@ class FormFieldTemplate extends Container {
                   errorText: errorText,
                   border: OutlineInputBorder(),
                   hintText: hintText,
+                  fillColor: Consts.frecktThemeColor,
+                  //focusColor: Consts.frecktThemeColor,
+                  //hoverColor: Consts.frecktThemeColor,
                 ),
                 validator: validator,
                 onSaved: onSaved ?? null,

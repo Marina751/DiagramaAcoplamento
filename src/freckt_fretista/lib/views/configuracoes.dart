@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:freckt_fretista/models/fretista.model.dart';
+import 'package:freckt_fretista/utils/consts.dart';
 import 'package:freckt_fretista/utils/enums/response_status.dart';
 import 'package:freckt_fretista/views/conta.dart';
 import 'package:freckt_fretista/views/entrar.dart';
+import 'package:freckt_fretista/views/privacidade.dart';
+import 'package:freckt_fretista/views/seguranca.dart';
+import 'package:freckt_fretista/views/sobre.dart';
 import 'package:freckt_fretista/views/veiculos.dart';
 
 class Configuracoes extends StatefulWidget {
@@ -13,11 +17,18 @@ class Configuracoes extends StatefulWidget {
 }
 
 class _ConfiguracoesState extends State<Configuracoes> {
+  Text textWithColorTheme(String string) {
+    return new Text(
+      string,
+      style: TextStyle(color: Consts.frecktThemeColor),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff20B8A6),
+        backgroundColor: Consts.frecktThemeColor,
         leading: IconButton(
           color: Colors.white,
           icon: Icon(Icons.arrow_back),
@@ -37,30 +48,59 @@ class _ConfiguracoesState extends State<Configuracoes> {
         child: ListView(
           children: [
             ListTile(
-              title: Text('Conta'),
+              title: textWithColorTheme('Conta'),
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Conta()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Conta(),
+                  ),
+                );
               },
             ),
             ListTile(
-              title: Text('Veículos'),
+              title: textWithColorTheme('Veículos'),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Veiculos()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Veiculos(),
+                  ),
+                );
               },
             ),
             ListTile(
-              title: Text('Privacidade'),
-              onTap: () {},
+              title: textWithColorTheme('Privacidade'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Privacidade(),
+                  ),
+                );
+              },
             ),
             ListTile(
-              title: Text('Segurança'),
-              onTap: () {},
+              title: textWithColorTheme('Segurança'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Seguranca(),
+                  ),
+                );
+              },
             ),
             ListTile(
-              title: Text('Sobre'),
-              onTap: () {},
+              title: textWithColorTheme('Sobre'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Sobre(),
+                  ),
+                );
+              },
             ),
             ListTile(
               title: Text(

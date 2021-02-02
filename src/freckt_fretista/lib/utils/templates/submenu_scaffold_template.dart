@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freckt_fretista/utils/consts.dart';
 
 class SubmenuScaffoldTemplate extends StatelessWidget {
   const SubmenuScaffoldTemplate({
@@ -13,7 +14,7 @@ class SubmenuScaffoldTemplate extends StatelessWidget {
   final bool hasAlertTerms;
 
   //static const Color _black = Colors.black;
-  static Color _teal = Color(0xff20B8A6);
+  static Color _teal = Consts.frecktThemeColor;
 
   @override
   Widget build(BuildContext context) {

@@ -39,10 +39,10 @@ class GetUserData extends StatelessWidget {
           final data = snapshot.data.data();
 
           if (data['photoUrl'] != null) {
-            model.loadDataFromFirestore(data: data, uid: path);
+            model.loadDataFromFirestore(data: data);
             return HomeCliente();
           } else {
-            model.loadRegistrationData(data: data, uid: path);
+            model.loadRegistrationData(data: data);
             return CompletarCadastro();
           }
         }

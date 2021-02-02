@@ -33,6 +33,7 @@ dependencies:
   cloud_firestore: ^0.14.4
   firebase_core: ^0.5.3
   firebase_storage: ^5.2.0
+  cached_network_image: ^2.5.0
   google_maps_flutter: ^1.1.1
   
   # Utilitarios

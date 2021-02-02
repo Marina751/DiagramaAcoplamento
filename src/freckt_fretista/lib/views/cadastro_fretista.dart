@@ -42,9 +42,8 @@ class _CadastroFretistaState extends State<CadastroFretista> {
         _isLoading = true;
       });
 
-      _controller.save();
-
       final response = await _controller.register();
+      _controller.save();
 
       if (response.status == ResponseStatus.SUCCESS) {
         _controller.uploadData();

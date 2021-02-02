@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:freckt_fretista/utils/consts.dart';
 
 class ElevatedButtonTemplate extends Container {
   ElevatedButtonTemplate({
     @required void Function() onPressed,
     @required String buttonText,
-    Color color = Colors.black,
+    Color color = Consts.frecktThemeColor,
     Color fontColor = Colors.white,
   }) : super(
           margin: EdgeInsets.all(10.0),

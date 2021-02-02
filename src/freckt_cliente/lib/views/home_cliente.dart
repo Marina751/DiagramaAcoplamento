@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 //import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import 'package:freckt_cliente/views/entrar.dart';
-import 'package:freckt_cliente/utils/enums/response_status.dart';
 import 'package:freckt_cliente/models/cliente.model.dart';
 import 'package:freckt_cliente/views/configuracoes.dart';
 import 'package:freckt_cliente/views/agendamentos.dart';
 import 'package:freckt_cliente/views/fale_conosco.dart';
 import 'package:freckt_cliente/views/fretes.dart';
+import 'package:freckt_cliente/views/fretistas.dart';
 
 class HomeCliente extends StatefulWidget {
   @override
@@ -174,11 +173,17 @@ class _HomeClienteState extends State<HomeCliente> {
             child: Center(
               child: ElevatedButton(
                 onPressed: () {
-                  setState(() {
-                    _isLoading = !_isLoading;
-                  });
+                  //setState(() {
+                  //  _isLoading = !_isLoading;
+                  //});
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Fretistas(),
+                    ),
+                  );
                 },
-                child: Text(_isLoading ? 'Parar de Carregar' : 'Carregar'),
+                child: Text('Fretistas'),
               ),
             ),
           ),

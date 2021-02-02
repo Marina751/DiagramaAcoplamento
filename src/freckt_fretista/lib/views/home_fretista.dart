@@ -1,13 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:freckt_fretista/utils/templates/avatar_template.dart';
 import 'package:freckt_fretista/views/agendamentos.dart';
-import 'package:freckt_fretista/utils/enums/response_status.dart';
 import 'package:freckt_fretista/models/fretista.model.dart';
+import 'package:freckt_fretista/views/chat.dart';
 import 'package:freckt_fretista/views/configuracoes.dart';
-import 'package:freckt_fretista/views/entrar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freckt_fretista/views/fale_conosco.dart';
 import 'package:freckt_fretista/views/fretes.dart';
+import 'package:freckt_fretista/utils/consts.dart';
+import 'package:freckt_fretista/views/loading.dart';
+import 'package:freckt_fretista/views/something_went_wrong.dart';
 //import 'package:google_maps_flutter/google_maps_flutter.dart';
+//import 'package:freckt_fretista/views/entrar.dart';
+//import 'package:freckt_fretista/utils/enums/response_status.dart';
 
 class HomeFretista extends StatefulWidget {
   @override
@@ -18,6 +24,7 @@ class HomeFretista extends StatefulWidget {
 class _HomeFretistaState extends State<HomeFretista> {
   final model = FretistaModel();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final ScrollController listScrollController = ScrollController();
 
   bool _isLoading = false;
 
@@ -37,32 +44,157 @@ class _HomeFretistaState extends State<HomeFretista> {
     );
   }
 
-  //void signOut() async {
-  //  final response = await model.signOutFretista();
-  //
-  //  if (response.status == ResponseStatus.SUCCESS) {
-  //    Navigator.pushAndRemoveUntil(
-  //      context,
-  //      MaterialPageRoute(
-  //        builder: (context) => Entrar(),
-  //      ),
-  //      (route) => false,
-  //    );
-  //  } else {
-  //    showSnackBar(response.message);
-  //  }
-  //}
+  Widget itemChat(Map<String, dynamic> data) {
+    return Container(
+      child: FlatButton(
+        child: Row(
+          children: <Widget>[
+            AvatarTemplate(url: data['clientePhotoUrl']),
+            Flexible(
+              child: Container(
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      child: Text(
+                        data['clienteName'],
+                        style: TextStyle(color: Consts.frecktThemeColor),
+                      ),
+                      alignment: Alignment.centerLeft,
+                      margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 5.0),
+                    ),
+                    //Container(
+                    //  child: Text(
+                    //    data['vehicles'][0]['marca'],
+                    //    style: TextStyle(color: primaryColor),
+                    //  ),
+                    //  alignment: Alignment.centerLeft,
+                    //  margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
+                    //)
+                  ],
+                ),
+                margin: EdgeInsets.only(left: 20.0),
+              ),
+            ),
+          ],
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Chat(data: data),
+            ),
+          );
+        },
+        color: Consts.greyColor2,
+        padding: EdgeInsets.fromLTRB(25.0, 10.0, 25.0, 10.0),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      ),
+      margin: EdgeInsets.all(5.0),
+    );
+  }
+
+  Widget loadChats() {
+    final fretistas = FirebaseFirestore.instance.collection('messages');
+
+    return StreamBuilder(
+      stream: fretistas
+          .where('fretistaId', isEqualTo: model.getUserId)
+          .orderBy('timestamp', descending: true)
+          .snapshots(),
+
+      //FirebaseFirestore.instance
+      //    .collection('messages')
+      //    .doc(groupChatId)
+      //    .collection(groupChatId)
+      //    .orderBy('timestamp', descending: true)
+      //    .limit(_limit)
+      //    .snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return SomethingWentWrong(snapshot.error.toString());
+        }
+
+        if (!snapshot.hasData) {
+          return Loading();
+        } else {
+          return ListView.builder(
+            padding: EdgeInsets.all(10.0),
+            itemBuilder: (context, index) =>
+                itemChat(snapshot.data.docs[index].data()),
+            itemCount: snapshot.data.docs.length,
+            controller: listScrollController,
+          );
+
+          //ListView(
+          //    padding: EdgeInsets.all(5.0),
+          //    children: snapshot.data.docs.map((doc) {
+          //      final data = doc.data();
+          //
+          //      return itemChat(data);
+          //    }).toList(),
+          //  )
+          //: Center(
+          //    child: Text('Aguardando mensagens...'),
+          //  );
+        }
+      },
+      //if (!snapshot.hasData) {
+      //  return Loading();
+      //} else {
+      //listMessage.addAll(snapshot.data.documents);
+      //return ListView.builder(
+      //  padding: EdgeInsets.all(10.0),
+      //  itemBuilder: (context, index) =>
+      //      buildItem(index, snapshot.data.documents[index]),
+      //  itemCount: snapshot.data.documents.length,
+      //  reverse: true,
+      //  controller: listScrollController,
+      //);
+    );
+
+    /*return FutureBuilder(
+      future: fretistas.where('fretistaId', isEqualTo: model.getUserId).get(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return SomethingWentWrong(snapshot.error.toString());
+        }
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          return snapshot.hasData
+              ? ListView(
+                  padding: EdgeInsets.all(5.0),
+                  children: snapshot.data.docs.map((doc) {
+                    final data = doc.data();
+
+                    return itemChat(data);
+                  }).toList(),
+                )
+              : Center(
+                  child: Text('Aguardando mensagens...'),
+                );
+        }
+        return Loading();
+      },
+    );*/
+  }
+
+  Text textWithColorTheme(String string) {
+    return new Text(
+      string,
+      style: TextStyle(color: Consts.frecktThemeColor),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: IconThemeData(color: Consts.frecktThemeColor),
         backgroundColor: Colors.white,
-        title: Text(
-          'Olá ${model.name.split(' ')[0]}',
-          style: TextStyle(color: Colors.black),
+        title: textWithColorTheme(
+          'Olá, ${model.name.split(' ')[0]}',
         ),
         actions: [
           Padding(
@@ -105,7 +237,7 @@ class _HomeFretistaState extends State<HomeFretista> {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Color(0xFF20B8A6),
+                color: Consts.frecktThemeColor,
                 image: DecorationImage(
                   image: AssetImage('images/freckt_logo.png'),
                 ),
@@ -123,8 +255,11 @@ class _HomeFretistaState extends State<HomeFretista> {
                   ),
                 );
               },
-              leading: Icon(Icons.watch_later_rounded),
-              title: Text('Agendamentos'),
+              leading: Icon(
+                Icons.watch_later_rounded,
+                color: Consts.frecktThemeColor,
+              ),
+              title: textWithColorTheme('Agendamentos'),
             ),
             ListTile(
               onTap: () {
@@ -135,8 +270,11 @@ class _HomeFretistaState extends State<HomeFretista> {
                   ),
                 );
               },
-              leading: Icon(Icons.local_shipping_rounded),
-              title: Text('Fretes'),
+              leading: Icon(
+                Icons.local_shipping_rounded,
+                color: Consts.frecktThemeColor,
+              ),
+              title: textWithColorTheme('Fretes'),
             ),
             ListTile(
               onTap: () {
@@ -147,8 +285,11 @@ class _HomeFretistaState extends State<HomeFretista> {
                   ),
                 );
               },
-              leading: Icon(Icons.message_rounded),
-              title: Text('Fale conosco'),
+              leading: Icon(
+                Icons.message_rounded,
+                color: Consts.frecktThemeColor,
+              ),
+              title: textWithColorTheme('Fale conosco'),
             ),
             ListTile(
               onTap: () {
@@ -159,8 +300,11 @@ class _HomeFretistaState extends State<HomeFretista> {
                   ),
                 );
               },
-              leading: Icon(Icons.settings),
-              title: Text('Configurações'),
+              leading: Icon(
+                Icons.settings,
+                color: Consts.frecktThemeColor,
+              ),
+              title: textWithColorTheme('Configurações'),
             ),
           ],
         ),
@@ -168,20 +312,7 @@ class _HomeFretistaState extends State<HomeFretista> {
       body: Stack(
         alignment: AlignmentDirectional.bottomStart,
         children: [
-          Container(
-            color: Colors.black12,
-            child: Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    _isLoading = !_isLoading;
-                  });
-                },
-                child: Text(_isLoading ? 'Parar de Carregar' : 'Carregar'),
-              ),
-            ),
-          ),
-
+          loadChats(),
           //GoogleMap(
           //  onMapCreated: _onMapCreated,
           //  initialCameraPosition: CameraPosition(
@@ -217,7 +348,7 @@ class _HomeFretistaState extends State<HomeFretista> {
                         child: Center(
                           child: Icon(
                             Icons.maximize_rounded, //.expand_less_rounded,
-                            //color: Colors.white,
+                            color: Consts.frecktThemeColor,
                             size: 40,
                           ),
                         ),

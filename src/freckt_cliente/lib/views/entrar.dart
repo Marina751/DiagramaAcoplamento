@@ -94,6 +94,7 @@ class _EntrarState extends State<Entrar> {
                   Padding(
                     padding: EdgeInsets.only(bottom: 5.0, top: 20.0),
                     child: TextFormField(
+                      keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(),
@@ -114,6 +115,7 @@ class _EntrarState extends State<Entrar> {
                   Padding(
                     padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
                     child: TextFormField(
+                      keyboardType: TextInputType.text,
                       obscureText: !_showPassword,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.lock),

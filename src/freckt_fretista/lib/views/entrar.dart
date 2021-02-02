@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freckt_fretista/controllers/entrar.controller.dart';
+import 'package:freckt_fretista/utils/consts.dart';
 import 'package:freckt_fretista/utils/enums/response_status.dart';
 import 'package:freckt_fretista/utils/templates/elevated_button_template.dart';
 import 'package:freckt_fretista/views/cadastro_fretista.dart';
@@ -76,12 +77,19 @@ class _EntrarState extends State<Entrar> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.local_shipping_rounded, size: 34.0),
+                Icon(
+                  Icons.local_shipping_rounded,
+                  size: 34.0,
+                  color: Consts.frecktThemeColor,
+                ),
                 Padding(
                   padding: EdgeInsets.only(left: 10.0),
                   child: Text(
                     'Freckt',
-                    style: GoogleFonts.comfortaa(fontSize: 24.0),
+                    style: GoogleFonts.comfortaa(
+                      fontSize: 24.0,
+                      color: Consts.frecktThemeColor,
+                    ),
                   ),
                 )
               ],
@@ -93,6 +101,7 @@ class _EntrarState extends State<Entrar> {
                   Padding(
                     padding: EdgeInsets.only(bottom: 5.0, top: 20.0),
                     child: TextFormField(
+                      keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(),
@@ -113,6 +122,7 @@ class _EntrarState extends State<Entrar> {
                   Padding(
                     padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
                     child: TextFormField(
+                      keyboardType: TextInputType.text,
                       obscureText: !_showPassword,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.lock),
