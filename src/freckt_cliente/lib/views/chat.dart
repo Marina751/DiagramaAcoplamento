@@ -190,13 +190,13 @@ class ChatScreenState extends State<ChatScreen> {
     // type: 0 = text, 1 = image, 2 = sticker
     if (content.trim() != '') {
       textEditingController.clear();
+      String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
 
       var chatReference =
           FirebaseFirestore.instance.collection('messages').doc(groupChatId);
 
-      var documentReference = chatReference
-          .collection(groupChatId)
-          .doc(DateTime.now().millisecondsSinceEpoch.toString());
+      var documentReference =
+          chatReference.collection(groupChatId).doc(timestamp);
 
       FirebaseFirestore.instance.runTransaction((transaction) async {
         transaction.set(
@@ -204,7 +204,7 @@ class ChatScreenState extends State<ChatScreen> {
           {
             'idFrom': id,
             'idTo': fretistaId,
-            'timestamp': DateTime.now().millisecondsSinceEpoch.toString(),
+            'timestamp': timestamp,
             'content': content,
             'type': type
           },
@@ -212,6 +212,7 @@ class ChatScreenState extends State<ChatScreen> {
       });
 
       chatReference.set({
+        'timestamp': timestamp,
         'fretistaId': fretistaId,
         'clienteId': id,
         'clienteName': model.getUserName,
@@ -359,7 +360,7 @@ class ChatScreenState extends State<ChatScreen> {
                   padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
                   width: 200.0,
                   decoration: BoxDecoration(
-                      color: primaryColor,
+                      color: peerChatColor,
                       borderRadius: BorderRadius.circular(8.0)),
                   margin: EdgeInsets.only(left: 10.0),
                 )

@@ -3,6 +3,9 @@ import 'package:freckt_cliente/models/cliente.model.dart';
 import 'package:freckt_cliente/utils/enums/response_status.dart';
 import 'package:freckt_cliente/views/conta.dart';
 import 'package:freckt_cliente/views/entrar.dart';
+import 'package:freckt_cliente/views/privacidade.dart';
+import 'package:freckt_cliente/views/seguranca.dart';
+import 'package:freckt_cliente/views/sobre.dart';
 
 import '../models/cliente.model.dart';
 
@@ -41,20 +44,45 @@ class _ConfiguracoesState extends State<Configuracoes> {
               title: Text('Conta'),
               onTap: () {
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Conta()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Conta(),
+                  ),
+                );
               },
             ),
             ListTile(
               title: Text('Privacidade'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Privacidade(),
+                  ),
+                );
+              },
             ),
             ListTile(
               title: Text('Segurança'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Seguranca(),
+                  ),
+                );
+              },
             ),
             ListTile(
               title: Text('Sobre'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Sobre(),
+                  ),
+                );
+              },
             ),
             ListTile(
               title: Text(

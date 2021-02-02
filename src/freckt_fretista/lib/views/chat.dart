@@ -11,7 +11,7 @@ import 'package:intl/intl.dart';
 
 import 'package:cached_network_image/cached_network_image.dart'; //
 //import 'package:flutter_chat_demo/widget/full_photo.dart';
-import 'package:freckt_fretista/utils/const.dart';
+import 'package:freckt_fretista/utils/consts.dart';
 //import 'package:fluttertoast/fluttertoast.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,7 +26,7 @@ class Chat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff20B8A6),
+        backgroundColor: Consts.frecktThemeColor,
         leading: IconButton(
           color: Colors.white,
           icon: Icon(Icons.arrow_back),
@@ -190,13 +190,13 @@ class ChatScreenState extends State<ChatScreen> {
     // type: 0 = text, 1 = image, 2 = sticker
     if (content.trim() != '') {
       textEditingController.clear();
+      String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
 
       var chatReference =
           FirebaseFirestore.instance.collection('messages').doc(groupChatId);
 
-      var documentReference = chatReference
-          .collection(groupChatId)
-          .doc(DateTime.now().millisecondsSinceEpoch.toString());
+      var documentReference =
+          chatReference.collection(groupChatId).doc(timestamp);
 
       FirebaseFirestore.instance.runTransaction((transaction) async {
         transaction.set(
@@ -204,19 +204,14 @@ class ChatScreenState extends State<ChatScreen> {
           {
             'idFrom': id,
             'idTo': clienteId,
-            'timestamp': DateTime.now().millisecondsSinceEpoch.toString(),
+            'timestamp': timestamp,
             'content': content,
             'type': type
           },
         );
       });
 
-      //chatReference.set({
-      //  'clienteId': clienteId,
-      //  'clienteId': id,
-      //  'clienteName': model.getUserName,
-      //  'clientePhotoUrl': model.getPhotoUrl
-      //});
+      chatReference.update({'timestamp': timestamp});
 
       listScrollController.animateTo(0.0,
           duration: Duration(milliseconds: 300), curve: Curves.easeOut);
@@ -240,12 +235,13 @@ class ChatScreenState extends State<ChatScreen> {
           Container(
             child: Text(
               document.data()['content'],
-              style: TextStyle(color: primaryColor),
+              style: TextStyle(color: Consts.frecktThemeColor),
             ),
             padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
             width: 200.0,
             decoration: BoxDecoration(
-                color: greyColor2, borderRadius: BorderRadius.circular(8.0)),
+                color: Consts.greyColor2,
+                borderRadius: BorderRadius.circular(8.0)),
             margin: EdgeInsets.only(
                 bottom: isLastMessageRight(index) ? 20.0 : 10.0, right: 10.0),
           )
@@ -331,8 +327,9 @@ class ChatScreenState extends State<ChatScreen> {
                           placeholder: (context, url) => Container(
                             child: CircularProgressIndicator(
                               strokeWidth: 1.0,
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(themeColor),
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                Consts.frecktThemeColor,
+                              ),
                             ),
                             width: 35.0,
                             height: 35.0,
@@ -359,7 +356,7 @@ class ChatScreenState extends State<ChatScreen> {
                   padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
                   width: 200.0,
                   decoration: BoxDecoration(
-                      color: primaryColor,
+                      color: Consts.frecktThemeColor,
                       borderRadius: BorderRadius.circular(8.0)),
                   margin: EdgeInsets.only(left: 10.0),
                 )
@@ -438,7 +435,7 @@ class ChatScreenState extends State<ChatScreen> {
                           DateTime.fromMillisecondsSinceEpoch(
                               int.parse(document.data()['timestamp']))),
                       style: TextStyle(
-                          color: greyColor,
+                          color: Consts.greyColor,
                           fontSize: 12.0,
                           fontStyle: FontStyle.italic),
                     ),
@@ -645,7 +642,7 @@ class ChatScreenState extends State<ChatScreen> {
               child: IconButton(
                 icon: Icon(Icons.image),
                 onPressed: () {}, //getImage,
-                color: primaryColor,
+                color: Consts.frecktThemeColor,
               ),
             ),
             color: Colors.white,
@@ -669,11 +666,12 @@ class ChatScreenState extends State<ChatScreen> {
                 onSubmitted: (value) {
                   onSendMessage(textEditingController.text, 0);
                 },
-                style: TextStyle(color: primaryColor, fontSize: 15.0),
+                style:
+                    TextStyle(color: Consts.frecktThemeColor, fontSize: 15.0),
                 controller: textEditingController,
                 decoration: InputDecoration.collapsed(
                   hintText: 'Type your message...',
-                  hintStyle: TextStyle(color: greyColor),
+                  hintStyle: TextStyle(color: Consts.greyColor),
                 ),
                 focusNode: focusNode,
               ),
@@ -687,7 +685,7 @@ class ChatScreenState extends State<ChatScreen> {
               child: IconButton(
                 icon: Icon(Icons.send),
                 onPressed: () => onSendMessage(textEditingController.text, 0),
-                color: primaryColor,
+                color: Consts.frecktThemeColor,
               ),
             ),
             color: Colors.white,
@@ -697,7 +695,7 @@ class ChatScreenState extends State<ChatScreen> {
       width: double.infinity,
       height: 50.0,
       decoration: BoxDecoration(
-          border: Border(top: BorderSide(color: greyColor2, width: 0.5)),
+          border: Border(top: BorderSide(color: Consts.greyColor2, width: 0.5)),
           color: Colors.white),
     );
   }
@@ -707,7 +705,11 @@ class ChatScreenState extends State<ChatScreen> {
       child: groupChatId == ''
           ? Center(
               child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(themeColor)))
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  Consts.frecktThemeColor,
+                ),
+              ),
+            )
           : StreamBuilder(
               stream: FirebaseFirestore.instance
                   .collection('messages')
@@ -719,9 +721,12 @@ class ChatScreenState extends State<ChatScreen> {
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   return Center(
-                      child: CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(themeColor)));
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Consts.frecktThemeColor,
+                      ),
+                    ),
+                  );
                 } else {
                   listMessage.addAll(snapshot.data.documents);
                   return ListView.builder(
