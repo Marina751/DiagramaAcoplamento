@@ -24,6 +24,47 @@ class _ConfiguracoesState extends State<Configuracoes> {
     );
   }
 
+  Future<void> _showDialog() async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Sair?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Não'),
+            ),
+            TextButton(
+              onPressed: () async {
+                final response = await widget.model.signOutFretista();
+
+                if (response.status == ResponseStatus.SUCCESS) {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Entrar(),
+                    ),
+                    (route) => false,
+                  );
+                } else {
+                  Scaffold.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(response.message),
+                    ),
+                  );
+                }
+              },
+              child: Text('Sim'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,27 +145,11 @@ class _ConfiguracoesState extends State<Configuracoes> {
             ),
             ListTile(
               title: Text(
-                'Encerrar Seção',
+                'Encerrar seção',
                 style: TextStyle(color: Colors.red),
               ),
               onTap: () async {
-                final response = await widget.model.signOutFretista();
-
-                if (response.status == ResponseStatus.SUCCESS) {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Entrar(),
-                    ),
-                    (route) => false,
-                  );
-                } else {
-                  Scaffold.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text(response.message),
-                    ),
-                  );
-                }
+                await _showDialog();
               },
             ),
           ],

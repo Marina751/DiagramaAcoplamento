@@ -42,8 +42,8 @@ class FaleConosco extends StatelessWidget {
           showAlertDialog1(context);
         },
         buttonText: ('Avançar'),
-        color: Colors.black,
-        fontColor: Colors.white,
+        //color: Colors.black,
+        //fontColor: Colors.white,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );

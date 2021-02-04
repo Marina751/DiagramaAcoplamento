@@ -119,7 +119,7 @@ class _HomeFretistaState extends State<HomeFretista> {
           return Loading();
         } else {
           return ListView.builder(
-            padding: EdgeInsets.all(10.0),
+            padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 50.0),
             itemBuilder: (context, index) =>
                 itemChat(snapshot.data.docs[index].data()),
             itemCount: snapshot.data.docs.length,
@@ -274,7 +274,7 @@ class _HomeFretistaState extends State<HomeFretista> {
                 Icons.local_shipping_rounded,
                 color: Consts.frecktThemeColor,
               ),
-              title: textWithColorTheme('Fretes'),
+              title: textWithColorTheme('Fretes realizados'),
             ),
             ListTile(
               onTap: () {

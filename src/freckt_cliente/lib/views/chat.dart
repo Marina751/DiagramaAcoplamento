@@ -64,21 +64,21 @@ class ChatScreenState extends State<ChatScreen> {
   String peerAvatar;
   String id;
 
-  List<QueryDocumentSnapshot> listMessage = new List.from([]);
+  //List<QueryDocumentSnapshot> listMessage = new List.from([]);
   int _limit = 20;
   final int _limitIncrement = 20;
   String groupChatId;
   //SharedPreferences prefs;
 
-  File imageFile;
+  //File imageFile;
   bool isLoading;
-  bool isFirstMessage;
-  bool isShowSticker;
-  String imageUrl;
+  //bool isFirstMessage;
+  //bool isShowSticker;
+  //String imageUrl;
 
   final TextEditingController textEditingController = TextEditingController();
   final ScrollController listScrollController = ScrollController();
-  final FocusNode focusNode = FocusNode();
+  //final FocusNode focusNode = FocusNode();
   final model = ClienteModel();
 
   _scrollListener() {
@@ -104,29 +104,29 @@ class ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    focusNode.addListener(onFocusChange);
+    //focusNode.addListener(onFocusChange);
     listScrollController.addListener(_scrollListener);
 
     groupChatId = '';
 
     isLoading = false;
-    isShowSticker = false;
-    isFirstMessage = true;
-    imageUrl = '';
+    //isShowSticker = false;
+    //isFirstMessage = true;
+    //imageUrl = '';
 
     readLocal();
   }
 
-  void onFocusChange() {
+  /*void onFocusChange() {
     if (focusNode.hasFocus) {
       // Hide sticker when keyboard appear
       setState(() {
         isShowSticker = false;
       });
     }
-  }
+  }*/
 
-  readLocal() async {
+  readLocal() {
     //prefs = await SharedPreferences.getInstance();
     id = model.getUserId; //prefs.getString('id') ?? '';
 
@@ -230,7 +230,9 @@ class ChatScreenState extends State<ChatScreen> {
     //}
   }
 
-  Widget buildItem(int index, DocumentSnapshot document) {
+  Widget buildItem(
+      int index, DocumentSnapshot document, bool nextMessageIsMine) {
+    print('construindo item [$index] = ${document.data()['content']}');
     if (document.data()['idFrom'] == id) {
       // Right (my message)
       return Row(
@@ -248,7 +250,9 @@ class ChatScreenState extends State<ChatScreen> {
             decoration: BoxDecoration(
                 color: greyColor2, borderRadius: BorderRadius.circular(8.0)),
             margin: EdgeInsets.only(
-                bottom: isLastMessageRight(index) ? 20.0 : 10.0, right: 10.0),
+                bottom:
+                    isLastMessageRight(index, nextMessageIsMine) ? 20.0 : 10.0,
+                right: 10.0),
           )
           //: document.data()['type'] == 1
           /*/ Image
@@ -320,13 +324,15 @@ class ChatScreenState extends State<ChatScreen> {
         mainAxisAlignment: MainAxisAlignment.end,
       );
     } else {
+      //print(
+      //    'non-null: ${listMessage != null} ultima: ${isLastMessageLeft(index)} anterior minha: ${listMessage[index - 1].data()['idFrom'] == id} id: ${listMessage[index - 1].data()['idFrom']} content: ${listMessage[index - 1].data()['content']} index: $index');
       // Left (peer message)
       return Container(
         child: Column(
           children: <Widget>[
             Row(
               children: <Widget>[
-                isLastMessageLeft(index)
+                isLastMessageLeft(index, nextMessageIsMine)
                     ? Material(
                         child: CachedNetworkImage(
                           placeholder: (context, url) => Container(
@@ -432,7 +438,7 @@ class ChatScreenState extends State<ChatScreen> {
             ),
 
             // Time
-            isLastMessageLeft(index)
+            isLastMessageLeft(index, nextMessageIsMine)
                 ? Container(
                     child: Text(
                       DateFormat('dd MMM kk:mm').format(
@@ -454,29 +460,13 @@ class ChatScreenState extends State<ChatScreen> {
     }
   }
 
-  bool isLastMessageLeft(int index) {
-    if ((index > 0 &&
-            listMessage != null &&
-            listMessage[index - 1].data()['idFrom'] == id) ||
-        index == 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  bool isLastMessageLeft(int index, bool nextMessageIsMine) =>
+      ((index > 0 && nextMessageIsMine) || index == 0);
 
-  bool isLastMessageRight(int index) {
-    if ((index > 0 &&
-            listMessage != null &&
-            listMessage[index - 1].data()['idFrom'] != id) ||
-        index == 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  bool isLastMessageRight(int index, bool nextMessageIsMine) =>
+      ((index > 0 && !nextMessageIsMine) || index == 0);
 
-  Future<bool> onBackPress() {
+  /*Future<bool> onBackPress() {
     if (isShowSticker) {
       setState(() {
         isShowSticker = false;
@@ -490,32 +480,33 @@ class ChatScreenState extends State<ChatScreen> {
     }
 
     return Future.value(false);
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      child: Stack(
-        children: <Widget>[
-          Column(
-            children: <Widget>[
-              // List of messages
-              buildListMessage(),
+    return //WillPopScope(
+        //child:
+        Stack(
+      children: <Widget>[
+        Column(
+          children: <Widget>[
+            // List of messages
+            buildListMessage(),
 
-              // Sticker
-              //(isShowSticker ? buildSticker() : Container()),
+            // Sticker
+            //(isShowSticker ? buildSticker() : Container()),
 
-              // Input content
-              buildInput(),
-            ],
-          ),
+            // Input content
+            buildInput(),
+          ],
+        ),
 
-          // Loading
-          buildLoading()
-        ],
-      ),
-      onWillPop: onBackPress,
+        // Loading
+        buildLoading()
+      ],
     );
+    //onWillPop: onBackPress,
+    //);
   }
 
   /*Widget buildSticker() {
@@ -676,7 +667,7 @@ class ChatScreenState extends State<ChatScreen> {
                   hintText: 'Type your message...',
                   hintStyle: TextStyle(color: greyColor),
                 ),
-                focusNode: focusNode,
+                //focusNode: focusNode,
               ),
             ),
           ),
@@ -717,19 +708,25 @@ class ChatScreenState extends State<ChatScreen> {
                   .orderBy('timestamp', descending: true)
                   .limit(_limit)
                   .snapshots(),
-              builder: (context, snapshot) {
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
                 if (!snapshot.hasData) {
-                  return Center(
-                      child: CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(themeColor)));
+                  return Loading();
                 } else {
-                  listMessage.addAll(snapshot.data.documents);
+                  //listMessage.addAll(snapshot.data.docs);
                   return ListView.builder(
                     padding: EdgeInsets.all(10.0),
-                    itemBuilder: (context, index) =>
-                        buildItem(index, snapshot.data.documents[index]),
-                    itemCount: snapshot.data.documents.length,
+                    itemBuilder: (context, index) {
+                      //if (index > 0)
+                      return buildItem(
+                        index,
+                        snapshot.data.docs[index],
+                        (index > 0 &&
+                            snapshot.data.docs[index - 1].data()['idFrom'] ==
+                                id),
+                      );
+                    },
+                    itemCount: snapshot.data.docs.length,
                     reverse: true,
                     controller: listScrollController,
                   );
