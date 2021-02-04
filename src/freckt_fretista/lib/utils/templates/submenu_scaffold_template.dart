@@ -6,12 +6,10 @@ class SubmenuScaffoldTemplate extends StatelessWidget {
     Key key,
     @required this.body,
     @required this.title,
-    this.hasAlertTerms = true,
   }) : super(key: key);
 
   final Widget body;
   final String title;
-  final bool hasAlertTerms;
 
   //static const Color _black = Colors.black;
   static Color _teal = Consts.frecktThemeColor;

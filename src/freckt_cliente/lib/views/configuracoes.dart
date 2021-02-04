@@ -86,7 +86,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
             ),
             ListTile(
               title: Text(
-                'Encerrar Seção',
+                'Encerrar seção',
                 style: TextStyle(color: Colors.red),
               ),
               onTap: () async {
