@@ -232,7 +232,7 @@ class ChatScreenState extends State<ChatScreen> {
 
   Widget buildItem(
       int index, DocumentSnapshot document, bool nextMessageIsMine) {
-    print('construindo item [$index] = ${document.data()['content']}');
+    //print('construindo item [$index] = ${document.data()['content']}');
     if (document.data()['idFrom'] == id) {
       // Right (my message)
       return Row(

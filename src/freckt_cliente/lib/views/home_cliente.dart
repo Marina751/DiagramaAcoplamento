@@ -18,6 +18,7 @@ class HomeCliente extends StatefulWidget {
 class _HomeClienteState extends State<HomeCliente> {
   final model = ClienteModel();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final TextEditingController textEditingController = TextEditingController();
 
   bool _isLoading = false;
 
@@ -165,7 +166,31 @@ class _HomeClienteState extends State<HomeCliente> {
           ],
         ),
       ),
-      body: Stack(
+      body: Container(
+        color: Colors.black12,
+        child: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              //setState(() {
+              //  _isLoading = !_isLoading;
+              //});
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Fretistas(),
+                ),
+              );
+            },
+            child: Text('Fretistas'),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/*
+Stack(
         alignment: AlignmentDirectional.bottomStart,
         children: [
           Container(
@@ -240,6 +265,4 @@ class _HomeClienteState extends State<HomeCliente> {
           ),
         ],
       ),
-    );
-  }
-}
+ */
