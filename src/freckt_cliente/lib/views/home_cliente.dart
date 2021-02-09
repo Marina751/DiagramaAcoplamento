@@ -7,7 +7,7 @@ import 'package:freckt_cliente/views/configuracoes.dart';
 import 'package:freckt_cliente/views/agendamentos.dart';
 import 'package:freckt_cliente/views/fale_conosco.dart';
 import 'package:freckt_cliente/views/fretes.dart';
-import 'package:freckt_cliente/views/fretistas.dart';
+import 'package:freckt_cliente/views/solicitar_frete.dart';
 
 class HomeCliente extends StatefulWidget {
   @override
@@ -177,11 +177,11 @@ class _HomeClienteState extends State<HomeCliente> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Fretistas(),
+                  builder: (context) => SolicitarFrete(),
                 ),
               );
             },
-            child: Text('Fretistas'),
+            child: Text('Solicitar frete'),
           ),
         ),
       ),

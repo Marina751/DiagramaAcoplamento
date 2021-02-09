@@ -1,7 +1,0 @@
-enum StatusFrete {
-  EM_ANDAMENTO,
-  CONCLUIDO,
-  AGENDADO,
-  REJEITADO,
-  CANCELADO,
-}

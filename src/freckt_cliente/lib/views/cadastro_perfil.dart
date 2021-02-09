@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:freckt_cliente/models/cliente.model.dart';
+import 'package:freckt_cliente/utils/route_name.dart';
 import 'package:freckt_cliente/utils/templates/elevated_button_template.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:image_picker/image_picker.dart';
@@ -110,11 +111,12 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
 
         await model.saveUserData();
 
-        Navigator.pushAndRemoveUntil(
+        Navigator.pushNamedAndRemoveUntil(
           context,
-          MaterialPageRoute(
-            builder: (context) => HomeCliente(),
-          ),
+          RouteName.HOME,
+          //MaterialPageRoute(
+          //  builder: (context) => HomeCliente(),
+          //),
           (route) => false,
         );
       } on firebase_storage.FirebaseException catch (e) {
