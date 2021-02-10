@@ -11,18 +11,11 @@ class Veiculos extends StatefulWidget {
 }
 
 class _VeiculosState extends State<Veiculos> {
-  Text textWithColorTheme(String string) {
-    return new Text(
-      string,
-      style: TextStyle(color: Consts.frecktThemeColor),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Consts.frecktThemeColor,
+        backgroundColor: Consts.greenAppBar,
         leading: IconButton(
           color: Colors.white,
           icon: Icon(Icons.arrow_back),
@@ -50,7 +43,7 @@ class _VeiculosState extends State<Veiculos> {
                   ),
                   LimitedBox(
                     child: CircleAvatar(
-                      backgroundColor: Consts.frecktThemeColor,
+                      backgroundColor: Consts.greenDark,
                       radius: 30.0,
                       child: IconButton(
                         splashRadius: 10.0,
@@ -66,23 +59,23 @@ class _VeiculosState extends State<Veiculos> {
               ),
             ),
             ListTile(
-              title: textWithColorTheme('Placa'),
+              title: Text('Placa'),
               subtitle: Text(widget.model.getVehiclePlaca),
             ),
             ListTile(
-              title: textWithColorTheme('Marca/Modelo'),
+              title: Text('Marca/Modelo'),
               subtitle: Text(widget.model.getVehicleMarca),
             ),
             ListTile(
-              title: textWithColorTheme('Cor'),
+              title: Text('Cor'),
               subtitle: Text(widget.model.getVehicleCor),
             ),
             ListTile(
-              title: textWithColorTheme('Tipo'),
+              title: Text('Tipo'),
               subtitle: Text(widget.model.getVehicleTipo),
             ),
             ListTile(
-              title: textWithColorTheme('Ano'),
+              title: Text('Ano'),
               subtitle: Text(widget.model.getVehicleAno),
             ),
           ],

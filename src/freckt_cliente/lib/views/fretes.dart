@@ -190,7 +190,7 @@ class _FretesState extends State<Fretes> {
           onPressed: () {},
           child: Text('Enviar mensagem'),
           style: ElevatedButton.styleFrom(
-            primary: Colors.black, //Color(0xff13786C),
+            primary: Color(0xff13786C),
           ),
         ),
       ],
@@ -313,9 +313,9 @@ class _FretesState extends State<Fretes> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white, //Color(0xff20B8A6),
+        backgroundColor: Color(0xff20B8A6),
         leading: IconButton(
-          color: Colors.black, //Colors.white,
+          color: Colors.white,
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);

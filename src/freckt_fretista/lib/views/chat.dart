@@ -16,17 +16,23 @@ import 'package:freckt_fretista/utils/consts.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
 
 class Chat extends StatelessWidget {
-  //final String clienteId;
-  //final String peerAvatar;
-  final Map<String, dynamic> data;
+  final String clienteId;
+  final String clientePhotoUrl;
+  final String clienteName;
+  //final Map<String, dynamic> data;
 
-  Chat({Key key, @required this.data}) : super(key: key);
+  Chat({
+    Key key,
+    @required this.clienteId,
+    @required this.clienteName,
+    @required this.clientePhotoUrl,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Consts.frecktThemeColor,
+        backgroundColor: Consts.greenAppBar,
         leading: IconButton(
           color: Colors.white,
           icon: Icon(Icons.arrow_back),
@@ -34,11 +40,11 @@ class Chat extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: Text(data['clienteName']),
+        title: Text(clienteName),
       ),
       body: ChatScreen(
-        clienteId: data['clienteId'],
-        peerAvatar: data['clientePhotoUrl'],
+        clienteId: clienteId,
+        peerAvatar: clientePhotoUrl,
       ),
     );
   }
@@ -236,7 +242,6 @@ class ChatScreenState extends State<ChatScreen> {
           Container(
             child: Text(
               document.data()['content'],
-              style: TextStyle(color: Consts.frecktThemeColor),
             ),
             padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
             width: 200.0,
@@ -331,7 +336,7 @@ class ChatScreenState extends State<ChatScreen> {
                             child: CircularProgressIndicator(
                               strokeWidth: 1.0,
                               valueColor: AlwaysStoppedAnimation<Color>(
-                                Consts.frecktThemeColor,
+                                Consts.greenDark,
                               ),
                             ),
                             width: 35.0,
@@ -359,7 +364,7 @@ class ChatScreenState extends State<ChatScreen> {
                   padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
                   width: 200.0,
                   decoration: BoxDecoration(
-                      color: Consts.frecktThemeColor,
+                      color: Consts.greenDark,
                       borderRadius: BorderRadius.circular(8.0)),
                   margin: EdgeInsets.only(left: 10.0),
                 )
@@ -630,7 +635,7 @@ class ChatScreenState extends State<ChatScreen> {
               child: IconButton(
                 icon: Icon(Icons.image),
                 onPressed: () {}, //getImage,
-                color: Consts.frecktThemeColor,
+                color: Consts.greenDark,
               ),
             ),
             color: Colors.white,
@@ -654,8 +659,10 @@ class ChatScreenState extends State<ChatScreen> {
                 onSubmitted: (value) {
                   onSendMessage(textEditingController.text, 0);
                 },
-                style:
-                    TextStyle(color: Consts.frecktThemeColor, fontSize: 15.0),
+                style: TextStyle(
+                  //color: Consts.frecktThemeColor,
+                  fontSize: 15.0,
+                ),
                 controller: textEditingController,
                 decoration: InputDecoration.collapsed(
                   hintText: 'Type your message...',
@@ -673,7 +680,7 @@ class ChatScreenState extends State<ChatScreen> {
               child: IconButton(
                 icon: Icon(Icons.send),
                 onPressed: () => onSendMessage(textEditingController.text, 0),
-                color: Consts.frecktThemeColor,
+                color: Consts.greenDark,
               ),
             ),
             color: Colors.white,
@@ -694,7 +701,7 @@ class ChatScreenState extends State<ChatScreen> {
           ? Center(
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  Consts.frecktThemeColor,
+                  Consts.greenDark,
                 ),
               ),
             )

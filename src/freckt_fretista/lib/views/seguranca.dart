@@ -10,7 +10,7 @@ class Seguranca extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Consts.frecktThemeColor,
+        backgroundColor: Consts.greenAppBar,
         leading: IconButton(
           color: Colors.white,
           icon: Icon(Icons.arrow_back),
@@ -47,7 +47,7 @@ class Seguranca extends StatelessWidget {
               },
               child: Text(
                 'Esqueceu sua Senha?',
-                style: TextStyle(color: Consts.frecktThemeColor),
+                //style: TextStyle(color: Consts.frecktThemeColor),
                 textAlign: TextAlign.start,
               ),
             ),

@@ -12,7 +12,7 @@ class SubmenuScaffoldTemplate extends StatelessWidget {
   final String title;
 
   //static const Color _black = Colors.black;
-  static Color _teal = Consts.frecktThemeColor;
+  static Color _teal = Consts.greenAppBar;
 
   @override
   Widget build(BuildContext context) {

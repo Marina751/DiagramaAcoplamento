@@ -12,18 +12,11 @@ class Conta extends StatefulWidget {
 }
 
 class _ContaState extends State<Conta> {
-  Text textWithColorTheme(String string) {
-    return new Text(
-      string,
-      style: TextStyle(color: Consts.frecktThemeColor),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Consts.frecktThemeColor,
+        backgroundColor: Consts.greenAppBar,
         leading: IconButton(
           color: Colors.white,
           icon: Icon(Icons.arrow_back),
@@ -51,7 +44,7 @@ class _ContaState extends State<Conta> {
                   ),
                   LimitedBox(
                     child: CircleAvatar(
-                      backgroundColor: Consts.frecktThemeColor,
+                      backgroundColor: Consts.greenDark,
                       radius: 30.0,
                       child: IconButton(
                         splashRadius: 10.0,
@@ -67,15 +60,15 @@ class _ContaState extends State<Conta> {
               ),
             ),
             ListTile(
-              title: textWithColorTheme('Nome'),
+              title: Text('Nome'),
               subtitle: Text(widget.model.getUserName),
             ),
             ListTile(
-              title: textWithColorTheme('Telefone'),
+              title: Text('Telefone'),
               subtitle: Text(widget.model.getUserPhone),
             ),
             ListTile(
-              title: textWithColorTheme('E-mail'),
+              title: Text('E-mail'),
               subtitle: Text(widget.model.getUserEmail),
             ),
           ],

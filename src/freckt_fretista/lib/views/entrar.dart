@@ -80,7 +80,7 @@ class _EntrarState extends State<Entrar> {
                 Icon(
                   Icons.local_shipping_rounded,
                   size: 34.0,
-                  color: Consts.frecktThemeColor,
+                  //color: Consts.frecktThemeColor,
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 10.0),
@@ -88,7 +88,7 @@ class _EntrarState extends State<Entrar> {
                     'Freckt',
                     style: GoogleFonts.comfortaa(
                       fontSize: 24.0,
-                      color: Consts.frecktThemeColor,
+                      //color: Consts.frecktThemeColor,
                     ),
                   ),
                 )
