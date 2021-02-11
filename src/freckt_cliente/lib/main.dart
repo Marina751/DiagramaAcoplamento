@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:freckt_cliente/utils/route_name.dart';
 import 'package:freckt_cliente/views/entrar.dart';
 import 'package:freckt_cliente/views/get_user_data.dart';
+import 'package:freckt_cliente/views/home_cliente.dart';
 import 'package:freckt_cliente/views/loading.dart';
 import 'package:freckt_cliente/views/something_went_wrong.dart';
 
@@ -10,10 +12,12 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
+      initialRoute: RouteName.ROOT,
       title: 'Freckt Cliente',
       routes: {
-        '/': (context) => Root(),
+        RouteName.ROOT: (context) => Root(),
+        RouteName.HOME: (context) => HomeCliente(),
+        RouteName.GET_USER_DATA: (context) => GetUserData(),
 
         /// Aqui incluir as [rotas] do app
       },
@@ -46,7 +50,7 @@ class Root extends StatelessWidget {
           /// Se ao invés disso tivermos um fretista, chamamos [GetUserData]
           /// para acessar o [FirebaseFirestore] e carregar o [model] com
           /// as informações dele.
-          return (user != null ? GetUserData(user.uid) : Entrar());
+          return (user != null ? GetUserData() : Entrar());
         }
 
         /// [warning]: a tela de [Splash] não está pronta.

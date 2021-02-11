@@ -14,7 +14,7 @@ class AvatarTemplate extends StatelessWidget {
         placeholder: (context, url) => Container(
           child: CircularProgressIndicator(
             strokeWidth: 1.0,
-            valueColor: AlwaysStoppedAnimation<Color>(Consts.frecktThemeColor),
+            valueColor: AlwaysStoppedAnimation<Color>(Consts.greenDark),
           ),
           width: 50.0,
           height: 50.0,

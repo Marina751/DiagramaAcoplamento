@@ -6,7 +6,7 @@ class ElevatedButtonTemplate extends Container {
   ElevatedButtonTemplate({
     @required void Function() onPressed,
     @required String buttonText,
-    Color color = Consts.frecktThemeColor,
+    Color color = Consts.greenDark,
     Color fontColor = Colors.white,
   }) : super(
           margin: EdgeInsets.all(10.0),

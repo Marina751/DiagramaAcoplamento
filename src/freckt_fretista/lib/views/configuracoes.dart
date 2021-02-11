@@ -17,13 +17,6 @@ class Configuracoes extends StatefulWidget {
 }
 
 class _ConfiguracoesState extends State<Configuracoes> {
-  Text textWithColorTheme(String string) {
-    return new Text(
-      string,
-      style: TextStyle(color: Consts.frecktThemeColor),
-    );
-  }
-
   Future<void> _showDialog() async {
     return showDialog<void>(
       context: context,
@@ -69,7 +62,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Consts.frecktThemeColor,
+        backgroundColor: Consts.greenAppBar,
         leading: IconButton(
           color: Colors.white,
           icon: Icon(Icons.arrow_back),
@@ -89,7 +82,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
         child: ListView(
           children: [
             ListTile(
-              title: textWithColorTheme('Conta'),
+              title: Text('Conta'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -100,7 +93,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
               },
             ),
             ListTile(
-              title: textWithColorTheme('Veículos'),
+              title: Text('Veículos'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -111,7 +104,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
               },
             ),
             ListTile(
-              title: textWithColorTheme('Privacidade'),
+              title: Text('Privacidade'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -122,7 +115,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
               },
             ),
             ListTile(
-              title: textWithColorTheme('Segurança'),
+              title: Text('Segurança'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -133,7 +126,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
               },
             ),
             ListTile(
-              title: textWithColorTheme('Sobre'),
+              title: Text('Sobre'),
               onTap: () {
                 Navigator.push(
                   context,

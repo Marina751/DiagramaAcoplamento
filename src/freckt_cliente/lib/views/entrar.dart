@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:freckt_cliente/controllers/entrar.controller.dart';
 import 'package:freckt_cliente/utils/enums/response_status.dart';
+import 'package:freckt_cliente/utils/route_name.dart';
 import 'package:freckt_cliente/views/cadastro_cliente.dart';
-import 'package:freckt_cliente/views/get_user_data.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:freckt_cliente/utils/templates/button_template.dart';
 
@@ -37,12 +37,14 @@ class _EntrarState extends State<Entrar> {
       final response = await _controller.login();
 
       if (response.status == ResponseStatus.SUCCESS) {
-        Navigator.pushAndRemoveUntil(
+        Navigator.pushNamedAndRemoveUntil(
           context,
-          MaterialPageRoute(
-            builder: (context) => GetUserData(response.object.uid),
-          ),
+          RouteName.GET_USER_DATA,
+          //MaterialPageRoute(
+          //  builder: (context) => GetUserData(response.object.uid),
+          //),
           (route) => false,
+          //arguments: GetUserDataArgs(response.object.uid)
         );
       } else {
         setState(() {
