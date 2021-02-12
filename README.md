@@ -4,6 +4,7 @@ Solicite ou agende fretes com o [Freckt cliente](https://github.com/Marina751/Pr
 Receba solicitações de fretes com o [Freckt fretista](https://github.com/Marina751/ProjetoPOO/tree/master/src/freckt_fretista).
 
 # Equipe
+@JBreno
 - [João Breno](https://github.com/JBreno)
 - [Marina Gabriela](https://github.com/Marina751)
 - [Letícia Sampaio](https://github.com/Leticiasampaioa)
