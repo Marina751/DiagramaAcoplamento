@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/*import 'package:flutter/material.dart';
 import 'package:freckt_cliente/views/chat.dart';
 
 class PerfilFretista extends StatelessWidget {
@@ -38,3 +38,4 @@ class PerfilFretista extends StatelessWidget {
     );
   }
 }
+*/

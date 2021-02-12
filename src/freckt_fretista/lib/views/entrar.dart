@@ -159,6 +159,7 @@ class _EntrarState extends State<Entrar> {
             ElevatedButtonTemplate(
               onPressed: _isLoading ? null : login,
               buttonText: 'Entrar',
+              color: Colors.black,
             ),
             Row(
               children: [

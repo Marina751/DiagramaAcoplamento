@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:freckt_cliente/utils/const.dart';
+import 'package:freckt_cliente/utils/consts.dart';
 
 class AvatarTemplate extends StatelessWidget {
   final String url;
@@ -14,7 +14,7 @@ class AvatarTemplate extends StatelessWidget {
         placeholder: (context, url) => Container(
           child: CircularProgressIndicator(
             strokeWidth: 1.0,
-            valueColor: AlwaysStoppedAnimation<Color>(themeColor),
+            valueColor: AlwaysStoppedAnimation<Color>(Consts.greenDark),
           ),
           width: 50.0,
           height: 50.0,

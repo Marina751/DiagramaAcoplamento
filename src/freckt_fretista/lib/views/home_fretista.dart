@@ -1,21 +1,12 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:freckt_fretista/utils/templates/avatar_template.dart';
 import 'package:freckt_fretista/views/agendamentos.dart';
 import 'package:freckt_fretista/models/fretista.model.dart';
-import 'package:freckt_fretista/views/chat.dart';
 import 'package:freckt_fretista/views/chats.dart';
 import 'package:freckt_fretista/views/configuracoes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freckt_fretista/views/fale_conosco.dart';
-import 'package:freckt_fretista/views/fretes.dart';
 import 'package:freckt_fretista/utils/consts.dart';
-import 'package:freckt_fretista/views/loading.dart';
 import 'package:freckt_fretista/views/solicitacoes.dart';
-import 'package:freckt_fretista/views/something_went_wrong.dart';
-//import 'package:google_maps_flutter/google_maps_flutter.dart';
-//import 'package:freckt_fretista/views/entrar.dart';
-//import 'package:freckt_fretista/utils/enums/response_status.dart';
 
 class HomeFretista extends StatefulWidget {
   @override
@@ -175,3 +166,126 @@ class _HomeFretistaState extends State<HomeFretista> {
     );
   }
 }
+
+/*
+body: Padding(
+        padding: EdgeInsets.fromLTRB(20.0, 40.0, 20.0, 40.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              'Estavamos te esperando!\nGuardamos isso para \nvocê.',
+              textAlign: TextAlign.center,
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 40.0),
+            ),
+            ElevatedButtonTemplateHome(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Cha(),
+                  ),
+                );
+              },
+              buttonText: ' MENSAGENS \n\nLeia suas mensagens!',
+            ),
+            Divider(
+              thickness: 2.0,
+              height: 30.0,
+            ),
+            ElevatedButtonTemplateHome(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Sol(),
+                    ),
+                  );
+                },
+                buttonText: 'SOLICITAÇÕES \n\nVeja quem lhe solicitou!'),
+            Divider(
+              thickness: 2.0,
+              height: 30.0,
+            ),
+            ElevatedButtonTemplateHome(
+                onPressed: () {},
+                buttonText: 'AGENDAMENTOS \n\nVeja seus novos pedidos!')
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Sol extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff20B8A6),
+        leading: IconButton(
+          color: Colors.white,
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Text('Solicitaçãos'),
+      ),
+      body: Container(child: Solicitacoes()),
+    );
+  }
+}
+
+class Cha extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Color(0xff20B8A6),
+        leading: IconButton(
+          color: Colors.white,
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: Text('Conversas'),
+      ),
+      body: Container(child: Chats()),
+    );
+  }
+}
+
+class ElevatedButtonTemplateHome extends Container {
+  ElevatedButtonTemplateHome({
+    @required void Function() onPressed,
+    @required String buttonText,
+    Color color = Colors.white,
+    Color fontColor = Colors.black,
+  }) : super(
+          margin: EdgeInsets.all(10.0),
+          height: 92.0,
+          width: 340.0,
+          child: ElevatedButton(
+            onPressed: onPressed,
+            style: ElevatedButton.styleFrom(
+                primary: color,
+                onPrimary: color,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(40.0),
+                ),
+                side: BorderSide(color: Colors.black)),
+            child: Text(
+              buttonText,
+              style: TextStyle(
+                color: fontColor,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+}
+*/
