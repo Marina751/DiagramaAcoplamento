@@ -1,7 +1,6 @@
 # Freckt
 Solicite ou agende fretes com o [Freckt cliente](https://github.com/Marina751/ProjetoPOO/tree/master/src/freckt_cliente).
-</br>**É um fretista?**</br>
-Receba solicitações de fretes com o [Freckt fretista](https://github.com/Marina751/ProjetoPOO/tree/master/src/freckt_fretista).
+</br>É um fretista? Receba solicitações de fretes com o [Freckt fretista](https://github.com/Marina751/ProjetoPOO/tree/master/src/freckt_fretista).
 
 # Equipe
 - [João Breno](https://github.com/JBreno)
