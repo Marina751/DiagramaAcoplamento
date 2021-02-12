@@ -11,6 +11,7 @@ class FormFieldTemplate extends Container {
     String Function(String) validator,
     void Function(String) onChanged,
     bool obscureText = false,
+    int maxLines = 1,
   }) : super(
           padding: const EdgeInsets.all(10.0),
           child: Column(
@@ -20,6 +21,7 @@ class FormFieldTemplate extends Container {
               TextFormField(
                 keyboardType: keyboardType,
                 obscureText: obscureText,
+                maxLines: maxLines,
                 decoration: InputDecoration(
                   errorText: errorText,
                   border: OutlineInputBorder(),

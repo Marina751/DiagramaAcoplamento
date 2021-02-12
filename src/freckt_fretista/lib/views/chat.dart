@@ -665,7 +665,7 @@ class ChatScreenState extends State<ChatScreen> {
                 ),
                 controller: textEditingController,
                 decoration: InputDecoration.collapsed(
-                  hintText: 'Type your message...',
+                  hintText: 'Digite uma mensagem...',
                   hintStyle: TextStyle(color: Consts.greyColor),
                 ),
                 //focusNode: focusNode,

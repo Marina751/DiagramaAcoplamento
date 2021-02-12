@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:freckt_cliente/utils/address.dart';
 import 'package:freckt_cliente/utils/frete.dart';
+import 'package:freckt_cliente/utils/templates/elevated_button_template.dart';
+import 'package:freckt_cliente/utils/templates/form_field_template.dart';
 import 'package:freckt_cliente/views/load_fretistas.dart';
 
 class SolicitarFrete extends StatefulWidget {
@@ -9,33 +11,49 @@ class SolicitarFrete extends StatefulWidget {
 }
 
 class _SolicitarFreteState extends State<SolicitarFrete> {
-  void makeFrete() {
-    Frete frete = new Frete(
-      origem: new Address(
-        municipio: 'Fortaleza',
-        uf: 'CE',
-        bairro: 'Benfica',
-        rua: 'Av. 13 de maio',
-        numero: '2013',
-        cep: '99999999',
-      ),
-      destino: new Address(
-        municipio: 'Maracanaú',
-        uf: 'CE',
-        bairro: 'Centro',
-        rua: 'Rua x',
-        numero: '12',
-        cep: '88888888',
-      ),
-      descricao: 'Descrição da carga',
-    );
+  final _formKey = GlobalKey<FormState>();
+  String origemMunicipio;
+  String origemUf;
+  String origemBairro;
+  String origemRua;
+  String origemNumero;
+  String origemCep;
+  String destinoMunicipio;
+  String destinoUf;
+  String destinoBairro;
+  String destinoRua;
+  String destinoNumero;
+  String destinoCep;
+  String descricao;
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => LoadFretistas(frete: frete),
-      ),
-    );
+  void makeFrete() {
+    if (_formKey.currentState.validate()) {
+      Frete frete = new Frete(
+        origem: new Address(
+          municipio: origemMunicipio,
+          uf: origemUf,
+          bairro: origemBairro,
+          rua: origemRua,
+          numero: origemNumero,
+          cep: origemCep,
+        ),
+        destino: new Address(
+          municipio: destinoMunicipio,
+          uf: destinoUf,
+          bairro: destinoBairro,
+          rua: destinoRua,
+          numero: destinoNumero,
+          cep: destinoCep,
+        ),
+        descricao: descricao,
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoadFretistas(frete: frete),
+        ),
+      );
+    }
   }
 
   @override
@@ -52,12 +70,251 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
         ),
         title: Text('Solicitando frete'),
       ),
-      body: Container(
-        color: Colors.black12,
-        child: Center(
-          child: ElevatedButton(
-            onPressed: makeFrete,
-            child: Text('Selecionar fretistas'),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 20.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  FormFieldTemplate(
+                    title: 'Descrição da Carga',
+                    hintText:
+                        'Descreva a carga para que o fretista saiba o que irá transportar',
+                    keyboardType: TextInputType.text,
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Informe a placa';
+                      }
+                      return null;
+                    },
+                    maxLines: 10,
+                    onChanged: (value) => descricao = value,
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: 10.0, top: 20.0, bottom: 10.0),
+                    child: Text(
+                      'Local de partida',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: FormFieldTemplate(
+                          title: 'Município',
+                          hintText: 'ex. Fortaleza',
+                          keyboardType: TextInputType.name,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Informe o município de partida';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) => origemMunicipio = value,
+                        ),
+                      ),
+                      Expanded(
+                        child: FormFieldTemplate(
+                          title: 'UF',
+                          hintText: 'ex. CE',
+                          keyboardType: TextInputType.name,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Informe o UF';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) => origemUf = value,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: FormFieldTemplate(
+                          title: 'Bairro',
+                          hintText: 'ex Paramgaba',
+                          keyboardType: TextInputType.name,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Informe o bairro de partida';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) => origemBairro = value,
+                        ),
+                      ),
+                      Expanded(
+                        child: FormFieldTemplate(
+                          title: 'CEP',
+                          hintText: 'ex 99999-999',
+                          keyboardType: TextInputType.number,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Informe o CEP';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) => origemCep = value,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: FormFieldTemplate(
+                          title: 'Rua',
+                          hintText: 'ex. Av. João Pessoa',
+                          keyboardType: TextInputType.name,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Informe a rua de partida';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) => origemRua = value,
+                        ),
+                      ),
+                      Expanded(
+                        child: FormFieldTemplate(
+                          title: 'Número',
+                          hintText: 'ex. 123',
+                          keyboardType: TextInputType.number,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Informe o número';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) => origemNumero = value,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: 10.0, top: 20.0, bottom: 10.0),
+                    child: Text(
+                      'Destino final',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: FormFieldTemplate(
+                          title: 'Município',
+                          hintText: 'ex. Fortaleza',
+                          keyboardType: TextInputType.name,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Informe o município de destino';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) => destinoMunicipio = value,
+                        ),
+                      ),
+                      Expanded(
+                        child: FormFieldTemplate(
+                          title: 'UF',
+                          hintText: 'ex. CE',
+                          keyboardType: TextInputType.name,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Informe o UF';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) => destinoUf = value,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: FormFieldTemplate(
+                          title: 'Bairro',
+                          hintText: 'ex Benfica',
+                          keyboardType: TextInputType.name,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Informe o bairro de destino';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) => destinoBairro = value,
+                        ),
+                      ),
+                      Expanded(
+                        child: FormFieldTemplate(
+                          title: 'CEP',
+                          hintText: 'ex 88888-888',
+                          keyboardType: TextInputType.number,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Informe o CEP';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) => destinoCep = value,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: FormFieldTemplate(
+                          title: 'Rua',
+                          hintText: 'ex. Av. 13 de maio',
+                          keyboardType: TextInputType.name,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Informe a rua de destino';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) => destinoRua = value,
+                        ),
+                      ),
+                      Expanded(
+                        child: FormFieldTemplate(
+                          title: 'Número',
+                          hintText: 'ex. 123',
+                          keyboardType: TextInputType.number,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Informe o número';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) => destinoNumero = value,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              ElevatedButtonTemplate(
+                onPressed: makeFrete,
+                buttonText: 'Selecionar fretista',
+                color: Color(0xff13786C),
+              ),
+            ],
           ),
         ),
       ),

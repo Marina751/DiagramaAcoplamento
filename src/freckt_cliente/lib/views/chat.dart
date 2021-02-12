@@ -11,16 +11,21 @@ import 'package:intl/intl.dart';
 
 import 'package:cached_network_image/cached_network_image.dart'; //
 //import 'package:flutter_chat_demo/widget/full_photo.dart';
-import 'package:freckt_cliente/utils/const.dart';
+import 'package:freckt_cliente/utils/consts.dart';
 //import 'package:fluttertoast/fluttertoast.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
 
 class Chat extends StatelessWidget {
-  //final String fretistaId;
-  //final String peerAvatar;
-  final Map<String, dynamic> data;
+  final String fretistaId;
+  final String fretistaPhotoUrl;
+  final String fretistaName;
 
-  Chat({Key key, @required this.data}) : super(key: key);
+  const Chat({
+    Key key,
+    @required this.fretistaId,
+    @required this.fretistaPhotoUrl,
+    @required this.fretistaName,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +39,12 @@ class Chat extends StatelessWidget {
             Navigator.pop(context);
           },
         ),
-        title: Text(data['name']),
+        title: Text(fretistaName),
       ),
       body: ChatScreen(
-        fretistaId: data['id'],
-        peerAvatar: data['photoUrl'],
+        fretistaId: fretistaId,
+        fretistaName: fretistaName,
+        fretistaPhotoUrl: fretistaPhotoUrl,
       ),
     );
   }
@@ -46,14 +52,19 @@ class Chat extends StatelessWidget {
 
 class ChatScreen extends StatefulWidget {
   final String fretistaId;
-  final String peerAvatar;
+  final String fretistaPhotoUrl;
+  final String fretistaName;
 
-  ChatScreen({Key key, @required this.fretistaId, @required this.peerAvatar})
-      : super(key: key);
+  ChatScreen({
+    Key key,
+    @required this.fretistaId,
+    @required this.fretistaName,
+    @required this.fretistaPhotoUrl,
+  }) : super(key: key);
 
   @override
   State createState() =>
-      ChatScreenState(fretistaId: fretistaId, peerAvatar: peerAvatar);
+      ChatScreenState(fretistaId: fretistaId, peerAvatar: fretistaPhotoUrl);
 }
 
 class ChatScreenState extends State<ChatScreen> {
@@ -216,7 +227,9 @@ class ChatScreenState extends State<ChatScreen> {
         'fretistaId': fretistaId,
         'clienteId': id,
         'clienteName': model.getUserName,
-        'clientePhotoUrl': model.getPhotoUrl
+        'clientePhotoUrl': model.getPhotoUrl,
+        'fretistaName': widget.fretistaName,
+        'fretistaPhotoUrl': widget.fretistaPhotoUrl,
       });
 
       listScrollController.animateTo(0.0,
@@ -243,12 +256,13 @@ class ChatScreenState extends State<ChatScreen> {
           Container(
             child: Text(
               document.data()['content'],
-              style: TextStyle(color: primaryColor),
+              style: TextStyle(color: Consts.primaryColor),
             ),
             padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
             width: 200.0,
             decoration: BoxDecoration(
-                color: greyColor2, borderRadius: BorderRadius.circular(8.0)),
+                color: Consts.greyColor2,
+                borderRadius: BorderRadius.circular(8.0)),
             margin: EdgeInsets.only(
                 bottom:
                     isLastMessageRight(index, nextMessageIsMine) ? 20.0 : 10.0,
@@ -338,8 +352,8 @@ class ChatScreenState extends State<ChatScreen> {
                           placeholder: (context, url) => Container(
                             child: CircularProgressIndicator(
                               strokeWidth: 1.0,
-                              valueColor:
-                                  AlwaysStoppedAnimation<Color>(themeColor),
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                  Consts.greenDark),
                             ),
                             width: 35.0,
                             height: 35.0,
@@ -366,7 +380,7 @@ class ChatScreenState extends State<ChatScreen> {
                   padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
                   width: 200.0,
                   decoration: BoxDecoration(
-                      color: peerChatColor,
+                      color: Consts.greenDark,
                       borderRadius: BorderRadius.circular(8.0)),
                   margin: EdgeInsets.only(left: 10.0),
                 )
@@ -445,7 +459,7 @@ class ChatScreenState extends State<ChatScreen> {
                           DateTime.fromMillisecondsSinceEpoch(
                               int.parse(document.data()['timestamp']))),
                       style: TextStyle(
-                          color: greyColor,
+                          color: Consts.greyColor,
                           fontSize: 12.0,
                           fontStyle: FontStyle.italic),
                     ),
@@ -637,7 +651,7 @@ class ChatScreenState extends State<ChatScreen> {
               child: IconButton(
                 icon: Icon(Icons.image),
                 onPressed: () {}, //getImage,
-                color: primaryColor,
+                color: Consts.greenDark,
               ),
             ),
             color: Colors.white,
@@ -661,11 +675,14 @@ class ChatScreenState extends State<ChatScreen> {
                 onSubmitted: (value) {
                   onSendMessage(textEditingController.text, 0);
                 },
-                style: TextStyle(color: primaryColor, fontSize: 15.0),
+                style: TextStyle(
+                  //color: primaryColor,
+                  fontSize: 15.0,
+                ),
                 controller: textEditingController,
                 decoration: InputDecoration.collapsed(
-                  hintText: 'Type your message...',
-                  hintStyle: TextStyle(color: greyColor),
+                  hintText: 'Digite uma mensagem...',
+                  //hintStyle: TextStyle(color: greyColor),
                 ),
                 //focusNode: focusNode,
               ),
@@ -679,7 +696,7 @@ class ChatScreenState extends State<ChatScreen> {
               child: IconButton(
                 icon: Icon(Icons.send),
                 onPressed: () => onSendMessage(textEditingController.text, 0),
-                color: primaryColor,
+                color: Consts.greenDark,
               ),
             ),
             color: Colors.white,
@@ -689,7 +706,7 @@ class ChatScreenState extends State<ChatScreen> {
       width: double.infinity,
       height: 50.0,
       decoration: BoxDecoration(
-          border: Border(top: BorderSide(color: greyColor2, width: 0.5)),
+          border: Border(top: BorderSide(color: Consts.greyColor2, width: 0.5)),
           color: Colors.white),
     );
   }
@@ -699,7 +716,8 @@ class ChatScreenState extends State<ChatScreen> {
       child: groupChatId == ''
           ? Center(
               child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(themeColor)))
+                  valueColor: AlwaysStoppedAnimation<Color>(Consts.greenDark)),
+            )
           : StreamBuilder(
               stream: FirebaseFirestore.instance
                   .collection('messages')

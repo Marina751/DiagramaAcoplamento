@@ -3,10 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:freckt_cliente/models/cliente.model.dart';
-import 'package:freckt_cliente/utils/const.dart';
+import 'package:freckt_cliente/utils/consts.dart';
 import 'package:freckt_cliente/utils/status_frete.dart';
 import 'package:freckt_cliente/utils/templates/avatar_template.dart';
+import 'package:freckt_cliente/views/chat.dart';
 import 'package:freckt_cliente/views/loading.dart';
+import 'package:freckt_cliente/views/solicitar_frete.dart';
 import 'package:freckt_cliente/views/something_went_wrong.dart';
 
 class Fretes extends StatefulWidget {
@@ -92,7 +94,11 @@ class _FretesState extends State<Fretes> {
                             primary: Colors.red,
                           ),
                         )
-                      : Container(),
+                      : data['status'] == StatusFrete.REJEITADO
+                          ? Text(
+                              'Segundo o fretista, o motivo de não ter aceitado sua solicitação foi:\n\n"${data['motivo']}"',
+                            )
+                          : Container(),
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context);
@@ -119,7 +125,14 @@ class _FretesState extends State<Fretes> {
               child: Text('Você ainda não fez solicitações de frete.'),
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SolicitarFrete(),
+                  ),
+                );
+              },
               child: Text('Solicitar frete'),
               style: ElevatedButton.styleFrom(
                 primary: Color(0xff13786C),
@@ -133,14 +146,28 @@ class _FretesState extends State<Fretes> {
 
   String _twoDigits(int n) => (n < 10 ? '0$n' : '$n');
 
+  bool _isToday({
+    @required int day,
+    @required int month,
+    @required int year,
+  }) {
+    final today = DateTime.now();
+
+    return (day == today.day && month == today.month && year == today.year);
+  }
+
   String formatDateTime(DateTime dateTime) {
-    String y = '${dateTime.year}';
-    String m = _twoDigits(dateTime.month);
-    String d = _twoDigits(dateTime.day);
+    int y = dateTime.year;
+    int m = dateTime.month;
+    int d = dateTime.day;
     String h = _twoDigits(dateTime.hour);
     String min = _twoDigits(dateTime.minute);
 
-    return '$d-$m-$y $h:$min';
+    String date = _isToday(day: d, month: m, year: y)
+        ? 'Hoje'
+        : '${_twoDigits(d)}-${_twoDigits(m)}-$y';
+
+    return '$date $h:$min';
   }
 
   Text statusFrete(int status) {
@@ -160,13 +187,13 @@ class _FretesState extends State<Fretes> {
         textColor = Colors.orange;
         text = 'Esperando resposta do fretista';
         break;
-      case StatusFrete.ACEITO:
-        textColor = Colors.green;
-        text = 'Frete aceito';
-        break;
       case StatusFrete.EM_ANDAMENTO:
         textColor = Colors.green;
         text = 'Frete em andamento';
+        break;
+      case StatusFrete.CONCLUIDO:
+        textColor = Colors.green;
+        text = 'Frete concluído';
         break;
       default:
         break;
@@ -175,7 +202,11 @@ class _FretesState extends State<Fretes> {
     return Text(text, style: TextStyle(color: textColor));
   }
 
-  Widget freteAceito() {
+  Widget freteAceito({
+    @required String fretistaId,
+    @required String fretistaPhotoUrl,
+    @required String fretistaName,
+  }) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -187,7 +218,17 @@ class _FretesState extends State<Fretes> {
           ),
         ),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Chat(
+                    fretistaId: fretistaId,
+                    fretistaPhotoUrl: fretistaPhotoUrl,
+                    fretistaName: fretistaName),
+              ),
+            );
+          },
           child: Text('Enviar mensagem'),
           style: ElevatedButton.styleFrom(
             primary: Color(0xff13786C),
@@ -199,8 +240,7 @@ class _FretesState extends State<Fretes> {
 
   Widget bottomItem(Map<String, dynamic> data) {
     int status = data['status'];
-    bool canCancel = (status == StatusFrete.ACEITO ||
-        status == StatusFrete.ESPERANDO_RESPOSTA ||
+    bool canCancel = (status == StatusFrete.ESPERANDO_RESPOSTA ||
         status == StatusFrete.EM_ANDAMENTO);
 
     return Container(
@@ -208,7 +248,13 @@ class _FretesState extends State<Fretes> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            status == StatusFrete.ACEITO ? freteAceito() : Container(),
+            status == StatusFrete.EM_ANDAMENTO
+                ? freteAceito(
+                    fretistaId: data['fretistaId'],
+                    fretistaName: data['fretistaName'],
+                    fretistaPhotoUrl: data['fretistaPhotoUrl'],
+                  )
+                : Container(),
             TextButton(
               onPressed: () async {
                 await _showDialog(data, canCancel);
@@ -270,7 +316,7 @@ class _FretesState extends State<Fretes> {
       //),
       padding: EdgeInsets.fromLTRB(25.0, 10.0, 25.0, 10.0),
       decoration: BoxDecoration(
-        color: greyColor2,
+        color: Consts.greyColor2,
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         //RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       ),
@@ -321,10 +367,7 @@ class _FretesState extends State<Fretes> {
             Navigator.pop(context);
           },
         ),
-        title: Text(
-          'Seus fretes',
-          style: TextStyle(color: Colors.black),
-        ),
+        title: Text('Seus fretes'),
       ),
       body: loadFretes(),
     );

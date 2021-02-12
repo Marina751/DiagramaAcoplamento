@@ -8,7 +8,7 @@ import 'package:freckt_cliente/utils/fretista.dart';
 import 'package:freckt_cliente/utils/route_name.dart';
 import 'package:freckt_cliente/utils/templates/avatar_template.dart';
 import 'package:freckt_cliente/utils/templates/elevated_button_template.dart';
-import 'package:freckt_cliente/views/fretes.dart';
+import 'package:freckt_cliente/views/solicitacoes.dart';
 
 class ResumoSolicitacao extends StatefulWidget {
   final TipoFrete tipoFrete;

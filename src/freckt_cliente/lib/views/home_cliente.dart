@@ -3,10 +3,11 @@ import 'package:flutter/widgets.dart';
 //import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:freckt_cliente/models/cliente.model.dart';
+import 'package:freckt_cliente/views/chats.dart';
 import 'package:freckt_cliente/views/configuracoes.dart';
 import 'package:freckt_cliente/views/agendamentos.dart';
 import 'package:freckt_cliente/views/fale_conosco.dart';
-import 'package:freckt_cliente/views/fretes.dart';
+import 'package:freckt_cliente/views/solicitacoes.dart';
 import 'package:freckt_cliente/views/solicitar_frete.dart';
 
 class HomeCliente extends StatefulWidget {
@@ -38,21 +39,78 @@ class _HomeClienteState extends State<HomeCliente> {
     );
   }
 
-  //void signOut() async {
-  //  final response = await model.signOutCliente();
-  //
-  //  if (response.status == ResponseStatus.SUCCESS) {
-  //    Navigator.pushAndRemoveUntil(
-  //      context,
-  //      MaterialPageRoute(
-  //        builder: (context) => Entrar(),
-  //      ),
-  //      (route) => false,
-  //    );
-  //  } else {
-  //    showSnackBar(response.message);
-  //  }
-  //}
+  Drawer drawer() {
+    return Drawer(
+      child: ListView(
+        children: [
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Color(0xFF20B8A6),
+              image: DecorationImage(
+                image: AssetImage('images/freckt_logo.png'),
+              ),
+            ),
+            //child: Center(
+            child: null, //Text(''),
+            //),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Agendamentos(),
+                ),
+              );
+            },
+            leading: Icon(Icons.watch_later_rounded),
+            title: Text('Agendamentos'),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Fretes(),
+                ),
+              );
+            },
+            leading: Icon(Icons.local_shipping_rounded),
+            title: Text('Fretes'),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FaleConosco(),
+                ),
+              );
+            },
+            leading: Icon(Icons.message_rounded),
+            title: Text('Fale conosco'),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Configuracoes(),
+                ),
+              );
+            },
+            leading: Icon(Icons.settings),
+            title: Text('Configurações'),
+          ),
+          ListTile(
+            onTap: () {},
+            leading: Icon(Icons.help),
+            title: Text('Ajuda'),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,178 +149,49 @@ class _HomeClienteState extends State<HomeCliente> {
           //  onPressed: signOut,
           //),
         ],
-        bottom: PreferredSize(
-          preferredSize: Size(double.infinity, 4.0),
-          child: _isLoading
-              ? LinearProgressIndicator(
-                  backgroundColor: Colors.white,
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
-                )
-              : Container(),
-        ),
+        //bottom: PreferredSize(
+        //  preferredSize: Size(double.infinity, 4.0),
+        //  child: _isLoading
+        //      ? LinearProgressIndicator(
+        //          backgroundColor: Colors.white,
+        //          valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+        //        )
+        //      : Container(),
+        //),
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color(0xFF20B8A6),
-                image: DecorationImage(
-                  image: AssetImage('images/freckt_logo.png'),
-                ),
-              ),
-              //child: Center(
-              child: null, //Text(''),
-              //),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Agendamentos(),
-                  ),
-                );
-              },
-              leading: Icon(Icons.watch_later_rounded),
-              title: Text('Agendamentos'),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Fretes(),
-                  ),
-                );
-              },
-              leading: Icon(Icons.local_shipping_rounded),
-              title: Text('Fretes'),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => FaleConosco(),
-                  ),
-                );
-              },
-              leading: Icon(Icons.message_rounded),
-              title: Text('Fale conosco'),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Configuracoes(),
-                  ),
-                );
-              },
-              leading: Icon(Icons.settings),
-              title: Text('Configurações'),
-            ),
-          ],
-        ),
-      ),
+      drawer: drawer(),
       body: Container(
         color: Colors.black12,
         child: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              //setState(() {
-              //  _isLoading = !_isLoading;
-              //});
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => SolicitarFrete(),
-                ),
-              );
-            },
-            child: Text('Solicitar frete'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SolicitarFrete(),
+                    ),
+                  );
+                },
+                child: Text('Solicitar frete'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Chats(),
+                    ),
+                  );
+                },
+                child: Text('Conversas'),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 }
-
-/*
-Stack(
-        alignment: AlignmentDirectional.bottomStart,
-        children: [
-          Container(
-            color: Colors.black12,
-            child: Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  //setState(() {
-                  //  _isLoading = !_isLoading;
-                  //});
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Fretistas(),
-                    ),
-                  );
-                },
-                child: Text('Fretistas'),
-              ),
-            ),
-          ),
-
-          //GoogleMap(
-          //  onMapCreated: _onMapCreated,
-          //  initialCameraPosition: CameraPosition(
-          //    target: _center,
-          //    zoom: 11.0,
-          //  ),
-          //),
-          Container(
-            //color: Colors.blue,
-            height: 200.0,
-            child: DraggableScrollableSheet(
-              initialChildSize: 0.2,
-              minChildSize: 0.2,
-              maxChildSize: 1.0,
-              expand: false,
-              builder:
-                  (BuildContext context, ScrollController scrollController) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white, //Color(0xFF20B8A6),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(40.0),
-                      topRight: Radius.circular(40.0),
-                    ),
-                  ),
-                  child: ListView(
-                    //).builder(
-                    controller: scrollController,
-                    children: [
-                      Container(
-                        height: 53.0,
-                        //color: Colors.orange,
-                        child: Center(
-                          child: Icon(
-                            Icons.maximize_rounded, //.expand_less_rounded,
-                            //color: Colors.white,
-                            size: 40,
-                          ),
-                        ),
-                      ),
-                    ],
-                    //itemCount: 25,
-                    //itemBuilder: (BuildContext context, int index) {
-                    //  return ListTile(title: Text('Item $index'));
-                    //},
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
- */
