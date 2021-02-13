@@ -123,7 +123,7 @@ class _SolicitacoesState extends State<Solicitacoes> {
                   children: <Widget>[
                     Container(
                       child: Text(
-                        data['fretistaName'],
+                        data['clienteName'],
                         //style: TextStyle(color: Consts.frecktThemeColor),
                       ),
                       alignment: Alignment.centerLeft,
