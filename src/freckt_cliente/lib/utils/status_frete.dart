@@ -5,4 +5,5 @@ class StatusFrete {
   static const int EM_ANDAMENTO = 2;
   static const int CONCLUIDO = 3;
   static const int CANCELADO = 4;
+  static const int ACEITO = 5;
 }
