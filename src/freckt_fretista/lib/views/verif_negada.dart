@@ -16,7 +16,7 @@ class VerifNegada extends StatelessWidget {
               height: 100.0,
             ),
             Text(
-              'Verificação\nNegada',
+              'Verificação de\n Documentos Negada',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 40.0,

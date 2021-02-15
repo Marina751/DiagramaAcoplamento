@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:freckt_fretista/utils/templates/button_template.dart';
 import 'package:freckt_fretista/views/home_fretista.dart';
+import 'package:freckt_fretista/views/verify.dart';
 
 class VerifAprovada extends StatelessWidget {
   @override
@@ -20,7 +21,7 @@ class VerifAprovada extends StatelessWidget {
               ),
             ),
             Text(
-              'Verificação\nAprovada',
+              'Verificação de\n Documentos Aprovada',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 40.0,
@@ -35,7 +36,7 @@ class VerifAprovada extends StatelessWidget {
         onPressed: () {
           Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => HomeFretista()),
+            MaterialPageRoute(builder: (context) => VerifyEmailScreen()),
             (route) => false,
           );
         },
