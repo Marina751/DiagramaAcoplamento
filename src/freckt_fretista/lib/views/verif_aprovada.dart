@@ -15,7 +15,7 @@ class VerifAprovada extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 10.0),
               // mudar para o icone verified_rounded
-              child: Icon(Icons.verified_rounded, color: Consts.greenDark,),
+              child: Icon(Icons.verified_rounded, color: Consts.greenDark, size: 100,),
             ),
             Text(
               'Verificação de\n Documentos Aprovada',
