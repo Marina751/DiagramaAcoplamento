@@ -114,7 +114,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
                 );
               },
             ),
-            ListTile(
+           /* ListTile(
               title: Text('Sobre'),
               onTap: () {
                 Navigator.push(
@@ -124,7 +124,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
                   ),
                 );
               },
-            ),
+            ),*/
             ListTile(
               title: Text(
                 'Encerrar seção',

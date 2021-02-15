@@ -4,6 +4,8 @@ import 'package:freckt_cliente/utils/frete.dart';
 import 'package:freckt_cliente/utils/templates/elevated_button_template.dart';
 import 'package:freckt_cliente/utils/templates/form_field_template.dart';
 import 'package:freckt_cliente/views/load_fretistas.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:intl/intl.dart';
 
 class SolicitarFrete extends StatefulWidget {
   @override
@@ -58,6 +60,8 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
 
   @override
   Widget build(BuildContext context) {
+    final format = DateFormat("dd/MM/yyyy");
+    final formattime = DateFormat("HH:mm");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff20B8A6),
@@ -86,13 +90,60 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                     keyboardType: TextInputType.text,
                     validator: (value) {
                       if (value.isEmpty) {
-                        return 'Informe a placa';
+                        return 'Informe a carga';
                       }
                       return null;
                     },
                     maxLines: 10,
                     onChanged: (value) => descricao = value,
                   ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: 10.0, top: 20.0, bottom: 10.0),
+                    child: Text(
+                      'Data e Hora',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child:
+                      DateTimeField(
+                          format: format,
+                          onShowPicker: (context, currentValue) {
+                      return showDatePicker(
+                        context: context,
+                          firstDate: DateTime(1900),
+                          initialDate: currentValue ?? DateTime.now(),
+                          lastDate: DateTime(2100));
+                  },
+                          decoration:
+                      InputDecoration(
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.calendar_today),
+                          hintText: 'Hoje', 
+                      )
+                ),),
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child:
+                      DateTimeField(
+                        format: formattime,
+                        onShowPicker: (context, currentValue) async {
+                      final time = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+                    );
+                      return DateTimeField.convert(time);
+                  },
+                        decoration:
+                          InputDecoration(
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.timelapse),
+                        hintText: 'Agora',
+                        ),
+                        ),
+                      ),
                   Padding(
                     padding:
                         EdgeInsets.only(left: 10.0, top: 20.0, bottom: 10.0),
@@ -140,7 +191,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                         flex: 2,
                         child: FormFieldTemplate(
                           title: 'Bairro',
-                          hintText: 'ex Paramgaba',
+                          hintText: 'ex Parangaba',
                           keyboardType: TextInputType.name,
                           validator: (value) {
                             if (value.isEmpty) {
