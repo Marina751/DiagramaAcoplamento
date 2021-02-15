@@ -53,46 +53,21 @@ class _SelecionarFretistaState extends State<SelecionarFretista> {
                     alignment: Alignment.centerLeft,
                     margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 5.0),
                   ),
-                  isExpanded
-                      ? Container(
-                          child: RatingBarIndicator(
-                            itemBuilder: (context, index) => Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                            ),
-                            itemSize: 20.0,
-                            rating: fretista.rating,
-                          ),
-                          alignment: Alignment.centerLeft,
-                          margin: EdgeInsets.only(left: 10.0),
-                        )
-                      : Container(
-                          child: Text(fretista.marca),
-                          alignment: Alignment.centerLeft,
-                          margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                        ),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-      margin: EdgeInsets.all(5.0),
-      padding: EdgeInsets.all(5.0),
-    );
-  }
-
-  Widget itemBody(Fretista fretista) {
-    return Container(
-      child: Row(
-        children: <Widget>[
-          Flexible(
-            child: Container(
-              child: Column(
-                children: <Widget>[
+                  Container(
+                    child: RatingBarIndicator(
+                    itemBuilder: (context, index) => Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                      ),
+                      itemSize: 20.0,
+                      rating: fretista.rating,
+                    ),
+                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(left: 10.0),
+                  ),
                   Container(
                     child: Text(
-                      '${fretista.marca} ${fretista.cor} com capacidade para ${fretista.capacidade}kg',
+                      '${fretista.marca} ${fretista.cor}\nCapacidade para ${fretista.capacidade}kg',
                     ),
                     alignment: Alignment.center,
                     padding: EdgeInsets.all(5.0),
@@ -121,15 +96,29 @@ class _SelecionarFretistaState extends State<SelecionarFretista> {
                   ),
                 ],
               ),
-              //margin: EdgeInsets.only(left: 10.0),
-              padding: EdgeInsets.all(10.0),
             ),
           ),
         ],
       ),
+      margin: EdgeInsets.all(5.0),
+      padding: EdgeInsets.all(5.0),
     );
   }
 
+  Widget itemBody(Fretista fretista) {
+    return Container(
+      child: Container(
+              child: Column(
+                children: <Widget>[ 
+                ],
+              ),
+              //margin: EdgeInsets.only(left: 10.0),
+              padding: EdgeInsets.all(10.0),
+            ),
+    );
+  }
+//coloco as informaçoes do fretista ali na linha do body: SingleChildScrollView ou é pra mudar aqui na _buildListFretistas. 
+// help, please TT ?
   Widget _buildListFretistas() {
     return ExpansionPanelList(
       expansionCallback: (int index, bool isExpanded) {
@@ -143,7 +132,7 @@ class _SelecionarFretistaState extends State<SelecionarFretista> {
             return itemHeader(item.fretista, isExpanded);
           },
           body: itemBody(item.fretista),
-          isExpanded: item.isExpanded,
+          isExpanded: false,
         );
       }).toList(),
     );
