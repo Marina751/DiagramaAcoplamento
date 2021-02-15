@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:freckt_fretista/utils/templates/button_template.dart';
-import 'package:freckt_fretista/views/home_fretista.dart';
-import 'package:freckt_fretista/views/verify.dart';
+import 'package:freckt_fretista/utils/templates/elevated_button_template.dart';
+import 'package:freckt_fretista/views/verify_email.dart';
+import 'package:freckt_fretista/utils/consts.dart';
 
 class VerifAprovada extends StatelessWidget {
   @override
@@ -15,10 +15,7 @@ class VerifAprovada extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: 10.0),
               // mudar para o icone verified_rounded
-              child: Image.asset(
-                'images/aprovacao.png',
-                height: 100.0,
-              ),
+              child: Icon(Icons.verified_rounded, color: Consts.greenDark,),
             ),
             Text(
               'Verificação de\n Documentos Aprovada',
@@ -32,7 +29,7 @@ class VerifAprovada extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: ButtonTemplate(
+      floatingActionButton: ElevatedButtonTemplate(
         onPressed: () {
           Navigator.pushAndRemoveUntil(
             context,
