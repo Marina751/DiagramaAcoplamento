@@ -140,6 +140,26 @@ class _ResumoSolicitacaoState extends State<ResumoSolicitacao> {
       ),
     );
   }
+  Widget formatTime() {
+    return Container(
+      padding: EdgeInsets.all(20.0),
+      child: ListTile(
+        leading: Icon(Icons.timelapse),
+        title: Text('Horário'),
+        subtitle: Text('m'),
+      ),
+    );
+  }
+  Widget formatDay() {
+    return Container(
+      padding: EdgeInsets.all(20.0),
+      child: ListTile(
+        leading: Icon(Icons.calendar_today),
+        title: Text('Data'),
+        subtitle: Text('m'),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -163,6 +183,9 @@ class _ResumoSolicitacaoState extends State<ResumoSolicitacao> {
               Divider(),
               formatAddress(widget.frete.origem, true),
               formatAddress(widget.frete.destino, false),
+              Divider(),
+              formatDay(),
+              formatTime(),
               Divider(),
               formatDescricao(),
             ],

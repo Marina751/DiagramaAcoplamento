@@ -7,6 +7,7 @@ import 'package:freckt_cliente/views/get_user_data.dart';
 import 'package:freckt_cliente/views/home_cliente.dart';
 import 'package:freckt_cliente/views/loading.dart';
 import 'package:freckt_cliente/views/something_went_wrong.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(
@@ -14,6 +15,11 @@ void main() {
       debugShowCheckedModeBanner: false,
       initialRoute: RouteName.ROOT,
       title: 'Freckt Cliente',
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+      supportedLocales: [const Locale('pt', 'BR')],
       routes: {
         RouteName.ROOT: (context) => Root(),
         RouteName.HOME: (context) => HomeCliente(),
