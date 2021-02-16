@@ -13,15 +13,14 @@ class SubmenuScaffoldTemplate extends StatelessWidget {
   final bool hasAlertTerms;
 
   //static const Color _black = Colors.black;
-  static Color _teal = Color(0xff20B8A6);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: _teal,
+        backgroundColor: Colors.white,
         leading: IconButton(
-          color: Colors.white,
+          color: Colors.black,
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
@@ -29,7 +28,7 @@ class SubmenuScaffoldTemplate extends StatelessWidget {
         ),
         title: Text(
           title,
-          //style: TextStyle(color: _black),
+          style: TextStyle(color: Colors.black),
         ),
       ),
       body: Padding(padding: EdgeInsets.all(10.0), child: body),

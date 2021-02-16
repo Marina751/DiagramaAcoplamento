@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import '../consts.dart';
+
 class ElevatedButtonTemplate extends Container {
   ElevatedButtonTemplate({
     @required void Function() onPressed,
@@ -14,8 +16,8 @@ class ElevatedButtonTemplate extends Container {
           child: ElevatedButton(
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
-              primary: color,
-              onPrimary: color,
+              primary: Consts.greenDark,
+              onPrimary: Consts.greenDark,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40.0),
               ),

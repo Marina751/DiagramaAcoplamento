@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:freckt_fretista/utils/templates/button_template.dart';
+import 'package:freckt_fretista/utils/templates/elevated_button_template.dart';
+import 'package:freckt_fretista/utils/consts.dart';
+
 
 class VerifNegada extends StatelessWidget {
   @override
@@ -16,9 +18,9 @@ class VerifNegada extends StatelessWidget {
               height: 100.0,
             ),
             Text(
-              'Verificação\nNegada',
+              'Verificação de\n Documentos Negada',
               style: TextStyle(
-                color: Colors.black,
+                color: Consts.greenDark,
                 fontSize: 40.0,
                 backgroundColor: Colors.white,
               ),
@@ -27,7 +29,7 @@ class VerifNegada extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: ButtonTemplate(
+      floatingActionButton: ElevatedButtonTemplate(
         onPressed: () {
           Navigator.pop(context);
         },
