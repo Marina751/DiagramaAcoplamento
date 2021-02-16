@@ -4,6 +4,7 @@ import 'package:freckt_cliente/models/cliente.model.dart';
 import 'package:freckt_cliente/utils/route_name.dart';
 import 'package:freckt_cliente/utils/templates/elevated_button_template.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:freckt_cliente/views/verify_email.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:flutter/material.dart';
@@ -111,14 +112,9 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
 
         await model.saveUserData();
 
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          RouteName.HOME,
-          //MaterialPageRoute(
-          //  builder: (context) => HomeCliente(),
-          //),
-          (route) => false,
-        );
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => VerifyEmailScreen()));
+
       } on firebase_storage.FirebaseException catch (e) {
         setState(() {
           _isLoading = false;
