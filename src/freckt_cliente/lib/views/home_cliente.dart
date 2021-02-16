@@ -7,6 +7,7 @@ import 'package:freckt_cliente/views/chats.dart';
 import 'package:freckt_cliente/views/configuracoes.dart';
 import 'package:freckt_cliente/views/agendamentos.dart';
 import 'package:freckt_cliente/views/fale_conosco.dart';
+import 'package:freckt_cliente/views/sobre.dart';
 import 'package:freckt_cliente/views/solicitacoes.dart';
 import 'package:freckt_cliente/views/solicitar_frete.dart';
 
@@ -103,7 +104,14 @@ class _HomeClienteState extends State<HomeCliente> {
             title: Text('Configurações'),
           ),
           ListTile(
-            onTap: () {},
+             onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Ajuda(),
+                  ),
+                );
+              },
             leading: Icon(Icons.help),
             title: Text('Ajuda'),
           ),
