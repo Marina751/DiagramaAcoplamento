@@ -38,41 +38,36 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
   @override
   Widget build(BuildContext context) {
     return SubmenuScaffoldTemplate(
-      title: "Verificação de Email",
-      body: Column(children: [
-        Expanded(
-          child: Icon(
-            Icons.outgoing_mail,
-            color: Consts.greenDark,
-            size: 80,
-          ),
-        ),
-        Expanded(
-            child: Column(children: [
-          Text(
-            "Um email foi enviado para\n",
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20),
-          ),
-          Text(
-            '${user.email}\n',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-          ),
-          Text(
-            "Clique no link do email recebido para validar sua conta e começar a utilizar o aplicativo",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 17,
+        title: "Verificação de email",
+        body: Column(children: [
+          Expanded(
+            child: Icon(
+              Icons.outgoing_mail,
+              color: Consts.greenDark,
+              size: 80,
             ),
           ),
-        ])),
-        Text('Não recebeu?', style: TextStyle(color: Colors.grey)),
-        ElevatedButtonTemplate(
-          onPressed: () {}, 
-          buttonText: 'REENVIAR EMAIL')
-      ])
-    );
+          Expanded(
+              child: Column(children: [
+            Text(
+              "Um email foi enviado para",
+              textAlign: TextAlign.center,
+              //style: TextStyle(fontSize: 20),
+            ),
+            Text(
+              '${user.email}',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "\nClique no link do email recebido para validar sua conta e começar a utilizar o aplicativo",
+              textAlign: TextAlign.center,
+              //style: TextStyle(fontSize: 17),
+            ),
+          ])),
+          Text('Não recebeu?', style: TextStyle(color: Colors.grey)),
+          ElevatedButtonTemplate(onPressed: () {}, buttonText: 'Reenviar')
+        ]));
   }
 
   Future<void> checkEmailVerified() async {
@@ -80,8 +75,11 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
     await user.reload();
     if (user.emailVerified) {
       timer.cancel();
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => HomeFretista()));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => HomeFretista()),
+        (route) => false,
+      );
     }
   }
 }

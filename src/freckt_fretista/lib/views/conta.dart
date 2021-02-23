@@ -60,14 +60,17 @@ class _ContaState extends State<Conta> {
               ),
             ),
             ListTile(
+              leading: Icon(Icons.account_circle_rounded),
               title: Text('Nome'),
               subtitle: Text(widget.model.getUserName),
             ),
             ListTile(
+              leading: Icon(Icons.phone_rounded),
               title: Text('Telefone'),
               subtitle: Text(widget.model.getUserPhone),
             ),
             ListTile(
+              leading: Icon(Icons.email),
               title: Text('E-mail'),
               subtitle: Text(widget.model.getUserEmail),
             ),

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freckt_cliente/views/loading.dart';
 import 'package:freckt_cliente/views/something_went_wrong.dart';
+import 'package:freckt_cliente/views/verify_email.dart';
 
 import 'home_cliente.dart';
 
@@ -44,7 +45,10 @@ class GetUserData extends StatelessWidget {
 
           if (data['photoUrl'] != null) {
             model.loadDataFromFirestore(data: data);
-            return HomeCliente();
+            if (user.emailVerified)
+              return HomeCliente();
+            else
+              return VerifyEmailScreen();
           } else {
             model.loadRegistrationData(data: data);
             return CompletarCadastro();

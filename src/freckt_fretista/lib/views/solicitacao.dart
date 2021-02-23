@@ -2,14 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freckt_fretista/utils/consts.dart';
+import 'package:freckt_fretista/utils/enums/tipo_frete.dart';
 import 'package:freckt_fretista/utils/status_frete.dart';
 import 'package:freckt_fretista/utils/templates/form_field_template.dart';
 import 'package:freckt_fretista/views/chat.dart';
 
 class Solicitacao extends StatefulWidget {
   final DocumentSnapshot document;
+  final TipoFrete tipoFrete;
 
-  const Solicitacao({Key key, this.document}) : super(key: key);
+  const Solicitacao(
+      {Key key, this.document, this.tipoFrete = TipoFrete.SOLICITACAO})
+      : super(key: key);
 
   @override
   _SolicitacaoState createState() => _SolicitacaoState();
@@ -269,28 +273,51 @@ class _SolicitacaoState extends State<Solicitacao> {
         );
         break;
       case StatusFrete.ESPERANDO_RESPOSTA:
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              onPressed: () async {
-                await _onPressRecusar();
-              },
-              child: Text('Recusar'),
-              style: ElevatedButton.styleFrom(
-                primary: Colors.red,
-              ),
+        return Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 20.0),
+                ElevatedButton(
+                  onPressed: () async {
+                    await _onPressRecusar();
+                  },
+                  child: Text('Recusar'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.red,
+                  ),
+                ),
+                SizedBox(width: 20.0),
+                ElevatedButton(
+                  onPressed: () {
+                    setStatusFrete(StatusFrete.EM_ANDAMENTO);
+                  },
+                  child: Text('Aceitar'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Color(0xff13786C),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(width: 20.0),
-            ElevatedButton(
+            /*ElevatedButton(
               onPressed: () {
-                setStatusFrete(StatusFrete.EM_ANDAMENTO);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Chat(
+                      clienteId: data['clienteId'],
+                      clienteName: data['clienteName'],
+                      clientePhotoUrl: data['clientePhotoUrl'],
+                    ),
+                  ),
+                );
               },
-              child: Text('Aceitar'),
+              child: Text('Enviar mensagem'),
               style: ElevatedButton.styleFrom(
                 primary: Color(0xff13786C),
               ),
-            ),
+            ),*/
           ],
         );
         break;
@@ -332,6 +359,16 @@ class _SolicitacaoState extends State<Solicitacao> {
     }
   }
 
+  Widget formatDay(String date) {
+    return Container(
+      child: ListTile(
+        leading: Icon(Icons.calendar_today),
+        title: Text('Data'),
+        subtitle: Text(date),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -369,6 +406,14 @@ class _SolicitacaoState extends State<Solicitacao> {
                 cep: data['destinoCep'],
                 isPartida: false,
               ),
+              widget.tipoFrete == TipoFrete.AGENDAMENTO
+                  ? Column(
+                      children: [
+                        Divider(),
+                        formatDay(data['date']),
+                      ],
+                    )
+                  : Container(),
               Divider(),
               formatDescricao(descricao: data['descricao']),
               Divider(),

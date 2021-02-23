@@ -10,6 +10,7 @@ import 'package:freckt_cliente/views/chat.dart';
 import 'package:freckt_cliente/views/loading.dart';
 import 'package:freckt_cliente/views/solicitar_frete.dart';
 import 'package:freckt_cliente/views/something_went_wrong.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Fretes extends StatefulWidget {
   @override
@@ -19,6 +20,9 @@ class Fretes extends StatefulWidget {
 class _FretesState extends State<Fretes> {
   final model = ClienteModel();
   final ScrollController listScrollController = ScrollController();
+  final _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  bool _isLoading = false;
 
   Widget formatAddress({
     @required String rua,
@@ -45,7 +49,6 @@ class _FretesState extends State<Fretes> {
 
   Widget formatDescricao({@required String descricao}) {
     return Container(
-      //padding: EdgeInsets.all(20.0),
       child: ListTile(
         leading: Icon(Icons.description),
         title: Text('Descrição da carga'),
@@ -54,7 +57,7 @@ class _FretesState extends State<Fretes> {
     );
   }
 
-  Future<void> _showDialog(Map<String, dynamic> data, bool canCancel) async {
+  Future<void> _showDialog(Map<String, dynamic> data) async {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -86,19 +89,11 @@ class _FretesState extends State<Fretes> {
                   Divider(),
                   formatDescricao(descricao: data['descricao']),
                   Divider(),
-                  canCancel
-                      ? ElevatedButton(
-                          onPressed: () {},
-                          child: Text('Cancelar frete'),
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.red,
-                          ),
+                  data['status'] == StatusFrete.REJEITADO
+                      ? Text(
+                          'Segundo o fretista, o motivo de não ter aceitado sua solicitação foi:\n\n"${data['motivo']}"',
                         )
-                      : data['status'] == StatusFrete.REJEITADO
-                          ? Text(
-                              'Segundo o fretista, o motivo de não ter aceitado sua solicitação foi:\n\n"${data['motivo']}"',
-                            )
-                          : Container(),
+                      : Container(),
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context);
@@ -116,29 +111,37 @@ class _FretesState extends State<Fretes> {
 
   Widget noRequests() {
     return Container(
+      padding: EdgeInsets.all(10.0),
       child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(20.0),
-              child: Text('Você ainda não fez solicitações de frete.'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SolicitarFrete(),
-                  ),
-                );
-              },
-              child: Text('Solicitar frete'),
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xff13786C),
+        child: Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                text: 'Bem-vindo ao Freckt.',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20.0,
+                ),
               ),
-            ),
-          ],
+              TextSpan(
+                  text:
+                      '\n\nSuas solicitações aparecerão aqui. Quer solicitar um frete? Use o botão '),
+              TextSpan(
+                text: '+',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              TextSpan(
+                text: '\nPara mais detalhes sobre este app, acesse a ',
+              ),
+              TextSpan(
+                text: 'ajuda.',
+                style: TextStyle(color: Colors.blue),
+              ),
+            ],
+          ),
+          textAlign: TextAlign.center,
         ),
       ),
     );
@@ -164,10 +167,10 @@ class _FretesState extends State<Fretes> {
     String min = _twoDigits(dateTime.minute);
 
     String date = _isToday(day: d, month: m, year: y)
-        ? 'Hoje'
-        : '${_twoDigits(d)}-${_twoDigits(m)}-$y';
+        ? 'hoje'
+        : 'em ${_twoDigits(d)}-${_twoDigits(m)}-$y';
 
-    return '$date $h:$min';
+    return 'Enviado $date às $h:$min';
   }
 
   Text statusFrete(int status) {
@@ -202,123 +205,190 @@ class _FretesState extends State<Fretes> {
     return Text(text, style: TextStyle(color: textColor));
   }
 
-  Widget freteAceito({
-    @required String fretistaId,
-    @required String fretistaPhotoUrl,
-    @required String fretistaName,
-  }) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Text(
-            'Entre em contato com o fretista para prosseguir.',
-            //textAlign: TextAlign.center,
-          ),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Chat(
-                    fretistaId: fretistaId,
-                    fretistaPhotoUrl: fretistaPhotoUrl,
-                    fretistaName: fretistaName),
-              ),
-            );
-          },
-          child: Text('Enviar mensagem'),
-          style: ElevatedButton.styleFrom(
-            primary: Color(0xff13786C),
-          ),
-        ),
-      ],
+  Future<void> _makePhoneCall(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      _scaffoldKey.currentState.showSnackBar(
+        SnackBar(content: Text('Ação indisponível')),
+      );
+    }
+  }
+
+  void setStatusFrete({
+    @required String campo,
+    @required dynamic value,
+    @required DocumentReference docRef,
+  }) async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    await docRef.update({campo: value});
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  Future<void> _onSetStateFrete(DocumentReference docRef,
+      {int newStatus = -1}) async {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          scrollable: true,
+          title: Text(newStatus == StatusFrete.CANCELADO
+              ? 'Cancelar esta solicitação?'
+              : 'Apagar esta solicitação?'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Não'),
+            ),
+            TextButton(
+              onPressed: () async {
+                newStatus == -1
+                    ? setStatusFrete(
+                        campo: 'visivelCliente',
+                        value: false,
+                        docRef: docRef,
+                      )
+                    : setStatusFrete(
+                        campo: 'status',
+                        value: newStatus,
+                        docRef: docRef,
+                      );
+                Navigator.pop(context);
+              },
+              child: Text('Sim'),
+            ),
+          ],
+        );
+      },
     );
   }
 
   Widget bottomItem(Map<String, dynamic> data) {
     int status = data['status'];
-    bool canCancel = (status == StatusFrete.ESPERANDO_RESPOSTA ||
-        status == StatusFrete.EM_ANDAMENTO);
 
     return Container(
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            status == StatusFrete.EM_ANDAMENTO
-                ? freteAceito(
-                    fretistaId: data['fretistaId'],
-                    fretistaName: data['fretistaName'],
-                    fretistaPhotoUrl: data['fretistaPhotoUrl'],
-                  )
-                : Container(),
-            TextButton(
-              onPressed: () async {
-                await _showDialog(data, canCancel);
-              },
-              child: Text('Mais detalhes'),
-            ),
-          ],
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          (status == StatusFrete.CANCELADO || status == StatusFrete.REJEITADO)
+              ? Container()
+              : Row(
+                  children: [
+                    IconButton(
+                      color: Color(0xff13786C),
+                      icon: Icon(Icons.call_rounded),
+                      onPressed: () async {
+                        await _makePhoneCall('tel:${data['fretistaPhone']}');
+                      },
+                    ),
+                    IconButton(
+                      color: Color(0xff13786C),
+                      icon: Icon(Icons.chat_rounded),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Chat(
+                              fretistaId: data['fretistaId'],
+                              fretistaName: data['fretistaName'],
+                              fretistaPhotoUrl: data['fretistaPhotoUrl'],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+        ],
       ),
     );
   }
 
-  Widget itemFrete(Map<String, dynamic> data) {
+  Widget itemFrete(DocumentSnapshot doc) {
+    Map<String, dynamic> data = doc.data();
     Timestamp timestamp = data['timestamp'];
     String dateTime = formatDateTime(timestamp.toDate());
 
     return Container(
-      child: Column(
-        children: [
-          Row(
-            children: <Widget>[
-              AvatarTemplate(url: data['fretistaPhotoUrl']),
-              Flexible(
-                child: Container(
-                  child: Column(
-                    children: <Widget>[
-                      Container(
-                        child: Text(
-                          data['fretistaName'],
-                          //style: TextStyle(color: Consts.frecktThemeColor),
+      child: FlatButton(
+        child: Column(
+          children: [
+            Row(
+              children: <Widget>[
+                AvatarTemplate(url: data['fretistaPhotoUrl']),
+                Flexible(
+                  flex: 2,
+                  child: Container(
+                    child: Column(
+                      children: <Widget>[
+                        Container(
+                          child: Text(data['fretistaName']),
+                          alignment: Alignment.centerLeft,
+                          margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 5.0),
                         ),
-                        alignment: Alignment.centerLeft,
-                        margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 5.0),
-                      ),
-                      Container(
-                        child: Text(
-                          dateTime,
-                          //style: TextStyle(color: primaryColor),
+                        Container(
+                          child: Text(dateTime),
+                          alignment: Alignment.centerLeft,
+                          margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 5.0),
                         ),
-                        alignment: Alignment.centerLeft,
-                        margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 5.0),
-                      ),
-                      Container(
-                        child: statusFrete(data['status']),
-                        alignment: Alignment.centerLeft,
-                        margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                      ),
-                    ],
+                        Container(
+                          child: statusFrete(data['status']),
+                          alignment: Alignment.centerLeft,
+                          margin: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
+                        ),
+                      ],
+                    ),
+                    margin: EdgeInsets.only(left: 20.0),
                   ),
-                  margin: EdgeInsets.only(left: 20.0),
                 ),
-              ),
-            ],
-          ),
-          bottomItem(data),
-        ],
+                _isLoading
+                    ? CircularProgressIndicator(
+                        strokeWidth: 1.0,
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Consts.greenDark),
+                      )
+                    : (data['status'] == StatusFrete.EM_ANDAMENTO ||
+                            data['status'] == StatusFrete.ESPERANDO_RESPOSTA)
+                        ? IconButton(
+                            icon: Icon(Icons.cancel_rounded),
+                            onPressed: () async {
+                              await _onSetStateFrete(
+                                doc.reference,
+                                newStatus: StatusFrete.CANCELADO,
+                              );
+                            },
+                            color: Colors.red,
+                          )
+                        : IconButton(
+                            icon: Icon(Icons.delete_rounded),
+                            onPressed: () async {
+                              await _onSetStateFrete(
+                                doc.reference,
+                              );
+                            },
+                            color: Colors.red,
+                          ),
+              ],
+            ),
+            bottomItem(data),
+          ],
+        ),
+        onPressed: () async {
+          await _showDialog(data);
+        },
+        padding: EdgeInsets.all(10.0),
       ),
-      //onPressed: () {},
-      //),
-      padding: EdgeInsets.fromLTRB(25.0, 10.0, 25.0, 10.0),
       decoration: BoxDecoration(
         color: Consts.greyColor2,
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
-        //RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       ),
       margin: EdgeInsets.all(5.0),
     );
@@ -330,6 +400,7 @@ class _FretesState extends State<Fretes> {
     return StreamBuilder(
       stream: solicitacoes
           .where('clienteId', isEqualTo: model.getUserId)
+          .where('visivelCliente', isEqualTo: true)
           .orderBy('timestamp', descending: true)
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -346,7 +417,7 @@ class _FretesState extends State<Fretes> {
           return ListView.builder(
             padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 50.0),
             itemBuilder: (context, index) =>
-                itemFrete(snapshot.data.docs[index].data()),
+                itemFrete(snapshot.data.docs[index]),
             itemCount: snapshot.data.docs.length,
             controller: listScrollController,
           );
@@ -358,18 +429,21 @@ class _FretesState extends State<Fretes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff20B8A6),
-        leading: IconButton(
-          color: Colors.white,
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text('Seus fretes'),
-      ),
+      key: _scaffoldKey,
       body: loadFretes(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => SolicitarFrete(),
+            ),
+          );
+        },
+        child: Icon(Icons.add),
+        tooltip: 'Nova solicitação',
+        backgroundColor: Color(0xff13786C),
+      ),
     );
   }
 }

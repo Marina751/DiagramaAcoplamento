@@ -82,6 +82,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
         child: ListView(
           children: [
             ListTile(
+              leading: Icon(Icons.vpn_key_rounded),
               title: Text('Conta'),
               onTap: () {
                 Navigator.push(
@@ -93,6 +94,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
               },
             ),
             ListTile(
+              leading: Icon(Icons.directions_car_rounded),
               title: Text('Veículos'),
               onTap: () {
                 Navigator.push(
@@ -104,6 +106,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
               },
             ),
             ListTile(
+              leading: Icon(Icons.lock_rounded),
               title: Text('Privacidade'),
               onTap: () {
                 Navigator.push(
@@ -115,6 +118,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
               },
             ),
             ListTile(
+              leading: Icon(Icons.security_rounded),
               title: Text('Segurança'),
               onTap: () {
                 Navigator.push(
@@ -126,6 +130,7 @@ class _ConfiguracoesState extends State<Configuracoes> {
               },
             ),
             ListTile(
+              leading: Icon(Icons.text_snippet_rounded),
               title: Text('Sobre'),
               onTap: () {
                 Navigator.push(
@@ -136,7 +141,9 @@ class _ConfiguracoesState extends State<Configuracoes> {
                 );
               },
             ),
+            Divider(),
             ListTile(
+              leading: Icon(Icons.logout),
               title: Text(
                 'Encerrar sessão',
                 style: TextStyle(color: Colors.red),

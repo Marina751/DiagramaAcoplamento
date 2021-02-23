@@ -15,6 +15,7 @@ void main() {
       debugShowCheckedModeBanner: false,
       initialRoute: RouteName.ROOT,
       title: 'Freckt Cliente',
+      theme: ThemeData(primaryColor: const Color(0xff13786C)),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate

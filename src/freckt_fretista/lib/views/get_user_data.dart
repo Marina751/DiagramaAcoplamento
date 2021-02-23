@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freckt_fretista/models/fretista.model.dart';
 import 'package:freckt_fretista/views/completar_cadastro.dart';
 import 'package:freckt_fretista/views/home_fretista.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freckt_fretista/views/loading.dart';
 import 'package:freckt_fretista/views/something_went_wrong.dart';
+import 'package:freckt_fretista/views/verify_email.dart';
 
 class GetUserData extends StatefulWidget {
   GetUserData(this.path);
@@ -24,6 +26,7 @@ class _GetUserDataState extends State<GetUserData> {
   final model = FretistaModel();
 
   final fretistas = FirebaseFirestore.instance.collection('fretistas');
+  final user = FirebaseAuth.instance.currentUser;
 
   /// O [build] metodo retorna um [FutureBuilder] que buscará os dados
   /// do usuário autenticado e carregará no model. Enquanto isso é feito,
@@ -44,7 +47,10 @@ class _GetUserDataState extends State<GetUserData> {
 
           if (data['vehicles'] != null) {
             model.loadDataFromFirestore(data: data);
-            return HomeFretista();
+            if (user.emailVerified)
+              return HomeFretista();
+            else
+              return VerifyEmailScreen();
           } else {
             model.loadRegistrationData(data: data);
             return CompletarCadastro();

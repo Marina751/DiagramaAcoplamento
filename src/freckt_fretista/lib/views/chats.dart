@@ -94,13 +94,16 @@ class _ChatsState extends State<Chats> {
         if (!snapshot.hasData) {
           return Loading();
         } else {
-          return ListView.builder(
-            padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 50.0),
-            itemBuilder: (context, index) =>
-                itemChat(snapshot.data.docs[index].data()),
-            itemCount: snapshot.data.docs.length,
-            controller: listScrollController,
-          );
+          if (snapshot.data.docs.isEmpty)
+            return Center(child: Text('Você não possui conversas'));
+          else
+            return ListView.builder(
+              padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 50.0),
+              itemBuilder: (context, index) =>
+                  itemChat(snapshot.data.docs[index].data()),
+              itemCount: snapshot.data.docs.length,
+              controller: listScrollController,
+            );
 
           //ListView(
           //    padding: EdgeInsets.all(5.0),

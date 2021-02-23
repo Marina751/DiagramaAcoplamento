@@ -21,7 +21,7 @@ class SubmenuScaffoldTemplate extends StatelessWidget {
         backgroundColor: _white,
         leading: IconButton(
           color: Colors.white,
-          icon: Icon(Icons.arrow_back, color: Consts.greenDark,),
+          icon: Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
