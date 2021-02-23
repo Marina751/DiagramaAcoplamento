@@ -23,7 +23,8 @@ class _AgendamentosState extends State<Agendamentos> {
   final ScrollController listScrollController = ScrollController();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  bool _isLoading = false;
+  //bool _isLoading = false;
+  int _isLoadingIndex = -1;
 
   Widget noRequests() {
     return Container(
@@ -120,19 +121,22 @@ class _AgendamentosState extends State<Agendamentos> {
     @required String campo,
     @required dynamic value,
     @required DocumentReference docRef,
+    @required int index,
   }) async {
     setState(() {
-      _isLoading = true;
+      _isLoadingIndex = index;
+      //_isLoading = true;
     });
 
     await docRef.update({campo: value});
 
     setState(() {
-      _isLoading = false;
+      _isLoadingIndex = -1;
+      //_isLoading = false;
     });
   }
 
-  Future<void> _onSetStateFrete(DocumentReference docRef,
+  Future<void> _onSetStateFrete(DocumentReference docRef, int index,
       {int newStatus = -1}) async {
     return showDialog<void>(
       context: context,
@@ -156,11 +160,13 @@ class _AgendamentosState extends State<Agendamentos> {
                         campo: 'visivelFretista',
                         value: false,
                         docRef: docRef,
+                        index: index,
                       )
                     : setStatusFrete(
                         campo: 'status',
                         value: newStatus,
                         docRef: docRef,
+                        index: index,
                       );
                 Navigator.pop(context);
               },
@@ -213,7 +219,7 @@ class _AgendamentosState extends State<Agendamentos> {
     );
   }
 
-  Widget itemFrete(DocumentSnapshot doc) {
+  Widget itemFrete(DocumentSnapshot doc, int index) {
     Map<String, dynamic> data = doc.data();
     Timestamp timestamp = data['timestamp'];
     String dateTime = formatDateTime(timestamp.toDate());
@@ -261,7 +267,7 @@ class _AgendamentosState extends State<Agendamentos> {
                     margin: EdgeInsets.only(left: 20.0),
                   ),
                 ),
-                _isLoading
+                _isLoadingIndex == index
                     ? CircularProgressIndicator(
                         strokeWidth: 1.0,
                         valueColor:
@@ -274,6 +280,7 @@ class _AgendamentosState extends State<Agendamentos> {
                             onPressed: () async {
                               await _onSetStateFrete(
                                 doc.reference,
+                                index,
                                 newStatus: StatusFrete.CANCELADO,
                               );
                             },
@@ -284,6 +291,7 @@ class _AgendamentosState extends State<Agendamentos> {
                             onPressed: () async {
                               await _onSetStateFrete(
                                 doc.reference,
+                                index,
                               );
                             },
                             color: Colors.red,
@@ -326,7 +334,7 @@ class _AgendamentosState extends State<Agendamentos> {
           return ListView.builder(
             padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 50.0),
             itemBuilder: (context, index) =>
-                itemFrete(snapshot.data.docs[index]),
+                itemFrete(snapshot.data.docs[index], index),
             itemCount: snapshot.data.docs.length,
             controller: listScrollController,
           );

@@ -26,7 +26,6 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
       checkEmailVerified();
     });
     super.initState();
-    // add listener in the future
   }
 
   @override
@@ -37,9 +36,9 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SubmenuScaffoldTemplate(
-        title: "Verificação de email",
-        body: Column(children: [
+    return Scaffold(
+      body: Column(
+        children: [
           Expanded(
             child: Icon(
               Icons.outgoing_mail,
@@ -48,26 +47,29 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
             ),
           ),
           Expanded(
-              child: Column(children: [
-            Text(
-              "Um email foi enviado para",
-              textAlign: TextAlign.center,
-              //style: TextStyle(fontSize: 20),
+            child: Column(
+              children: [
+                Text(
+                  'Um email foi enviado para',
+                  textAlign: TextAlign.center,
+                ),
+                Text(
+                  '${user.email}',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  '\nClique no link do email recebido para validar sua conta e começar a utilizar o aplicativo',
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
-            Text(
-              '${user.email}',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              "\nClique no link do email recebido para validar sua conta e começar a utilizar o aplicativo",
-              textAlign: TextAlign.center,
-              //style: TextStyle(fontSize: 17),
-            ),
-          ])),
+          ),
           Text('Não recebeu?', style: TextStyle(color: Colors.grey)),
           ElevatedButtonTemplate(onPressed: () {}, buttonText: 'Reenviar')
-        ]));
+        ],
+      ),
+    );
   }
 
   Future<void> checkEmailVerified() async {

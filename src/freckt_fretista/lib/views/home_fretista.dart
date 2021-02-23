@@ -5,8 +5,8 @@ import 'package:freckt_fretista/views/configuracoes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freckt_fretista/views/fale_conosco.dart';
-import 'package:freckt_fretista/utils/consts.dart';
 import 'package:freckt_fretista/views/solicitacoes.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeFretista extends StatefulWidget {
   @override
@@ -29,9 +29,17 @@ class _HomeFretistaState extends State<HomeFretista> {
           iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
           title: Text(
-            'Freckt', //'Olá, ${model.name.split(' ')[0]}',
-            style: TextStyle(color: Colors.black),
+            'freckt',
+            style: GoogleFonts.comfortaa(
+              fontSize: 24.0,
+              color: Colors.black,
+            ),
           ),
+
+          //Text(
+          //  'Freckt', //'Olá, ${model.name.split(' ')[0]}',
+          //  style: TextStyle(color: Colors.black),
+          //),
           actions: [
             Padding(
               padding: EdgeInsets.only(right: 10.0),
