@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freckt_cliente/utils/address.dart';
+import 'package:freckt_cliente/utils/enums/tipo_frete.dart';
 import 'package:freckt_cliente/utils/frete.dart';
 import 'package:freckt_cliente/utils/templates/elevated_button_template.dart';
 import 'package:freckt_cliente/utils/templates/form_field_template.dart';
@@ -8,12 +9,24 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:intl/intl.dart';
 
 class SolicitarFrete extends StatefulWidget {
+  final TipoFrete tipoFrete;
+
+  const SolicitarFrete({
+    Key key,
+    this.tipoFrete = TipoFrete.SOLICITACAO,
+  }) : super(key: key);
+
   @override
   _SolicitarFreteState createState() => _SolicitarFreteState();
 }
 
 class _SolicitarFreteState extends State<SolicitarFrete> {
   final _formKey = GlobalKey<FormState>();
+  final format = DateFormat("dd/MM/yyyy");
+  final formattime = DateFormat("HH:mm");
+
+  DateTime date;
+  //TimeOfDay time;
   String origemMunicipio;
   String origemUf;
   String origemBairro;
@@ -31,6 +44,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
   void makeFrete() {
     if (_formKey.currentState.validate()) {
       Frete frete = new Frete(
+        tipoFrete: widget.tipoFrete,
         origem: new Address(
           municipio: origemMunicipio,
           uf: origemUf,
@@ -48,6 +62,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
           cep: destinoCep,
         ),
         descricao: descricao,
+        date: date,
       );
       Navigator.push(
         context,
@@ -60,8 +75,6 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
 
   @override
   Widget build(BuildContext context) {
-    final format = DateFormat("dd/MM/yyyy");
-    final formattime = DateFormat("HH:mm");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff20B8A6),
@@ -97,53 +110,57 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                     maxLines: 10,
                     onChanged: (value) => descricao = value,
                   ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(left: 10.0, top: 20.0, bottom: 10.0),
-                    child: Text(
-                      'Data e Hora',
-                      style: TextStyle(fontSize: 18.0),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child:
-                      DateTimeField(
-                          format: format,
-                          onShowPicker: (context, currentValue) {
-                      return showDatePicker(
-                        context: context,
-                          firstDate: DateTime(1900),
-                          initialDate: currentValue ?? DateTime.now(),
-                          lastDate: DateTime(2100));
-                  },
-                          decoration:
-                      InputDecoration(
-                          border: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.calendar_today),
-                          hintText: 'Hoje', 
-                      )
-                ),),
-                  Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child:
-                      DateTimeField(
-                        format: formattime,
-                        onShowPicker: (context, currentValue) async {
-                      final time = await showTimePicker(
-                        context: context,
-                        initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
-                    );
-                      return DateTimeField.convert(time);
-                  },
-                        decoration:
-                          InputDecoration(
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.timelapse),
-                        hintText: 'Agora',
-                        ),
-                        ),
-                      ),
+                  widget.tipoFrete == TipoFrete.AGENDAMENTO
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  left: 10.0, top: 20.0, bottom: 10.0),
+                              child: Text(
+                                'Data e Hora',
+                                style: TextStyle(fontSize: 18.0),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.all(10.0),
+                              child: DateTimeField(
+                                format: format,
+                                onShowPicker: (context, currentValue) async {
+                                  return date = await showDatePicker(
+                                    context: context,
+                                    firstDate: DateTime(1900),
+                                    initialDate: currentValue ?? DateTime.now(),
+                                    lastDate: DateTime(2100),
+                                    builder:
+                                        (BuildContext context, Widget child) {
+                                      return Theme(
+                                        data: ThemeData.light().copyWith(
+                                          colorScheme: ColorScheme.light(
+                                            primary: Color(0xff13786C),
+                                          ),
+                                        ),
+                                        child: child,
+                                      );
+                                    },
+                                  );
+                                },
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  prefixIcon: Icon(Icons.calendar_today),
+                                  hintText: 'Hoje',
+                                ),
+                                validator: (value) {
+                                  if (value == null) {
+                                    return 'Informe a data';
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ],
+                        )
+                      : Container(),
                   Padding(
                     padding:
                         EdgeInsets.only(left: 10.0, top: 20.0, bottom: 10.0),
@@ -158,7 +175,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                         flex: 2,
                         child: FormFieldTemplate(
                           title: 'Município',
-                          hintText: 'ex. Fortaleza',
+                          hintText: 'Fortaleza',
                           keyboardType: TextInputType.name,
                           validator: (value) {
                             if (value.isEmpty) {
@@ -172,7 +189,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                       Expanded(
                         child: FormFieldTemplate(
                           title: 'UF',
-                          hintText: 'ex. CE',
+                          hintText: 'CE',
                           keyboardType: TextInputType.name,
                           validator: (value) {
                             if (value.isEmpty) {
@@ -191,7 +208,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                         flex: 2,
                         child: FormFieldTemplate(
                           title: 'Bairro',
-                          hintText: 'ex Parangaba',
+                          hintText: 'Parangaba',
                           keyboardType: TextInputType.name,
                           validator: (value) {
                             if (value.isEmpty) {
@@ -205,7 +222,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                       Expanded(
                         child: FormFieldTemplate(
                           title: 'CEP',
-                          hintText: 'ex 99999-999',
+                          hintText: '99999-999',
                           keyboardType: TextInputType.number,
                           validator: (value) {
                             if (value.isEmpty) {
@@ -224,7 +241,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                         flex: 2,
                         child: FormFieldTemplate(
                           title: 'Rua',
-                          hintText: 'ex. Av. João Pessoa',
+                          hintText: 'Av. João Pessoa',
                           keyboardType: TextInputType.name,
                           validator: (value) {
                             if (value.isEmpty) {
@@ -238,7 +255,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                       Expanded(
                         child: FormFieldTemplate(
                           title: 'Número',
-                          hintText: 'ex. 123',
+                          hintText: '123',
                           keyboardType: TextInputType.number,
                           validator: (value) {
                             if (value.isEmpty) {
@@ -265,7 +282,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                         flex: 2,
                         child: FormFieldTemplate(
                           title: 'Município',
-                          hintText: 'ex. Fortaleza',
+                          hintText: 'Fortaleza',
                           keyboardType: TextInputType.name,
                           validator: (value) {
                             if (value.isEmpty) {
@@ -279,7 +296,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                       Expanded(
                         child: FormFieldTemplate(
                           title: 'UF',
-                          hintText: 'ex. CE',
+                          hintText: 'CE',
                           keyboardType: TextInputType.name,
                           validator: (value) {
                             if (value.isEmpty) {
@@ -298,7 +315,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                         flex: 2,
                         child: FormFieldTemplate(
                           title: 'Bairro',
-                          hintText: 'ex Benfica',
+                          hintText: 'Benfica',
                           keyboardType: TextInputType.name,
                           validator: (value) {
                             if (value.isEmpty) {
@@ -312,7 +329,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                       Expanded(
                         child: FormFieldTemplate(
                           title: 'CEP',
-                          hintText: 'ex 88888-888',
+                          hintText: '88888-888',
                           keyboardType: TextInputType.number,
                           validator: (value) {
                             if (value.isEmpty) {
@@ -331,7 +348,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                         flex: 2,
                         child: FormFieldTemplate(
                           title: 'Rua',
-                          hintText: 'ex. Av. 13 de maio',
+                          hintText: 'Av. 13 de maio',
                           keyboardType: TextInputType.name,
                           validator: (value) {
                             if (value.isEmpty) {
@@ -345,7 +362,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                       Expanded(
                         child: FormFieldTemplate(
                           title: 'Número',
-                          hintText: 'ex. 123',
+                          hintText: '123',
                           keyboardType: TextInputType.number,
                           validator: (value) {
                             if (value.isEmpty) {

@@ -1,15 +1,12 @@
 import 'dart:io';
 
 import 'package:freckt_cliente/models/cliente.model.dart';
-import 'package:freckt_cliente/utils/route_name.dart';
 import 'package:freckt_cliente/utils/templates/elevated_button_template.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:freckt_cliente/views/verify_email.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as p;
 import 'package:flutter/material.dart';
-
-import 'home_cliente.dart';
 
 class CadastroPerfil extends StatefulWidget {
   @override
@@ -112,9 +109,12 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
 
         await model.saveUserData();
 
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => VerifyEmailScreen()));
-
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => VerifyEmailScreen(),
+          ),
+        );
       } on firebase_storage.FirebaseException catch (e) {
         setState(() {
           _isLoading = false;
@@ -157,26 +157,6 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
         padding: EdgeInsets.all(10.0),
         child: Column(
           children: [
-            //Form(
-            //  child: Row(
-            //    children: [
-            //      Expanded(
-            //        child: FormFieldTemplate(
-            //          title: 'Cidade',
-            //          hintText: 'ex: Fortaleza',
-            //          keyboardType: TextInputType.name,
-            //        ),
-            //      ),
-            //      Expanded(
-            //        child: FormFieldTemplate(
-            //          title: 'Bairro',
-            //          hintText: 'ex: Parangaba',
-            //          keyboardType: TextInputType.name,
-            //        ),
-            //      ),
-            //    ],
-            //  ),
-            //),
             Container(
               padding: EdgeInsets.only(top: 50.0, bottom: 100.0),
               alignment: Alignment.center,

@@ -78,14 +78,6 @@ class _ChatsState extends State<Chats> {
           .where('clienteId', isEqualTo: model.getUserId)
           .orderBy('timestamp', descending: true)
           .snapshots(),
-
-      //FirebaseFirestore.instance
-      //    .collection('messages')
-      //    .doc(groupChatId)
-      //    .collection(groupChatId)
-      //    .orderBy('timestamp', descending: true)
-      //    .limit(_limit)
-      //    .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasError) {
           return SomethingWentWrong(snapshot.error.toString());
@@ -94,82 +86,21 @@ class _ChatsState extends State<Chats> {
         if (!snapshot.hasData) {
           return Loading();
         } else {
-          return ListView.builder(
-            padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 50.0),
-            itemBuilder: (context, index) =>
-                itemChat(snapshot.data.docs[index].data()),
-            itemCount: snapshot.data.docs.length,
-            controller: listScrollController,
-          );
-
-          //ListView(
-          //    padding: EdgeInsets.all(5.0),
-          //    children: snapshot.data.docs.map((doc) {
-          //      final data = doc.data();
-          //
-          //      return itemChat(data);
-          //    }).toList(),
-          //  )
-          //: Center(
-          //    child: Text('Aguardando mensagens...'),
-          //  );
+          if (snapshot.data.docs.isEmpty)
+            return Center(child: Text('Você não possui conversas'));
+          else
+            return ListView.builder(
+              padding: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 50.0),
+              itemBuilder: (context, index) =>
+                  itemChat(snapshot.data.docs[index].data()),
+              itemCount: snapshot.data.docs.length,
+              controller: listScrollController,
+            );
         }
       },
-      //if (!snapshot.hasData) {
-      //  return Loading();
-      //} else {
-      //listMessage.addAll(snapshot.data.documents);
-      //return ListView.builder(
-      //  padding: EdgeInsets.all(10.0),
-      //  itemBuilder: (context, index) =>
-      //      buildItem(index, snapshot.data.documents[index]),
-      //  itemCount: snapshot.data.documents.length,
-      //  reverse: true,
-      //  controller: listScrollController,
-      //);
     );
-
-    /*return FutureBuilder(
-      future: fretistas.where('fretistaId', isEqualTo: model.getUserId).get(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return SomethingWentWrong(snapshot.error.toString());
-        }
-
-        if (snapshot.connectionState == ConnectionState.done) {
-          return snapshot.hasData
-              ? ListView(
-                  padding: EdgeInsets.all(5.0),
-                  children: snapshot.data.docs.map((doc) {
-                    final data = doc.data();
-
-                    return itemChat(data);
-                  }).toList(),
-                )
-              : Center(
-                  child: Text('Aguardando mensagens...'),
-                );
-        }
-        return Loading();
-      },
-    );*/
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff20B8A6),
-        leading: IconButton(
-          color: Colors.white,
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
-        title: Text('Conversas'),
-      ),
-      body: loadChats(),
-    );
-  }
+  Widget build(BuildContext context) => loadChats();
 }

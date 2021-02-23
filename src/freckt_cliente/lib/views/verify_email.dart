@@ -6,7 +6,6 @@ import 'package:freckt_cliente/utils/consts.dart';
 import 'package:freckt_cliente/utils/route_name.dart';
 import 'package:freckt_cliente/utils/templates/elevated_button_template.dart';
 import 'package:freckt_cliente/utils/templates/submenu_scaffold_template.dart';
-import 'package:freckt_cliente/views/home_cliente.dart';
 
 class VerifyEmailScreen extends StatefulWidget {
   @override

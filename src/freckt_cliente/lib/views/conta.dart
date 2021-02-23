@@ -1,16 +1,15 @@
+import 'package:freckt_cliente/models/cliente.model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import '../models/cliente.model.dart';
-
 class Conta extends StatefulWidget {
-  final model = ClienteModel();
-
   @override
   _ContaState createState() => _ContaState();
 }
 
 class _ContaState extends State<Conta> {
+  final model = ClienteModel();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,13 +36,13 @@ class _ContaState extends State<Conta> {
                 alignment: AlignmentDirectional.bottomEnd,
                 children: [
                   CircleAvatar(
-                    backgroundImage: NetworkImage(widget.model.getPhotoUrl),
+                    backgroundImage: NetworkImage(model.getPhotoUrl),
                     backgroundColor: Colors.black12,
                     radius: 100.0,
                   ),
                   LimitedBox(
                     child: CircleAvatar(
-                      backgroundColor: Colors.black,
+                      backgroundColor: Color(0xff13786C),
                       radius: 30.0,
                       child: IconButton(
                         splashRadius: 10.0,
@@ -59,16 +58,19 @@ class _ContaState extends State<Conta> {
               ),
             ),
             ListTile(
+              leading: Icon(Icons.account_circle_rounded),
               title: Text('Nome'),
-              subtitle: Text(widget.model.getUserName),
+              subtitle: Text(model.getUserName),
             ),
             ListTile(
+              leading: Icon(Icons.phone_rounded),
               title: Text('Telefone'),
-              subtitle: Text(widget.model.getUserPhone),
+              subtitle: Text(model.getUserPhone),
             ),
             ListTile(
+              leading: Icon(Icons.email),
               title: Text('E-mail'),
-              subtitle: Text(widget.model.getUserEmail),
+              subtitle: Text(model.getUserEmail),
             ),
           ],
         ),
