@@ -10,6 +10,7 @@ import 'package:freckt_cliente/views/configuracoes.dart';
 import 'package:freckt_cliente/views/fale_conosco.dart';
 import 'package:freckt_cliente/views/sobre.dart';
 import 'package:freckt_cliente/views/solicitacoes.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeCliente extends StatefulWidget {
   @override
@@ -32,9 +33,17 @@ class _HomeClienteState extends State<HomeCliente> {
           iconTheme: IconThemeData(color: Colors.black),
           backgroundColor: Colors.white,
           title: Text(
-            'Freckt', //Olá ${model.name.split(' ')[0]}',
-            style: TextStyle(color: Colors.black),
+            'freckt',
+            style: GoogleFonts.comfortaa(
+              fontSize: 24.0,
+              color: Colors.black,
+            ),
           ),
+
+          //Text(
+          //  'Freckt', //Olá ${model.name.split(' ')[0]}',
+          //  style: TextStyle(color: Colors.black),
+          //),
           actions: [
             Padding(
               padding: EdgeInsets.only(right: 10.0),

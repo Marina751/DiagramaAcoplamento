@@ -118,7 +118,7 @@ class _SolicitarFreteState extends State<SolicitarFrete> {
                               padding: EdgeInsets.only(
                                   left: 10.0, top: 20.0, bottom: 10.0),
                               child: Text(
-                                'Data e Hora',
+                                'Data',
                                 style: TextStyle(fontSize: 18.0),
                               ),
                             ),

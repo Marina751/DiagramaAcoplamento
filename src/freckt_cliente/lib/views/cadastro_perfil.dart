@@ -109,11 +109,12 @@ class _CadastroPerfilState extends State<CadastroPerfil> {
 
         await model.saveUserData();
 
-        Navigator.push(
+        Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(
             builder: (context) => VerifyEmailScreen(),
           ),
+          (route) => false,
         );
       } on firebase_storage.FirebaseException catch (e) {
         setState(() {
