@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freckt_fretista/views/fale_conosco.dart';
 import 'package:freckt_fretista/views/solicitacoes.dart';
+import 'package:freckt_fretista/views/sobre.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeFretista extends StatefulWidget {
@@ -68,12 +69,12 @@ class _HomeFretistaState extends State<HomeFretista> {
                   PopupMenuItem(
                     child: ListTile(
                       onTap: () {
-                        //Navigator.pushReplacement(
-                        //  context,
-                        //  MaterialPageRoute(
-                        //    builder: (context) => Ajuda(),
-                        //  ),
-                        //);
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Ajuda(),
+                          ),
+                        );
                       },
                       leading: Icon(Icons.help),
                       title: Text('Ajuda'),
