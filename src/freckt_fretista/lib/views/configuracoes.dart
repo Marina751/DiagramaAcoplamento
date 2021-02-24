@@ -129,18 +129,18 @@ class _ConfiguracoesState extends State<Configuracoes> {
                 );
               },
             ),
-            ListTile(
-              leading: Icon(Icons.text_snippet_rounded),
-              title: Text('Sobre'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Sobre(),
-                  ),
-                );
-              },
-            ),
+            //ListTile(
+            //  leading: Icon(Icons.text_snippet_rounded),
+            //  title: Text('Sobre'),
+            //  onTap: () {
+            //    Navigator.push(
+            //      context,
+            //      MaterialPageRoute(
+            //        builder: (context) => Sobre(),
+            //      ),
+            //    );
+            //  },
+            //),
             Divider(),
             ListTile(
               leading: Icon(Icons.logout),
